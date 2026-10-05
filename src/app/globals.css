@@ -16,13 +16,9 @@
   --amber: #d4a017; /* solo alerta funcional */
   --amber-dim: rgba(212, 160, 23, 0.14);
   --gutter: 56px;
+  /* Misma unidad en altura de capítulo y stage: si vh≠dvh aparecen cortinillas */
   --vh-unit: 1vh;
-  --stage-h: 100vh;
-}
-@supports (height: 100dvh) {
-  :root {
-    --stage-h: 100dvh;
-  }
+  --stage-h: calc(100 * var(--vh-unit));
 }
 
 @theme inline {
@@ -44,7 +40,7 @@
 @media (max-width: 767px) {
   :root {
     --gutter: 20px;
-    --vh-unit: 0.8vh;
+    --vh-unit: 0.8vh; /* tramos más cortos; --stage-h sigue en 100× esta unidad */
   }
 }
 
