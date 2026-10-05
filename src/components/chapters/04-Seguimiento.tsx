@@ -7,7 +7,7 @@ import { ChapterCopy } from "@/components/ui/atoms";
 const demands = [
   { who: "Familia Castro", what: "2 hab · hasta 250.000 · zona sur", ok: false },
   { who: "Iván R.", what: "local · hasta 180.000 · centro", ok: false },
-  { who: "Familia López", what: "3 hab · hasta 280.000 · Rianxo", ok: true },
+  { who: "Familia López", what: "3 hab · hasta 450.000 · con terraza · zona norte", ok: true },
 ];
 
 const columns = ["Captado", "Contacto", "Visita", "Oferta", "Reserva"];
@@ -54,9 +54,9 @@ export function Seguimiento() {
 
         <div className="copy copy-block">
           <ChapterCopy
-            n="03"
-            module="Seguimiento"
-            what="Inmuebles, demandas y clientes"
+            n="04"
+            module="Inmuebles · Demandas · Seguimiento"
+            what="tu cartera, cruzada con lo que buscan tus clientes"
             title={
               <>
                 Cada piso nuevo,
@@ -76,7 +76,7 @@ export function Seguimiento() {
               <span>Inmuebles</span>
               <span className="mono text-[13px] text-grey6">stock de la agencia · 2 disponibles</span>
             </div>
-            <div className="inventory-head mono grid grid-cols-[36px_minmax(0,1fr)_90px_100px] gap-3 text-[13px] text-grey6">
+            <div className="mono grid grid-cols-[36px_1fr_90px_100px] gap-3 text-[13px] text-grey6">
               <span />
               <span>inmueble</span>
               <span className="text-right">precio</span>
@@ -84,19 +84,19 @@ export function Seguimiento() {
             </div>
             {[
               { bars: true, price: "450.000 €", st: "disponible", hero: false },
-              { bars: false, price: "260.000 €", st: "disponible", hero: true },
+              { bars: false, price: "435.000 €", st: "disponible", hero: true },
               { bars: true, price: "260.000 €", st: "reservado", hero: false },
             ].map((r, i) => (
               <div
                 key={i}
-                className={`inventory-row ${r.hero ? "inm-hero" : ""} grid grid-cols-[36px_minmax(0,1fr)_90px_100px] items-center gap-3 border-t border-[#1F1F1F] py-[8px] text-[13px]`}
+                className={`${r.hero ? "inm-hero" : ""} grid grid-cols-[36px_1fr_90px_100px] items-center gap-3 border-t border-[#1F1F1F] py-[8px] text-[13px]`}
                 style={r.hero ? { border: "1px solid transparent", borderRadius: 8, padding: 10, margin: "0 -6px" } : { opacity: 0.5 }}
               >
                 <div className="h-9 w-9 rounded-[6px]" style={{ background: "linear-gradient(135deg,#2A2A2A,#1A1A1A)" }} />
                 <div className="flex flex-col gap-[6px]">
                   {r.hero ? (
                     <>
-                      <span className="font-medium text-white8">Casa en Camino Rianxiño</span>
+                      <span className="font-medium text-white8">Piso en calle de Posse</span>
                       <span className="mono text-[11px] text-grey6">
                         RHB-2026-0002 · 92 m² · <span className="text-green">en cartera</span>
                       </span>
@@ -115,7 +115,7 @@ export function Seguimiento() {
           </div>
 
           {/* Demandas: cruzan por delante y la que coincide se queda */}
-          <div className="demands-preview relative hidden h-[116px] overflow-hidden md:block">
+          <div className="relative hidden h-[116px] overflow-hidden md:block">
             {demands.map((d, i) => (
               <div
                 key={d.who}
@@ -131,17 +131,13 @@ export function Seguimiento() {
                 <span>{d.what}</span>
                 {d.ok ? (
                   <span className="match st st-g" style={{ opacity: 0 }}>
-                    ✓ Coincide con esta vivienda
+                    ● coincidencia alta → Piso en calle de Posse
                   </span>
                 ) : (
                   <span className="st st-n">sin coincidencia</span>
                 )}
               </div>
             ))}
-          </div>
-
-          <div className="mobile-pipeline panel" aria-label="Etapa actual: visita">
-            <span>Captado</span><span aria-hidden="true">→</span><span>Contacto</span><span aria-hidden="true">→</span><span className="current">Visita · 13:00</span><span aria-hidden="true">→</span><span>Oferta</span><span aria-hidden="true">→</span><span>Reserva</span>
           </div>
 
           {/* Seguimiento */}
@@ -171,7 +167,7 @@ export function Seguimiento() {
               ))}
               {/* la tarjeta que avanza: mide exactamente una columna */}
               <div className="kcard absolute left-0 top-[26px] flex flex-col gap-[6px] rounded-[8px] border border-grey4 bg-[#1C1C1C] p-[10px]" style={{ width: "calc((100% - 40px) / 5)", boxShadow: "0 16px 30px rgba(0,0,0,.6)" }}>
-                <span className="truncate text-[12px] text-white8">Casa en Camino Rianxiño</span>
+                <span className="truncate text-[12px] text-white8">Piso en calle de Posse</span>
                 <span className="mono truncate text-[10px] text-grey6">Familia López</span>
                 <span className="ktag mono text-[10px] text-green" style={{ opacity: 0 }}>
                   visita 13:00

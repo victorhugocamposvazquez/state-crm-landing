@@ -30,42 +30,42 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
   captacion: {
     id: "captacion",
     module: "Captación",
-    what: "anuncios nuevos, organizados para actuar",
-    title: "Cada anuncio nuevo, listo para trabajar.",
+    what: "anuncios de particulares, cada mañana",
+    title: "Particulares cada mañana, con teléfono.",
     body:
-      "Cada mañana statecrm revisa los portales en las zonas que eliges y reúne los anuncios nuevos en una bandeja. La ficha incluye precio, superficie, fotos y teléfono cuando el anuncio lo muestra; también ayuda a distinguir particulares y agencias y asigna cada oportunidad al equipo.",
+      "Cada mañana statecrm rastrea los portales en tus zonas y guarda cada anuncio nuevo de particular con precio, metros, fotos y teléfono. Distingue particular, agencia y agencia encubierta, y lo que entra se asigna a un comercial.",
     features: [
-      { title: "Rastreo diario por zona", text: "Elige las ciudades, barrios o códigos postales que quieres seguir." },
-      { title: "Datos del anuncio", text: "Precio, superficie, habitaciones y fotos; el teléfono cuando está disponible." },
+      { title: "Rastreo diario por zona", text: "Ciudades, barrios o códigos postales, los que tú marques." },
+      { title: "Ficha completa y teléfono", text: "Precio, metros, habitaciones, fotos y el teléfono cuando el portal lo muestra." },
       { title: "Agencias encubiertas", text: "Señala a las agencias que se anuncian como particulares." },
-      { title: "Prioridad y asignación", text: "Cada oportunidad tiene una persona responsable y avisos de cambios de precio." },
+      { title: "Prioridad y asignación", text: "Cada novedad con responsable, y aviso si cambia de precio." },
     ],
   },
   catastro: {
     id: "catastro",
     module: "Catastro",
-    what: "fincas aunque no haya anuncios publicados",
-    title: "Busca fincas por zona, no por anuncio.",
+    what: "fincas por calle, código postal o localidad",
+    title: "Fincas por calle, código postal o localidad.",
     body:
-      "Catastro funciona en paralelo a la captación. Elige una calle, un código postal o una localidad para recorrer las fincas de esa zona. Cada resultado indica si el edificio está dividido en pisos y locales o si es una finca única, como una casa, nave o solar. Puedes pausar y reanudar los rastreos; el historial muestra quién los inició y qué encontraron.",
+      "El Catastro va por libre: no depende de ningún anuncio. Eliges una calle, un código postal o una localidad y statecrm recorre el Catastro finca a finca, separando las que tienen división horizontal, edificios con pisos y locales, de las que no, casas, naves y solares. Cada rastreo se pausa, se reanuda y queda en el historial con quién lo lanzó, y lo que encuentra pasa a tareas, seguimiento y equipo comercial.",
     features: [
       { title: "Por calle", text: "Todas las fincas de una calle, número a número." },
-      { title: "Por código postal o localidad", text: "Lanza búsquedas amplias y retómalas cuando quieras." },
-      { title: "Edificios divididos", text: "Consulta pisos, locales y el número de inmuebles por edificio." },
-      { title: "Fincas únicas", text: "Casas, naves y solares sin división horizontal." },
+      { title: "Por código postal o localidad", text: "Zonas enteras, en rastreos que se pausan y se reanudan." },
+      { title: "Con división horizontal", text: "Edificios divididos en pisos y locales, con cuántos inmuebles tiene cada uno." },
+      { title: "Sin división horizontal", text: "Casas, naves y solares: fincas de una sola pieza." },
     ],
   },
   seguimiento: {
     id: "seguimiento",
     module: "Inmuebles · Demandas · Seguimiento",
     what: "tu cartera, tus clientes y cada operación",
-    title: "Relaciona cada inmueble con quien lo busca.",
+    title: "Cada piso nuevo, cruzado con tus demandas.",
     body:
-      "La cartera y las demandas de clientes se conectan con las novedades de captación. Cuando un inmueble coincide con lo que busca un cliente, el equipo recibe un aviso y puede seguir la operación por sus etapas: contacto, visita, oferta y reserva.",
+      "La cartera, las demandas de los clientes y cada operación, conectadas con la captación. Cuando entra un piso que encaja con una demanda, el CRM avisa al comercial; a partir de ahí la operación avanza por etapas: captado, contacto, visita, oferta, reserva.",
     features: [
-      { title: "Inmuebles", text: "Cada ficha con referencia, estado, responsable y datos de Catastro." },
-      { title: "Demandas", text: "Cruza zona, tipo, habitaciones y presupuesto con los inmuebles." },
-      { title: "Seguimiento por etapas", text: "Organiza contactos, visitas, ofertas y documentos a tu manera." },
+      { title: "Inmuebles", text: "Referencia propia, estado, comercial y vínculo con el catastro." },
+      { title: "Demandas", text: "Tipo, habitaciones, presupuesto y zona, cruzadas solas con el stock." },
+      { title: "Seguimiento por etapas", text: "Las etapas que tú definas, con llamadas, visitas y documentos." },
       { title: "Clientes", text: "Compradores y propietarios en un mismo hilo." },
     ],
   },
@@ -75,12 +75,12 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     what: "el trabajo de todo el equipo, a la vista",
     title: "Tareas y calendario de todo el equipo.",
     body:
-      "Las tareas tienen responsable, prioridad y hora. El calendario reúne visitas, firmas y llamadas de todo el equipo, también entre oficinas. Cada persona puede consultar y actualizar su trabajo desde el navegador del móvil.",
+      "Las tareas del día tienen responsable, prioridad y hora. Las visitas, firmas y llamadas van a un calendario compartido, con varias oficinas si las hay. Y funciona en el móvil del comercial sin instalar nada.",
     features: [
       { title: "Tareas personales y del equipo", text: "Con prioridad, responsable y hora." },
       { title: "Calendario compartido", text: "Visitas, firmas y llamadas en su franja horaria." },
       { title: "Varias oficinas", text: "Cada una con su agenda, todas en el mismo calendario." },
-      { title: "Desde el móvil", text: "Consulta y actualiza el trabajo desde el navegador, sin instalar nada." },
+      { title: "Móvil sin instalar nada", text: "La misma aplicación en el navegador del teléfono." },
     ],
   },
   obra: {
@@ -89,7 +89,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     what: "la obra y la facturación, en la ficha del piso",
     title: "Del presupuesto a la factura, en un clic.",
     body:
-      "Prepara presupuestos por partidas desde la ficha del inmueble. Al aceptar el cliente, conviértelos en factura y genera el PDF. Los informes reúnen la actividad de captación, seguimiento y obra por oficina.",
+      "El presupuesto de la reforma se hace por partidas en la ficha del piso. Cuando el cliente acepta, un clic lo convierte en factura con su PDF. Los informes recogen captación, seguimiento y obra por oficina.",
     features: [
       { title: "Presupuestos por partidas", text: "Con estados y tasa de aceptación." },
       { title: "Factura en un clic", text: "Enlazada al inmueble y al cliente, con estado de cobro." },

@@ -48,14 +48,14 @@ export function Dot({ color = "#22C55E", glow = true }: { color?: string; glow?:
 
 /**
  * Etiqueta de sección: dónde estás, dicho una sola vez. El número de capítulo (si lo hay), el
- * módulo en versalitas y el contexto en gris; el contexto se coloca en su propia línea en móvil.
+ * módulo en versalitas y el contexto en gris; en móvil, solo número y módulo.
  */
 export function Kicker({ n, module, what }: { n?: string; module: string; what: string }) {
   return (
     <div className="flex flex-wrap items-baseline gap-x-[10px] gap-y-1">
       {n && <span className="mono text-[12px] text-grey5 md:text-[13px]">{n}</span>}
       <span className="t-label text-white7">{brandify(module)}</span>
-      <span className="kicker-what t-small text-grey5">{brandify(what)}</span>
+      <span className="t-small hidden text-grey5 sm:inline">{brandify(what)}</span>
     </div>
   );
 }
@@ -85,9 +85,13 @@ export function ChapterCopy({
       {module && what && <Kicker n={n} module={module} what={what} />}
       <h2 className="t-h1 m-0 text-white8">
         {title}
+        {grey && (
+          <>
+            <br />
+            <span className="text-grey5">{grey}</span>
+          </>
+        )}
       </h2>
-      {grey && <p className="chapter-summary t-lead m-0 max-w-[38ch] text-grey6">{grey}</p>}
-      <p className="preview-label m-0">Vista ilustrativa del producto</p>
     </div>
   );
 }

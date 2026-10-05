@@ -58,7 +58,7 @@ export function Obra() {
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="05" module="Obra y facturación" what="Presupuestos, facturas e informes" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." />
+          <ChapterCopy n="06" module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-4">
@@ -82,7 +82,7 @@ export function Obra() {
                   </div>
                 ))}
               </div>
-              <div className="mono flex flex-wrap gap-3 text-[13px] text-grey6">
+              <div className="mono flex gap-3 text-[13px] text-grey6">
                 <span className="text-white8">Todos</span>
                 <span>Borrador</span>
                 <span>Enviado</span>
@@ -111,7 +111,7 @@ export function Obra() {
                   </span>
                 </span>
               </div>
-              <div className="text-[12px] text-grey6">Reforma de vivienda · Camino Rianxiño</div>
+              <div className="text-[12px] text-grey6">Reforma garita de seguridad · 02 sept</div>
               {partidas.map(([n, w, e]) => (
                 <div key={n} className="flex items-center justify-between gap-3 border-t border-[#1F1F1F] py-2 text-[12px]">
                   <span className="w-[150px] text-grey6">{n}</span>
@@ -131,7 +131,7 @@ export function Obra() {
             </div>
           </div>
 
-          <div className="obra-secondary hidden flex-col gap-4 md:flex">
+          <div className="hidden flex-col gap-4 md:flex">
             {/* informes */}
             <div className="report panel flex flex-col gap-2 p-[18px]" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
@@ -160,8 +160,8 @@ export function Obra() {
                 </span>
               </div>
               {[
-                ["Cliente", "Familia López"],
-                ["Inmueble", "Casa · Camino Rianxiño"],
+                ["Cliente", "[CLIENTE]"],
+                ["Inmueble", "Garita · Avenida Montserrat 12"],
                 ["Importe", "74.536,00 €"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between border-t border-[#1F1F1F] py-2 text-[12px]">

@@ -59,7 +59,7 @@ export const chapters: Chapter[] = [
     hourStart: h(6, 59),
     hourEnd: h(7, 0),
     label: "PRÓLOGO",
-    vh: 145,
+    vh: 170,
     events: [],
   },
   {
@@ -68,8 +68,8 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 0),
     hourEnd: h(7, 40),
     label: "EL RADAR",
-    vh: 185,
-    events: [],
+    vh: 220,
+    events: [{ at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" }],
   },
   {
     id: "ciudad",
@@ -77,8 +77,11 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 40),
     hourEnd: h(7, 52),
     label: "LA CIUDAD",
-    vh: 250,
-    events: [],
+    vh: 320,
+    events: [
+      { at: 0.3, kind: "ok", text: "Nuevo inmueble de particular · Plaza de Castilla", meta: "92 m² · 260.000 €" },
+      { at: 0.65, kind: "alert", text: "Agencia encubierta detectada · Barrio Sur", meta: "id.111647374" },
+    ],
   },
   {
     id: "bandeja",
@@ -86,8 +89,8 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 52),
     hourEnd: h(9, 15),
     label: "CAPTACIÓN",
-    vh: 185,
-    events: [{ at: 0.6, kind: "ok", text: "Anuncio asignado a Ana", meta: "asignado a Ana" }],
+    vh: 220,
+    events: [{ at: 0.6, kind: "ok", text: "Teléfono capturado · Camino Rianxiño, 115", meta: "asignado a Ana" }],
     toasts: "bl",
   },
   {
@@ -96,7 +99,7 @@ export const chapters: Chapter[] = [
     hourStart: h(9, 15),
     hourEnd: h(11, 30),
     label: "CATASTRO",
-    vh: 225,
+    vh: 300,
     events: [
       { at: 0.26, kind: "ok", text: "Rastreo completo · Rolda de Nelle", meta: "38 fincas" },
       { at: 0.62, kind: "new", text: "Rastreo en curso · Oleiros", meta: "Marta · 10:40" },
@@ -110,10 +113,10 @@ export const chapters: Chapter[] = [
     hourStart: h(11, 30),
     hourEnd: h(13, 0),
     label: "INMUEBLES · DEMANDAS · SEGUIMIENTO",
-    vh: 225,
+    vh: 320,
     events: [
-      { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Casa en Camino Rianxiño" },
-      { at: 0.8, kind: "new", text: "Solicitud de visita · Casa en Camino Rianxiño", meta: "12:48" },
+      { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Piso en calle de Posse" },
+      { at: 0.8, kind: "new", text: "Solicitud de visita · Piso en calle de Posse", meta: "12:48" },
     ],
     toasts: "bl",
   },
@@ -123,10 +126,10 @@ export const chapters: Chapter[] = [
     hourStart: h(13, 0),
     hourEnd: h(17, 0),
     label: "TAREAS · CALENDARIO · EQUIPO",
-    vh: 205,
+    vh: 280,
     events: [
       { at: 0.35, kind: "alert", text: "Bajada de precio · Dúplex en Cacheiras", meta: "Teo · −15.000 €" },
-      { at: 0.75, kind: "ok", text: "Visita realizada · Luis", meta: "13:00 · Camino Rianxiño" },
+      { at: 0.75, kind: "ok", text: "Visita realizada · Luis", meta: "13:00 · calle de Posse" },
     ],
     toasts: "bl",
   },
@@ -136,7 +139,7 @@ export const chapters: Chapter[] = [
     hourStart: h(17, 0),
     hourEnd: h(20, 30),
     label: "PRESUPUESTOS · FACTURAS · INFORMES",
-    vh: 215,
+    vh: 300,
     events: [
       { at: 0.35, kind: "ok", text: "Presupuesto aceptado · PRS-2026-0001", meta: "74.536,00 €" },
       { at: 0.8, kind: "ok", text: "Factura cobrada · FAC-2026-0001", meta: "16:52" },
@@ -149,7 +152,7 @@ export const chapters: Chapter[] = [
     hourStart: h(20, 30),
     hourEnd: h(23, 59),
     label: "TODO EL PRODUCTO",
-    vh: 235,
+    vh: 320,
     events: [],
   },
   {
@@ -158,7 +161,7 @@ export const chapters: Chapter[] = [
     hourStart: h(6, 59),
     hourEnd: h(7, 0),
     label: "MAÑANA",
-    vh: 145,
+    vh: 160,
     events: [],
   },
 ];

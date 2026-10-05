@@ -69,9 +69,9 @@ export function Catastro() {
 
         <div className="copy copy-block">
           <ChapterCopy
-            n="02"
+            n="03"
             module="Catastro"
-            what="Fincas, aunque no haya un anuncio"
+            what="fincas por calle, código postal o localidad"
             title={
               <>
                 De la búsqueda
@@ -79,7 +79,7 @@ export function Catastro() {
                 a la finca real.
               </>
             }
-            grey="Busca por calle, código postal o localidad."
+            grey="Con y sin división horizontal."
           />
         </div>
 
@@ -152,10 +152,9 @@ export function Catastro() {
             </div>
             <div className="mono mt-2 flex gap-2 text-[11px]">
               <span className="rounded-full border border-[#2A2A2A] px-2 py-[2px] text-white7">todas · 378</span>
-              <span className="rounded-full border border-green/40 px-2 py-[2px] text-green">Divididas · 212</span>
-              <span className="rounded-full border border-[#2A2A2A] px-2 py-[2px] text-grey6">Únicas · 166</span>
+              <span className="rounded-full border border-green/40 px-2 py-[2px] text-green">con DH · 212</span>
+              <span className="rounded-full border border-[#2A2A2A] px-2 py-[2px] text-grey6">sin DH · 166</span>
             </div>
-            <p className="mb-1 mt-3 text-[11px] leading-relaxed text-grey6">Dividida: pisos y locales. Única: casa, nave o solar.</p>
             <div className="mt-2 flex flex-col">
               {fincas.map((f) => (
                 <div
@@ -168,7 +167,7 @@ export function Catastro() {
                     <span className="mono text-[10px] text-grey5">{f.ref}</span>
                   </div>
                   <span className="mono text-[11px] text-grey6">{f.what}</span>
-                  <span className={`st ${f.dh ? "st-g" : "st-n"}`}>{f.dh ? "Dividida" : "Única"}</span>
+                  <span className={`st ${f.dh ? "st-g" : "st-n"}`}>{f.dh ? "con DH" : "sin DH"}</span>
                 </div>
               ))}
             </div>

@@ -15,14 +15,23 @@ export function useReveal(scope: RefObject<HTMLElement | null>) {
   useLayoutEffect(() => {
     const el = scope.current;
     if (!el) return;
-    const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
-      const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", el);
-      gsap.fromTo(items.length ? items : el, { y: 14 }, {
-        y: 0, duration: 0.5, ease: "power3.out", stagger: 0.035,
-        scrollTrigger: { trigger: el, start: "top 85%", once: true },
-      });
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const ctx = gsap.context(() => {
+      const items = gsap.utils.toArray<HTMLElement>("[data-reveal]");
+      gsap.fromTo(
+        items.length ? items : el,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: el, start: "top 78%", once: true },
+        },
+      );
     }, el);
-    return () => media.revert();
+    return () => ctx.revert();
   }, [scope]);
 }

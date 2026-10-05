@@ -33,11 +33,11 @@ export const plans: Plan[] = [
     name: "Captación",
     price: "250 €",
     unit: "/ mes",
-    lead: "Para empezar a captar particulares cada mañana y organizar el trabajo comercial.",
+    lead: "Para empezar a captar particulares cada mañana con el CRM completo de la agencia.",
     items: [
-      { title: "Captación diaria de particulares", text: "Rastreo de los portales cada mañana en tus zonas, con los datos del anuncio y teléfono cuando está disponible." },
+      { title: "Captación diaria de particulares", text: "Rastreo de los portales cada mañana en tus zonas, con ficha completa y teléfono." },
       { title: "Bandeja de novedades", text: "Lo que entra hoy, con prioridad, asignación a un comercial y avisos de subidas y bajadas de precio." },
-      { title: "Inmuebles, demandas y seguimiento", text: "La cartera, las demandas de clientes relacionadas con los inmuebles, y cada operación por etapas." },
+      { title: "Inmuebles, demandas y seguimiento", text: "La cartera, lo que buscan los clientes cruzado solo, y cada operación por etapas." },
       { title: "Tareas y calendario", text: "El trabajo del equipo repartido y a la vista, también en el móvil sin instalar nada." },
       { title: "Usuarios ilimitados y soporte directo", text: "Toda la agencia entra con la cuota; hablas con quien ha construido tu CRM." },
     ],
@@ -91,7 +91,7 @@ const row = (module: string, from: PlanId): PlanRow => ({
 
 export const planRows: PlanRow[] = [
   row("Captación diaria de particulares", "captacion"),
-  row("Bandeja de novedades y asignación", "captacion"),
+  row("Bandeja de novedades, teléfono y prioridad", "captacion"),
   row("Subidas y bajadas de precio", "captacion"),
   row("Inmuebles y demandas cruzadas", "captacion"),
   row("Seguimiento por etapas y clientes", "captacion"),

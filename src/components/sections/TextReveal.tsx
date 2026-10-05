@@ -8,7 +8,7 @@ import { brandify } from "@/components/ui/atoms";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FROM = { opacity: 0.32, filter: "blur(0px)" };
+const FROM = { opacity: 0.16, filter: "blur(14px)" };
 const TO = { opacity: 1, filter: "blur(0px)" };
 
 /**
@@ -56,7 +56,7 @@ export function TextReveal({ id }: { id: TransitionId }) {
           <p id={`transicion-${id}-h`} className="t-statement mx-auto my-0 text-white8">
             {words.map((w, i) => (
               <span key={`${i}-${w}`}>
-                <span className="w">
+                <span className="w" style={FROM}>
                   {brandify(w, true)}
                 </span>{" "}
               </span>

@@ -42,9 +42,9 @@ export function Bandeja() {
 
         <div className="copy copy-block">
           <ChapterCopy
-            n="01"
+            n="02"
             module="Captación"
-            what="Novedades listas para trabajar"
+            what="la bandeja con lo que ha entrado hoy"
             title={
               <>
                 Lo nuevo de hoy,
@@ -52,7 +52,7 @@ export function Bandeja() {
                 ya filtrado.
               </>
             }
-            grey="Filtra, prioriza y asigna cada oportunidad."
+            grey="Y quién hay detrás de cada anuncio."
           />
           <div className="mono mt-6 hidden gap-4 text-[12px] text-grey5 md:flex">
             <span>idealista</span>
@@ -69,10 +69,10 @@ export function Bandeja() {
               <div className="flex items-center justify-between">
                 <span className="text-[18px] font-medium tracking-[-0.02em] text-white8 md:text-[20px]">Captación</span>
                 <span className="mono text-[13px] text-grey6">
-                  <span className="text-grey6">Vista de ejemplo</span>
+                  15 sin teléfono · <span className="text-green">+ nueva alerta</span>
                 </span>
               </div>
-              <div className="preview-tabs flex gap-5 border-b border-grey3 text-[13px] text-grey5">
+              <div className="flex gap-5 border-b border-grey3 text-[13px] text-grey5">
                 <span className="flex items-center gap-2 border-b border-white8 pb-[10px] text-white8">
                   Novedades <span className="mono rounded-full bg-green px-2 py-[1px] text-[10px] text-[#06240F]">991</span>
                 </span>
@@ -86,10 +86,10 @@ export function Bandeja() {
               </div>
               <div className="hidden grid-cols-2 gap-3 md:grid md:grid-cols-4">
                 {[
-                  ["38", "Nuevos hoy", ""],
+                  ["0", "Nuevos hoy", ""],
                   ["7", "Subidas de precio", "text-amber"],
                   ["9", "Bajadas de precio", ""],
-                  ["24", "En seguimiento", ""],
+                  ["0", "En seguimiento", ""],
                 ].map(([n, l, c]) => (
                   <div key={l} className="kpi flex flex-col gap-1 rounded-[10px] border border-grey3 bg-black2 p-3">
                     <span className={`n text-[22px] font-medium tracking-[-0.02em] text-white8 md:text-[24px] ${c}`}>{n}</span>
@@ -115,7 +115,7 @@ export function Bandeja() {
                 </span>
               </div>
             </div>
-            <div className="listing-table-head mono mt-4 grid grid-cols-[40px_minmax(0,1fr)_76px_auto] gap-2 px-4 pb-2 text-[13px] text-grey6 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5">
+            <div className="mono mt-4 grid grid-cols-[40px_minmax(0,1fr)_76px_auto] gap-2 px-4 pb-2 text-[13px] text-grey6 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5">
               <span />
               <span>anuncio</span>
               <span className="text-right">precio</span>
@@ -128,16 +128,16 @@ export function Bandeja() {
               return (
                 <div
                   key={l.id}
-                  className={`listing-row row ${isHero ? "hero-row" : ""} ${isAgencia ? "row-agencia" : ""} ${i > 2 ? "max-md:hidden" : ""} grid grid-cols-[40px_minmax(0,1fr)_76px_auto] items-center gap-2 border-t border-[#1F1F1F] px-4 py-3 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5`}
+                  className={`row ${isHero ? "hero-row" : ""} ${isAgencia ? "row-agencia" : ""} ${i > 2 ? "max-md:hidden" : ""} grid grid-cols-[40px_minmax(0,1fr)_76px_auto] items-center gap-2 border-t border-[#1F1F1F] px-4 py-3 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5`}
                   style={isHero ? { border: "1px solid transparent", borderRadius: 10 } : undefined}
                 >
                   <div className="h-11 w-11 rounded-[6px]" style={{ background: "linear-gradient(135deg,#2A2A2A,#1A1A1A)" }} />
                   <div className="flex min-w-0 flex-col gap-[6px]">
                     {isHero || i === 2 ? (
                       <>
-                        <span className="truncate text-[14px] text-white7">{l.title}</span>
+                        <span className="truncate text-[14px] text-white7">{isHero ? "Casa en Camino Rianxiño, 115" : l.title}</span>
                         <span className="mono truncate text-[13px] text-grey6">
-                          {l.zone} · {l.rooms} hab.
+                          id.{l.id} · {l.rooms} hab{isHero ? " · 40 fotos" : ""}
                         </span>
                         {isHero && (
                           <span className="hero-extra mono overflow-hidden text-[11px] text-grey6" style={{ opacity: 0, height: 0 }}>
@@ -159,13 +159,13 @@ export function Bandeja() {
                       <>
                         <span className="phone-dash st st-n absolute left-0 top-0">—</span>
                         <span className="phone-ok st st-g" style={{ opacity: 0 }}>
-                          ✓ Teléfono disponible
+                          ● tel. capturado
                         </span>
                       </>
                     ) : l.kind === "encubierta" ? (
                       <span className="st st-a">● encubierta</span>
                     ) : l.phone === "capturado" ? (
-                      <span className="st st-g">✓ Teléfono</span>
+                      <span className="st st-g">● capturado</span>
                     ) : (
                       <span className="st st-n">{l.phone}</span>
                     )}

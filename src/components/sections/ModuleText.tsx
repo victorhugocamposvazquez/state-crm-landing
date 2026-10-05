@@ -15,8 +15,8 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
   useReveal(ref);
 
   return (
-    <section ref={ref} id={`${id}-texto`} className="module-text relative z-[2] border-t border-[#171717] bg-black0 py-14 md:py-20" aria-labelledby={`${id}-texto-h`}>
-      <div className="mx-auto grid w-full max-w-[var(--content-max)] grid-cols-1 gap-12 px-[var(--gutter)] md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-12">
+    <section ref={ref} id={`${id}-texto`} className="module-text relative z-[2] border-t border-[#171717] bg-black0 py-[80px] md:py-[120px]" aria-labelledby={`${id}-texto-h`}>
+      <div className="mx-auto grid w-full max-w-[var(--content-max)] grid-cols-1 gap-12 px-[var(--gutter)] md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-16">
         <div className="flex flex-col gap-6">
           <h3 id={`${id}-texto-h`} data-reveal className="t-h2 m-0 text-white8">
             {brandify(m.title)}
@@ -38,7 +38,7 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
           </div>
           <ul className="m-0 list-none p-0">
             {m.features.map((f) => (
-              <li key={f.title} data-reveal className="grid grid-cols-1 gap-1 border-t border-[#1F1F1F] py-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] xl:gap-6">
+              <li key={f.title} data-reveal className="grid grid-cols-1 gap-1 border-t border-[#1F1F1F] py-5 md:grid-cols-[240px_1fr] md:gap-6">
                 <div className="t-h3 flex items-start gap-3 text-white7">
                   <span className="chk mt-[3px]">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5" aria-hidden="true">

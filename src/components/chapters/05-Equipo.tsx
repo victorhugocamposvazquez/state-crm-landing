@@ -8,7 +8,7 @@ import { countTo } from "@/components/motion/count";
 const tasks = [
   { who: "AM", text: "Llamar al propietario · Rianxo", at: "09:30", done: true },
   { who: "OF", text: "Rastreo Catastro · Rolda de Nelle", at: "10:00", done: false },
-  { who: "LR", text: "Visita · Casa en Camino Rianxiño", at: "13:00", done: false, hero: true },
+  { who: "LR", text: "Visita · Piso en calle de Posse", at: "13:00", done: false, hero: true },
   { who: "AM", text: "Preparar oferta · Familia López", at: "16:30", done: false },
   { who: "MG", text: "Revisar encubiertas de hoy", at: "18:00", done: false },
 ];
@@ -42,7 +42,10 @@ export function Equipo() {
       .to(q(".phone-task .pbox"), { background: "#22C55E", borderColor: "#22C55E", duration: 0.04 }, 0.7)
       .to(q(".phone-task .ptxt"), { color: "#737373", textDecoration: "line-through", duration: 0.04 }, 0.7)
       .to(q(".task-hero .tbox"), { background: "#22C55E", borderColor: "#22C55E", duration: 0.04 }, 0.72)
-      .to(q(".task-hero .ttxt"), { color: "#737373", duration: 0.04 }, 0.72);
+      .to(q(".task-hero .ttxt"), { color: "#737373", duration: 0.04 }, 0.72)
+      // modo claro un instante
+      .to(q(".phone-screen"), { background: "#F3F3F3", color: "#111", duration: 0.04 }, 0.8)
+      .to(q(".phone-screen"), { background: "#0F0F0F", color: "#E5E5E5", duration: 0.04 }, 0.86);
     countTo(tl, q(".badge")[0], { from: 5, to: 8, at: 0.1, dur: 0.16 });
   });
 
@@ -53,7 +56,7 @@ export function Equipo() {
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="04" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." />
+          <ChapterCopy n="05" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_200px] md:items-start md:gap-4">
@@ -120,7 +123,7 @@ export function Equipo() {
               <div className="phone-task flex items-center gap-2 rounded-[8px] border border-grey4 bg-black2 p-[10px]">
                 <span className="pbox h-[14px] w-[14px] flex-shrink-0 rounded-[3px] border border-grey4" />
                 <div className="flex flex-col gap-[3px]">
-                  <span className="ptxt">Visita · Camino Rianxiño</span>
+                  <span className="ptxt">Visita · calle de Posse</span>
                   <span className="mono text-[10px] text-green">13:00 · Familia López</span>
                 </div>
               </div>

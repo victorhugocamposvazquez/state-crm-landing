@@ -26,10 +26,10 @@ const space = Space_Grotesk({
 export const metadata: Metadata = {
   title: "statecrm — CRM inmobiliario a medida",
   description:
-    "Captación de particulares, Catastro, seguimiento de operaciones, tareas y facturación. El CRM inmobiliario que conecta el trabajo de tu agencia.",
+    "Captá particulares antes que nadie. Catastro integrado, seguimiento de operaciones, tareas de equipo y obra. Construido a la medida de tu agencia.",
   openGraph: {
     title: "statecrm — CRM inmobiliario a medida",
-    description: "De la captación al cierre: inmuebles, clientes y tareas en un CRM a la medida de tu agencia.",
+    description: "Captación, Catastro, equipo y obra. Un día en la vida de un piso, contado por el propio CRM.",
     locale: "es_ES",
     type: "website",
   },

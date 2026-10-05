@@ -1,80 +1,100 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { Logo } from "./Logo";
+import { useScroll } from "@/lib/store";
+import { chapterIndex, type ChapterId } from "@/lib/script";
 
-const links = [
-  { label: "Captación", id: "ciudad" },
-  { label: "Catastro", id: "catastro" },
-  { label: "Seguimiento", id: "seguimiento" },
-  { label: "Equipo", id: "equipo" },
-  { label: "Obra", id: "obra" },
-  { label: "Módulos", id: "producto" },
-  { label: "Planes", id: "planes" },
+const links: { label: string; href: string; chapter?: ChapterId }[] = [
+  { label: "Captación", href: "#ciudad", chapter: "ciudad" },
+  { label: "Catastro", href: "#catastro", chapter: "catastro" },
+  { label: "Seguimiento", href: "#seguimiento", chapter: "seguimiento" },
+  { label: "Equipo", href: "#equipo", chapter: "equipo" },
+  { label: "Obra", href: "#obra", chapter: "obra" },
+  { label: "Planes", href: "#planes" },
 ];
-const sections: Record<string, string> = { bandeja: "ciudad", "captacion-texto": "ciudad", proceso: "ciudad", "catastro-texto": "catastro", "seguimiento-texto": "seguimiento", "equipo-texto": "equipo", "obra-texto": "obra", "transicion-cerrar": "obra", "plataforma-texto": "producto" };
 
+/**
+ * Cabecera fija. Los enlaces se encienden cuando su capítulo está en pantalla
+ * y dejan un check verde al salir ("visto").
+ */
 export function Nav() {
+  const active = useSyncExternalStore(
+    useScroll.subscribe,
+    () => useScroll.getState().active,
+    () => "prologo" as ChapterId,
+  );
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("radar");
-  const header = useRef<HTMLElement>(null);
-  const toggle = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const items = Array.from(document.querySelectorAll<HTMLElement>("main > section[id]"));
-        const current = items.filter((item) => item.getBoundingClientRect().top <= 150).at(-1);
-        if (current) setActive(sections[current.id] ?? current.id);
-      });
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
-  }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: KeyboardEvent) => {
-      if (event.key === "Escape") { setOpen(false); toggle.current?.focus(); }
-    };
-    const outside = (event: PointerEvent) => {
-      if (!header.current?.contains(event.target as Node)) setOpen(false);
-    };
-    const wide = window.matchMedia("(min-width: 1100px)");
-    const resize = () => { if (wide.matches) setOpen(false); };
-    document.addEventListener("keydown", close);
-    document.addEventListener("pointerdown", outside);
-    wide.addEventListener("change", resize);
-    return () => { document.removeEventListener("keydown", close); document.removeEventListener("pointerdown", outside); wide.removeEventListener("change", resize); };
-  }, [open]);
-
-  function navigate(id: string) {
-    setOpen(false);
-    requestAnimationFrame(() => {
-      const section = document.getElementById(id);
-      if (section) { section.setAttribute("tabindex", "-1"); section.focus({ preventScroll: true }); }
-    });
-  }
+  const activeIdx = chapterIndex[active];
 
   return (
-    <header ref={header} className="site-header fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-5" onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
-      <a href="#radar" onClick={() => navigate("radar")} aria-label="STATECRM, volver al inicio" className="inline-flex min-h-11 items-center"><Logo progress /></a>
-      <nav className="hidden items-center gap-4 min-[1100px]:flex xl:gap-5" aria-label="Secciones">
-        {links.map((link) => <a key={link.id} href={`#${link.id}`} className="nav-link" aria-current={active === link.id ? "location" : undefined}>{link.label}</a>)}
+    <header
+      ref={headerRef}
+      className="fixed inset-x-0 top-0 z-50 flex h-[64px] items-center justify-between px-[var(--edge)]"
+      style={{ background: "linear-gradient(to bottom, rgba(10,10,10,.92), rgba(10,10,10,0))" }}
+    >
+      <a href="#prologo" aria-label="statecrm, volver al inicio" className="no-underline">
+        <Logo progress />
+      </a>
+
+      <nav className="hidden items-center gap-8 md:flex" aria-label="Capítulos">
+        {links.map((l) => {
+          const idx = l.chapter ? chapterIndex[l.chapter] : Infinity;
+          const seen = activeIdx > idx;
+          const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
+          return (
+            <a
+              key={l.href}
+              href={l.href}
+              aria-current={on ? "true" : undefined}
+              className="flex items-center gap-[6px] text-[14px] font-medium no-underline transition-colors"
+              style={{ color: on ? "#fff" : seen ? "#A3A3A3" : "#6E6E6E" }}
+            >
+              {l.label}
+              {seen && (
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              )}
+            </a>
+          );
+        })}
       </nav>
-      <div className="flex items-center gap-2">
-        <a href="#manana" className="btn btn-w !min-h-11 !px-3 !text-[12px] sm:!px-4 sm:!text-[13px]">Pedir demo <span className="hidden sm:inline" aria-hidden="true">↗</span></a>
-        <button ref={toggle} type="button" aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen(!open)} className="flex h-11 w-11 items-center justify-center rounded-lg border border-grey3 min-[1100px]:hidden">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">{open ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M4 8h16M4 16h16" />}</svg>
+
+      <div className="flex items-center gap-[10px]">
+        <a href="#manana" className="btn btn-w hidden !min-h-[38px] md:inline-flex">
+          Pedir una demo
+        </a>
+        <button
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="flex h-11 w-11 items-center justify-center md:hidden"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5E5E5" strokeWidth="1.8" aria-hidden="true">
+            {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          </svg>
         </button>
       </div>
-      <nav id="mobile-navigation" hidden={!open} className="mobile-navigation min-[1100px]:hidden" aria-label="Secciones en móvil" data-lenis-prevent>
-        {links.map((link) => <a key={link.id} href={`#${link.id}`} className="nav-link" aria-current={active === link.id ? "location" : undefined} onClick={() => navigate(link.id)}>{link.label}<span className="ml-auto" aria-hidden="true">↗</span></a>)}
-      </nav>
+
+      {open && (
+        <div className="absolute inset-x-0 top-[64px] flex flex-col gap-1 border-t border-grey3 bg-black0 p-5 md:hidden">
+          {links.map((l) => {
+            const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
+            return (
+              <a key={l.href} href={l.href} aria-current={on ? "true" : undefined} onClick={() => setOpen(false)} className={`py-3 text-[16px] no-underline ${on ? "text-white8" : "text-white7"}`}>
+                {l.label}
+              </a>
+            );
+          })}
+          <a href="#manana" onClick={() => setOpen(false)} className="btn btn-w mt-2">
+            Pedir una demo
+          </a>
+        </div>
+      )}
     </header>
   );
 }

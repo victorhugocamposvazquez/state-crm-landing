@@ -29,8 +29,9 @@ export function Chapter({
 }) {
   const ref = useRef<HTMLElement>(null);
   const chapter = chapters[chapterIndex[id]];
-  // Only the hero reveals the decorative canvas.
-  const solid = id !== "radar";
+  const index = chapterIndex[id];
+  // Del Catastro en adelante el canvas 3D ya no cuenta nada: fondo sólido por si sigue encendido
+  const solid = index >= chapterIndex.catastro;
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -39,7 +40,7 @@ export function Chapter({
     const st = ScrollTrigger.create({
       trigger: el,
       start: "top top",
-      end: () => `+=${Math.max(1, el.offsetHeight - window.innerHeight)}`,
+      end: "bottom bottom",
       onUpdate: (self) => setProgress(id, self.progress),
       onToggle: (self) => {
         if (self.isActive) setActive(id);
@@ -48,7 +49,6 @@ export function Chapter({
       // al cargar a media página (o tras un resize) el estado real sale del refresh, no de un toggle;
       // dentro de onRefresh `isActive` aún no está al día, así que se mira la posición del scroll
       onRefresh: (self) => {
-        setProgress(id, self.progress);
         const y = self.scroll();
         const on = y >= self.start && y <= self.end;
         setPinned(id, on);
@@ -79,13 +79,13 @@ export function Chapter({
       ref={ref}
       id={id}
       data-chapter={id}
-      className={`chapter ${id === "ciudad" ? "" : "standard-chapter"} ${className}`}
+      className={`chapter ${className}`}
       style={{ height: `calc(${chapter.vh} * var(--vh-unit, 1vh))` }}
     >
       <div className="stage" style={{ background: solid ? "var(--black0)" : "transparent" }}>
         {children}
         {/* las notificaciones, en las esquinas del contenedor centrado, no de la pantalla */}
-        <div className="chapter-notifications pointer-events-none absolute inset-0 z-20" aria-hidden="true">
+        <div className="pointer-events-none absolute inset-0 z-20">
           <div className="stagewrap">
             <ChapterToasts id={id} />
           </div>
@@ -116,31 +116,38 @@ export function useScrollTimeline(
     const el = scope.current;
     if (!el) return;
     const section = el.closest(".chapter") ?? el;
-    const media = gsap.matchMedia();
-    media.add({
-      compact: "(max-width: 1099px), (max-height: 740px)",
-      reduced: "(prefers-reduced-motion: reduce)",
-      wide: "(min-width: 1100px)",
-    }, (context) => {
-      const still = context.conditions?.compact || context.conditions?.reduced;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ctx = gsap.context(() => {
       const enter = gsap.timeline({
-        paused: !!still,
         defaults: { ease: "power3.out" },
-        ...(!still && { scrollTrigger: { trigger: section, start: "top bottom", end: "top 65%", scrub: 0.35 } }),
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "top 50%",
+          scrub: 0.5,
+        },
       });
       const tl = gsap.timeline({
-        paused: !!still,
         defaults: { ease: "power3.out" },
-        ...(!still && { scrollTrigger: { trigger: section, start: "top top", end: "bottom bottom", scrub: 0.35 } }),
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.5,
+        },
       });
       build(tl, gsap.utils.selector(el), enter);
-      if (still) {
-        enter.progress(1);
-        tl.progress(1);
+      if (reduced) {
+        for (const t of [enter, tl]) {
+          t.progress(1).pause();
+          t.scrollTrigger?.kill();
+        }
+      } else if (!enter.duration()) {
+        // capítulo sin beats de entrada (el prólogo): no dejamos un trigger vacío vivo
+        enter.scrollTrigger?.kill();
       }
-      return () => { enter.kill(); tl.kill(); };
     }, el);
-    return () => media.revert();
+    return () => ctx.revert();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
