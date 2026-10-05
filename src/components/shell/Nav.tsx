@@ -5,12 +5,13 @@ import { Logo } from "./Logo";
 import { useScroll } from "@/lib/store";
 import { chapterIndex, type ChapterId } from "@/lib/script";
 
-const links: { label: string; href: string; chapter: ChapterId }[] = [
+const links: { label: string; href: string; chapter?: ChapterId }[] = [
   { label: "Captación", href: "#ciudad", chapter: "ciudad" },
   { label: "Catastro", href: "#catastro", chapter: "catastro" },
   { label: "Seguimiento", href: "#seguimiento", chapter: "seguimiento" },
   { label: "Equipo", href: "#equipo", chapter: "equipo" },
   { label: "Obra", href: "#obra", chapter: "obra" },
+  { label: "Planes", href: "#planes" },
 ];
 
 /**
@@ -40,9 +41,9 @@ export function Nav() {
 
       <nav className="hidden items-center gap-7 md:flex" aria-label="Capítulos">
         {links.map((l) => {
-          const idx = chapterIndex[l.chapter];
+          const idx = l.chapter ? chapterIndex[l.chapter] : Infinity;
           const seen = activeIdx > idx;
-          const on = active === l.chapter || (l.chapter === "ciudad" && active === "bandeja");
+          const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
           return (
             <a
               key={l.href}

@@ -173,6 +173,14 @@ body {
   border-color: var(--grey5);
   color: var(--white8);
 }
+/* palabra resaltada en un titular: fondo blanco, texto negro */
+.hl {
+  display: inline-block;
+  padding: 0 0.22em;
+  border-radius: 0.18em;
+  background: var(--white8);
+  color: var(--black0);
+}
 .chk {
   width: 18px;
   height: 18px;

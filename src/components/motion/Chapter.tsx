@@ -36,15 +36,29 @@ export function Chapter({
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const { setProgress, setActive } = useScroll.getState();
+    const { setProgress, setActive, setPinned } = useScroll.getState();
     const st = ScrollTrigger.create({
       trigger: el,
       start: "top top",
       end: "bottom bottom",
       onUpdate: (self) => setProgress(id, self.progress),
-      onToggle: (self) => self.isActive && setActive(id),
+      onToggle: (self) => {
+        if (self.isActive) setActive(id);
+        setPinned(id, self.isActive);
+      },
+      // al cargar a media página (o tras un resize) el estado real sale del refresh, no de un toggle;
+      // dentro de onRefresh `isActive` aún no está al día, así que se mira la posición del scroll
+      onRefresh: (self) => {
+        const y = self.scroll();
+        const on = y >= self.start && y <= self.end;
+        setPinned(id, on);
+        if (on) setActive(id);
+      },
     });
-    return () => st.kill();
+    return () => {
+      st.kill();
+      setPinned(id, false);
+    };
   }, [id]);
 
   return (

@@ -18,7 +18,7 @@ export function Manana() {
 
     tl.fromTo(q(".newdot"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.08, ease: "back.out(3)" }, 0.18)
       .fromTo(q(".toast"), { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.08 }, 0.22)
-      .fromTo(q(".form, .prices"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.14, stagger: 0.05 }, 0.3);
+      .fromTo(q(".form"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.14 }, 0.3);
   });
 
   return (
@@ -52,7 +52,7 @@ export function Manana() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 items-start gap-8 md:mt-14 md:grid-cols-[460px_1fr] md:gap-10">
+        <div className="mx-auto mt-10 w-full max-w-[560px] md:mt-14">
           <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="nombre" className="text-[12px] text-grey6 sm:col-span-2">
               Nombre y agencia
@@ -68,20 +68,6 @@ export function Manana() {
             </button>
             <span className="mono text-[11px] text-grey5 sm:col-span-2">sin compromiso · respondemos en el día</span>
           </form>
-
-          <div className="prices flex gap-3 overflow-x-auto pb-2 md:overflow-visible" style={{ opacity: 0 }}>
-            {[
-              ["Implantación", "[PRECIO]", "Módulos, migración de tu cartera y formación.", false],
-              ["Por oficina / mes", "[PRECIO]", "Usuarios ilimitados, captación diaria, soporte directo.", true],
-              ["Módulos premium", "[PRECIO]", "Catastro con nota simple, encubiertas, obra y facturación.", false],
-            ].map(([l, n, d, hi]) => (
-              <div key={l as string} className="flex min-w-[220px] flex-1 flex-col gap-2 rounded-[12px] border bg-black1 p-5" style={{ borderColor: hi ? "#3A3A3A" : "#262626" }}>
-                <span className={`text-[11px] uppercase tracking-[0.08em] ${hi ? "text-green" : "text-grey5"}`}>{l as string}</span>
-                <span className="text-[26px] font-medium tracking-[-0.02em] text-white8">{n as string}</span>
-                <span className="text-[13px] leading-[1.5] text-grey6">{d as string}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
         <footer className="mono mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-[#171717] py-5 text-[11px] text-grey4">
