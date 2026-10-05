@@ -32,7 +32,7 @@
      el tracking acompaña: ≈ −0.05 em en los grandes (como la referencia), −0.0125 em en el cuerpo. */
   .t-hero {
     font-weight: 500;
-    font-size: clamp(38px, 2rem + 2.4vw, 68px);
+    font-size: clamp(42px, 2rem + 2.6vw, 72px);
     line-height: 1.05;
     letter-spacing: -0.05em;
     text-wrap: balance;
@@ -44,18 +44,19 @@
     letter-spacing: -0.05em;
     text-wrap: balance;
   }
+  /* titulares de sección: grandes también en móvil, que se sepa dónde se está */
   .t-h1 {
     font-weight: 500;
-    font-size: clamp(28px, 1.3rem + 1.6vw, 46px);
-    line-height: 1.12;
-    letter-spacing: -0.04em;
+    font-size: clamp(36px, 1.4rem + 2.2vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -0.045em;
     text-wrap: balance;
   }
   .t-h2 {
     font-weight: 500;
-    font-size: clamp(24px, 1.1rem + 0.9vw, 32px);
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    font-size: clamp(30px, 1.2rem + 1.2vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
   .t-h3 {
@@ -107,14 +108,23 @@
   .copy-block {
     position: absolute;
     left: var(--gutter);
-    top: clamp(100px, 14vh, 128px);
+    top: 88px;
     z-index: 10;
     width: calc(100% - 2 * var(--gutter));
   }
   @media (min-width: 768px) {
     .copy-block {
-      top: clamp(112px, 15vh, 152px);
-      width: 420px;
+      top: clamp(96px, 12vh, 128px);
+      width: 480px;
+    }
+  }
+  /* lo que acompaña al copy solo en escritorio (listas de puntos): fuera en móvil y en pantallas bajas */
+  .copy-extra {
+    display: none;
+  }
+  @media (min-width: 768px) and (min-height: 721px) {
+    .copy-extra {
+      display: block;
     }
   }
 
@@ -124,12 +134,12 @@
     position: absolute;
     left: var(--gutter);
     right: var(--gutter);
-    top: 360px;
+    top: 432px;
     bottom: 0;
   }
   @media (min-width: 768px) {
     .visual-col {
-      left: 500px;
+      left: 540px;
       top: 96px;
       bottom: 48px;
     }

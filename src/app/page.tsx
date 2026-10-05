@@ -1,5 +1,4 @@
 import { Nav } from "@/components/shell/Nav";
-import { Slate } from "@/components/shell/Slate";
 import { StageClient } from "@/components/canvas/StageClient";
 import { Prologo } from "@/components/chapters/00-Prologo";
 import { Radar } from "@/components/chapters/01-Radar";
@@ -18,7 +17,8 @@ import { TextReveal } from "@/components/sections/TextReveal";
 
 /**
  * La landing es un único scroll: diez capítulos en orden, el canvas 3D detrás
- * y dos capas fijas (cabecera y pizarra). Las notificaciones viven dentro de cada capítulo.
+ * y una sola capa fija (la cabecera). Dónde estás lo dice el kicker de cada sección (número y
+ * módulo), una sola vez; las notificaciones viven dentro de cada capítulo.
  * Tras el hero, una frase de transición (TextReveal) y el camino de captación paso a paso, frotado
  * por el scroll (Proceso; el Catastro va por libre y se cuenta en su propio capítulo);
  * tras la pantalla animada de cada módulo entra su texto (ModuleText); otra frase cierra los módulos
@@ -29,7 +29,6 @@ export default function Page() {
     <>
       <StageClient />
       <Nav />
-      <Slate />
       <main className="relative z-[1]">
         <Prologo />
         <Radar />

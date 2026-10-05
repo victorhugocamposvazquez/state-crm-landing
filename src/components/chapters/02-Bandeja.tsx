@@ -41,6 +41,7 @@ export function Bandeja() {
 
         <div className="copy copy-block">
           <ChapterCopy
+            n="02"
             module="Captación"
             what="la bandeja con lo que ha entrado hoy"
             title={
@@ -53,7 +54,7 @@ export function Bandeja() {
             grey="Particular, agencia o agencia disfrazada."
             body="Cada anuncio llega con teléfono, fotos y prioridad, y se asigna a un comercial. Lo que entra hoy y lo que ya estás trabajando, en la misma lista."
           />
-          <div className="mt-6 hidden md:block">
+          <div className="copy-extra mt-6">
             <CheckList
               items={[
                 "Rastreo diario de los portales, por zona",

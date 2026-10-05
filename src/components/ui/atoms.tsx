@@ -62,24 +62,22 @@ export function Dot({ color = "#22C55E", glow = true }: { color?: string; glow?:
 }
 
 /**
- * Etiqueta de módulo: qué es esto, para quien no sigue la historia.
- * El anillo de la marca como indicador de fase, el módulo en versalitas y el contexto en gris.
+ * Etiqueta de sección: dónde estás, dicho una sola vez. El número de capítulo (si lo hay), el
+ * módulo en versalitas y el contexto en gris; en móvil, solo número y módulo.
  */
-export function Kicker({ module, what }: { module: string; what: string }) {
+export function Kicker({ n, module, what }: { n?: string; module: string; what: string }) {
   return (
-    <div className="flex flex-wrap items-center gap-x-[10px] gap-y-1">
-      <svg width="12" height="12" viewBox="0 0 44 44" fill="none" aria-hidden="true" className="flex-shrink-0">
-        <circle cx="22" cy="22" r="12" stroke="#6E6E6E" strokeWidth="6" />
-        <path d="M22 10 A12 12 0 0 1 34 22" stroke="#FFFFFF" strokeWidth="6" />
-      </svg>
+    <div className="flex flex-wrap items-baseline gap-x-[10px] gap-y-1">
+      {n && <span className="mono text-[12px] text-grey5 md:text-[13px]">{n}</span>}
       <span className="t-label text-white7">{brandify(module)}</span>
-      <span className="t-small text-grey5">{brandify(what)}</span>
+      <span className="t-small hidden text-grey5 sm:inline">{brandify(what)}</span>
     </div>
   );
 }
 
-/** Copy de capítulo: etiqueta de módulo, titular (con remate en gris) y un párrafo. */
+/** Copy de capítulo: etiqueta de sección, titular (con remate en gris) y un párrafo. */
 export function ChapterCopy({
+  n,
   module,
   what,
   title,
@@ -87,6 +85,7 @@ export function ChapterCopy({
   body,
   className = "",
 }: {
+  n?: string;
   module?: string;
   what?: string;
   title: ReactNode;
@@ -96,7 +95,7 @@ export function ChapterCopy({
 }) {
   return (
     <div className={`flex flex-col gap-4 md:gap-5 ${className}`}>
-      {module && what && <Kicker module={module} what={what} />}
+      {module && what && <Kicker n={n} module={module} what={what} />}
       <h2 className="t-h1 m-0 text-white8">
         {title}
         {grey && (
