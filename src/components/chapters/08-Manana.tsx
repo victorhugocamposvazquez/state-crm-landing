@@ -28,11 +28,11 @@ export function Manana() {
 
         <div className="relative mx-auto mt-[var(--copy-top)] flex flex-col items-center">
           <div className="ring relative" style={{ opacity: 0 }}>
-            <svg width="120" height="120" viewBox="0 0 220 220" fill="none" aria-hidden="true">
+            <svg width="88" height="88" viewBox="0 0 220 220" fill="none" aria-hidden="true" className="md:h-[120px] md:w-[120px]">
               <circle cx="110" cy="110" r="84" stroke="#6E6E6E" strokeWidth="28" />
               <path d="M110 26a84 84 0 0 1 84 84" stroke="#fff" strokeWidth="28" />
             </svg>
-            <span className="newdot absolute h-2 w-2 rounded-full bg-green" style={{ left: 98, top: 30, boxShadow: "0 0 14px 4px rgba(34,197,94,.6)", opacity: 0 }} />
+            <span className="newdot absolute left-[64px] top-[18px] h-2 w-2 rounded-full bg-green md:left-[98px] md:top-[30px]" style={{ boxShadow: "0 0 14px 4px rgba(34,197,94,.6)", opacity: 0 }} />
           </div>
           <div className="toast card mono absolute left-[calc(50%+70px)] top-[8px] hidden items-center gap-[10px] px-[14px] py-[10px] text-[12px] text-grey6 md:flex" style={{ opacity: 0 }}>
             <span className="h-[6px] w-[6px] rounded-full bg-white8" style={{ boxShadow: "0 0 10px #fff" }} />
@@ -40,19 +40,19 @@ export function Manana() {
           </div>
         </div>
 
-        <div className="h mt-8 flex flex-col items-center gap-5 text-center" style={{ opacity: 0 }}>
+        <div className="h mt-5 flex flex-col items-center gap-4 text-center md:mt-8 md:gap-5" style={{ opacity: 0 }}>
           <Kicker n="08" module="Demo" what="30 minutos, con tu zona y anuncios reales" />
           <h2 className="t-h1 m-0 max-w-[820px] text-white8">
             Mañana alguien volverá a publicar.
             <br />
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>
-          <p className="t-lead m-0 max-w-[560px] text-grey6">
+          <p className="t-lead m-0 hidden max-w-[560px] text-grey6 sm:block">
             Te enseñamos <Brand /> con tu zona: los anuncios de particulares de esta mañana y todas las fincas de una de tus calles en el Catastro.
           </p>
         </div>
 
-        <div className="mx-auto mt-10 w-full max-w-[560px] md:mt-14">
+        <div className="mx-auto mt-6 w-full max-w-[560px] md:mt-14">
           <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="nombre" className="t-small text-grey6 sm:col-span-2">
               Nombre y agencia

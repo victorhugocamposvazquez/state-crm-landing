@@ -78,7 +78,7 @@ export function Seguimiento() {
         </div>
 
         {/* la columna visual: inmuebles → demandas → seguimiento, de arriba abajo */}
-        <div className="visual-col hidden flex-col gap-4 md:flex md:justify-center-safe">
+        <div className="visual-col flex flex-col gap-4 md:justify-center-safe">
           {/* Inmuebles */}
           <div className="inm panel flex flex-col gap-2 p-4" style={{ opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
@@ -124,7 +124,7 @@ export function Seguimiento() {
           </div>
 
           {/* Demandas: cruzan por delante y la que coincide se queda */}
-          <div className="relative h-[116px] overflow-hidden">
+          <div className="relative hidden h-[116px] overflow-hidden md:block">
             {demands.map((d, i) => (
               <div
                 key={d.who}
@@ -150,7 +150,7 @@ export function Seguimiento() {
           </div>
 
           {/* Seguimiento */}
-          <div className="kanban panel flex flex-col gap-3 p-4" style={{ opacity: 0 }}>
+          <div className="kanban panel hidden flex-col gap-3 p-4 md:flex" style={{ opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Seguimiento</span>
               <span className="mono text-[11px] text-grey5">etapas configurables</span>

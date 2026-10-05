@@ -132,7 +132,7 @@ export function Catastro() {
         {/* El mapa, ligeramente tumbado, en su columna */}
         <div className="visual-col" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
           <div
-            className="map3d absolute inset-x-0 top-[20px] md:top-0"
+            className="map3d absolute inset-x-0 top-[20px] hidden md:block md:top-0"
             style={{ transform: "rotateX(28deg)", transformOrigin: "50% 35%", opacity: 0, maskImage: "radial-gradient(ellipse at 50% 45%, #000 55%, transparent 85%)" }}
           >
             <div style={{ aspectRatio: "1200 / 900", background: "#0C0C0C", border: "1px solid #1C1C1C" }}>
@@ -143,7 +143,7 @@ export function Catastro() {
           </div>
 
           {/* etiquetas planas por zona: qué se buscó y cuántas fincas lleva */}
-          <div className="labels absolute inset-0">
+          <div className="labels absolute inset-0 hidden md:block">
             {scans.map((sc, k) => (
               <div key={sc.id} className={`lab-${k} mono absolute flex flex-col items-start text-[11px] text-grey6`} style={{ left: sc.label.left, top: sc.label.top, opacity: 0 }}>
                 <span className="ln mb-2 ml-[2px] block h-7 w-px bg-grey5" />
@@ -155,7 +155,7 @@ export function Catastro() {
           </div>
 
           {/* la lista de fincas del rastreo: cada una, con o sin división horizontal */}
-          <div className="res card absolute inset-x-0 top-[290px] z-10 flex flex-col p-[16px] md:bottom-[40px] md:left-auto md:right-0 md:top-auto md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
+          <div className="res card absolute inset-x-0 top-0 z-10 flex flex-col p-[16px] md:bottom-[40px] md:left-auto md:right-0 md:top-auto md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Fincas · código postal 15009</span>
               <span className="mono text-[11px] text-grey5">378</span>

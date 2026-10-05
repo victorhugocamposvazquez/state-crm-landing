@@ -94,7 +94,7 @@ export function Bandeja() {
                   Notificaciones <span className="rounded-full bg-[#1F1F1F] px-2 py-[1px] text-[10px] text-grey6">5</span>
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <div className="hidden grid-cols-2 gap-3 md:grid md:grid-cols-4">
                 {[
                   ["0", "Nuevos hoy", ""],
                   ["7", "Subidas de precio", "text-amber"],
@@ -125,7 +125,7 @@ export function Bandeja() {
                 </span>
               </div>
             </div>
-            <div className="mono mt-4 grid grid-cols-[44px_1fr_90px_110px] gap-3 px-4 pb-2 text-[11px] text-grey5 md:grid-cols-[44px_1fr_110px_60px_150px] md:px-5">
+            <div className="mono mt-4 grid grid-cols-[40px_minmax(0,1fr)_76px_auto] gap-2 px-4 pb-2 text-[11px] text-grey5 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5">
               <span />
               <span>anuncio</span>
               <span className="text-right">precio</span>
@@ -138,7 +138,7 @@ export function Bandeja() {
               return (
                 <div
                   key={l.id}
-                  className={`row ${isHero ? "hero-row" : ""} ${isAgencia ? "row-agencia" : ""} grid grid-cols-[44px_1fr_90px_110px] items-center gap-3 border-t border-[#1F1F1F] px-4 py-3 md:grid-cols-[44px_1fr_110px_60px_150px] md:px-5`}
+                  className={`row ${isHero ? "hero-row" : ""} ${isAgencia ? "row-agencia" : ""} ${i > 2 ? "max-md:hidden" : ""} grid grid-cols-[40px_minmax(0,1fr)_76px_auto] items-center gap-2 border-t border-[#1F1F1F] px-4 py-3 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5`}
                   style={isHero ? { border: "1px solid transparent", borderRadius: 10 } : undefined}
                 >
                   <div className="h-11 w-11 rounded-[6px]" style={{ background: "linear-gradient(135deg,#2A2A2A,#1A1A1A)" }} />

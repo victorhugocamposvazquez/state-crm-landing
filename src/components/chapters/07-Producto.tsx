@@ -116,7 +116,7 @@ export function Producto() {
         </div>
 
         {/* el espacio de módulos: a la derecha de la barra lateral y dentro del lienzo */}
-        <div className="absolute inset-x-[var(--gutter)] bottom-0 top-[calc(var(--copy-top)+290px)] md:left-[300px] md:top-[calc(var(--copy-top)+160px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
+        <div className="absolute inset-x-[var(--gutter)] bottom-3 top-[calc(var(--copy-top)+210px)] md:bottom-0 md:left-[300px] md:top-[calc(var(--copy-top)+160px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
           <div className="space relative h-full" style={{ transformStyle: "preserve-3d" }}>
             {modules.map((m, k) => {
               const lane = k % 3; // izquierda, centro, derecha (siempre dentro del espacio)
@@ -154,7 +154,7 @@ export function Producto() {
         </div>
 
         {/* la lista final con checks */}
-        <div className="checks absolute inset-x-[var(--gutter)] bottom-8 z-10 border-t border-[#171717] pt-5 md:left-[300px] md:bottom-10" style={{ opacity: 0 }}>
+        <div className="checks absolute inset-x-[var(--gutter)] bottom-8 z-10 hidden border-t border-[#171717] pt-5 md:left-[300px] md:bottom-10 md:block" style={{ opacity: 0 }}>
           <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-[10px] p-0 text-[13px] text-white7 sm:grid-cols-2 md:grid-cols-3 md:text-[14px]">
             {checks.map((c) => (
               <li key={c} className="flex items-center gap-[10px]">

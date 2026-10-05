@@ -132,19 +132,21 @@
   }
 
   /* Columna visual de un capítulo: lo que el CRM enseña, a la derecha del texto y SIEMPRE dentro
-     del lienzo (acaba en el gutter derecho, nunca más allá). En móvil, debajo del texto. */
+     del lienzo (acaba en el gutter derecho, nunca más allá). En móvil, justo debajo del titular. */
   .visual-col {
     position: absolute;
     left: var(--gutter);
     right: var(--gutter);
-    top: 456px;
-    bottom: 0;
+    top: calc(var(--copy-top) + 210px);
+    bottom: 12px;
+    overflow: hidden;
   }
   @media (min-width: 768px) {
     .visual-col {
       left: 540px;
       top: var(--copy-top); /* arranca a la altura del texto, no pegada a la cabecera */
       bottom: 48px;
+      overflow: visible;
     }
   }
 }
@@ -170,7 +172,20 @@
 @media (max-width: 767px) {
   :root {
     --gutter: 20px;
-    --vh-unit: 0.8vh; /* tramos más cortos; --stage-h sigue en 100× esta unidad */
+    --copy-top: 96px;
+    /* la pantalla pegada llena el teléfono: con menos, debajo asomaba un hueco vacío y lo de
+       abajo se cortaba contra el borde de una pantalla más baja que el viewport */
+    --vh-unit: 1vh;
+  }
+  /* en el teléfono manda el titular y lo que enseña el CRM; el párrafo está en el bloque de texto de después */
+  .copy-block .t-body {
+    display: none;
+  }
+  /* las tarjetas de producto, en una sola columna: en tres carriles se salían del teléfono */
+  .space .mod {
+    left: 0 !important;
+    width: min(300px, 100%) !important;
+    transform: none !important;
   }
 }
 @media (min-width: 768px) {

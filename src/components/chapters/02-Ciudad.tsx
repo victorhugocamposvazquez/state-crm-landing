@@ -32,7 +32,7 @@ export function Ciudad() {
           <div className="kick mb-5" style={{ opacity: 0 }}>
             <Kicker n="02" module="Captación" what="detecta los anuncios de particulares en los portales" />
           </div>
-          <div className="relative h-[80px] md:h-[120px]">
+          <div className="relative h-[96px] md:h-[120px]">
             <h2 className="t1 t-h1 absolute m-0 text-white8">
               Un particular
               <br />

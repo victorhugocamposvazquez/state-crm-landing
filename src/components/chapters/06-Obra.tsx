@@ -66,7 +66,7 @@ export function Obra() {
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-4">
           <div className="flex flex-col gap-4">
             {/* pantalla de presupuestos */}
-            <div className="screen panel hidden flex-col gap-3 p-[18px] sm:flex" style={{ opacity: 0 }}>
+            <div className="screen panel hidden flex-col gap-3 p-[18px] md:flex" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Presupuestos</span>
                 <span className="mono hidden text-[11px] text-grey5 lg:block">por partidas · a factura en un clic</span>

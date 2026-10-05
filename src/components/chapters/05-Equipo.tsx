@@ -90,7 +90,7 @@ export function Equipo() {
             </div>
 
             {/* Calendario */}
-            <div className="cal panel hidden flex-col gap-3 p-4 sm:flex" style={{ opacity: 0 }}>
+            <div className="cal panel hidden flex-col gap-3 p-4 md:flex" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Calendario</span>
                 <span className="mono relative text-[11px] text-grey5">
