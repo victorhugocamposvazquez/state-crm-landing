@@ -17,7 +17,10 @@
   --amber-dim: rgba(212, 160, 23, 0.14);
   --gutter: 56px;
   /* ancho máximo del contenido; en pantallas anchas todo queda centrado, no pegado a la izquierda */
-  --content-max: 1360px;
+  --content-max: 1200px;
+  /* distancia del borde del viewport al borde del contenido: lo usan las capas fijas (cabecera, pizarra)
+     para alinearse con el contenedor centrado en vez de con el borde de la pantalla */
+  --edge: max(var(--gutter), calc((100vw - var(--content-max)) / 2 + var(--gutter)));
   /* Misma unidad en altura de capítulo y stage: si vh≠dvh aparecen cortinillas */
   --vh-unit: 1vh;
   --stage-h: calc(100 * var(--vh-unit));
@@ -111,7 +114,7 @@
   @media (min-width: 768px) {
     .copy-block {
       top: clamp(112px, 15vh, 152px);
-      width: 440px;
+      width: 420px;
     }
   }
 
@@ -126,7 +129,7 @@
   }
   @media (min-width: 768px) {
     .visual-col {
-      left: 520px;
+      left: 500px;
       top: 96px;
       bottom: 48px;
     }
@@ -217,6 +220,14 @@ body {
   font-family: var(--font-brand);
   font-weight: 700;
   letter-spacing: -0.02em;
+  font-feature-settings: normal;
+}
+/* el wordmark dentro de un titular en Inter: un punto más pequeño para igualar la altura visual */
+.wordmark-inline {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-size: 0.95em;
   font-feature-settings: normal;
 }
 /* compat: lo que aún use .display hereda el peso y el aire de la escala */

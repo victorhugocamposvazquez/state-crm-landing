@@ -1,12 +1,13 @@
 import { Fragment, type ReactNode } from "react";
 
 /**
- * El nombre de la marca en texto corrido, con los colores del lockup: «state» en blanco, «crm» en el gris del logo.
- * Hereda la tipografía del texto donde va (el wordmark en Space Grotesk es solo el del logo).
+ * El nombre de la marca en texto, con los colores del lockup: «state» en blanco, «crm» en el gris del logo.
+ * En texto corrido hereda la tipografía; con `wordmark`, en un titular, va en la tipografía de la marca
+ * (Space Grotesk 700), como el logo.
  */
-export function Brand({ className = "" }: { className?: string }) {
+export function Brand({ className = "", wordmark = false }: { className?: string; wordmark?: boolean }) {
   return (
-    <span className={`whitespace-nowrap ${className}`}>
+    <span className={`whitespace-nowrap ${wordmark ? "wordmark-inline" : ""} ${className}`}>
       <span className="text-white8">state</span>
       <span className="text-grey6">crm</span>
     </span>
@@ -16,10 +17,10 @@ export function Brand({ className = "" }: { className?: string }) {
 const BRAND_RE = /(statecrm)/gi;
 
 /** Convierte un texto plano en nodos, sustituyendo cada «statecrm» por <Brand />. */
-export function brandify(text: string): ReactNode {
+export function brandify(text: string, wordmark = false): ReactNode {
   const parts = text.split(BRAND_RE);
   if (parts.length === 1) return text;
-  return parts.map((p, i) => (p.toLowerCase() === "statecrm" ? <Brand key={i} /> : <Fragment key={i}>{p}</Fragment>));
+  return parts.map((p, i) => (p.toLowerCase() === "statecrm" ? <Brand key={i} wordmark={wordmark} /> : <Fragment key={i}>{p}</Fragment>));
 }
 
 export function Check({ size = 10 }: { size?: number }) {

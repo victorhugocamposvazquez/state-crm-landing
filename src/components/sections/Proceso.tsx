@@ -142,14 +142,14 @@ export function Proceso() {
   return (
     <section ref={ref} id="proceso" className="proceso relative z-[2] border-t border-[#171717] bg-black0" aria-labelledby="proceso-h">
       <div className="pin flex items-center gutter">
-        <div className="mx-auto flex w-full max-w-[960px] flex-col items-center py-[64px] md:py-[80px]">
+        <div className="mx-auto flex w-full max-w-[880px] flex-col items-center py-[64px] md:py-[80px]">
           <div className="mb-10 flex max-w-[820px] flex-col items-center text-center md:mb-14">
             <div className="mb-6">
               <Kicker module="Cómo funciona" what="la captación, del anuncio a la venta" />
             </div>
             <h2 id="proceso-h" className="t-h1 m-0 text-white8">
               <span className="text-grey5">
-                <Brand /> detecta, captura y asigna.
+                <Brand wordmark /> detecta, captura y asigna.
               </span>
               <br />
               Tu equipo llama, enseña y cierra.

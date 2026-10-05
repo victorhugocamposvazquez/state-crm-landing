@@ -63,7 +63,7 @@ export function Obra() {
           </div>
         </div>
 
-        <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_300px] md:items-start md:gap-4">
+        <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_280px] md:items-start md:gap-4">
           <div className="flex flex-col gap-4">
             {/* pantalla de presupuestos */}
             <div className="screen panel hidden flex-col gap-3 p-[18px] sm:flex" style={{ opacity: 0 }}>

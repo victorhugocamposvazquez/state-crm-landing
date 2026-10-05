@@ -32,7 +32,7 @@ export function Nav() {
   return (
     <header
       ref={headerRef}
-      className="fixed inset-x-0 top-0 z-50 flex h-[64px] items-center justify-between gutter"
+      className="fixed inset-x-0 top-0 z-50 flex h-[64px] items-center justify-between px-[var(--edge)]"
       style={{ background: "linear-gradient(to bottom, rgba(10,10,10,.92), rgba(10,10,10,0))" }}
     >
       <a href="#prologo" aria-label="statecrm, volver al inicio" className="no-underline">

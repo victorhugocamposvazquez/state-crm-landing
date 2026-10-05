@@ -82,7 +82,7 @@ export function Producto() {
       <div ref={ref} className="stagewrap">
         <div className="halo" style={{ left: "30%", top: "10%", width: 1000, height: 700 }} />
 
-        <div className="copy copy-block md:w-[760px]">
+        <div className="copy copy-block md:w-[700px]">
           <div className="mb-5">
             <Kicker module="Todos los módulos" what="los doce módulos, a la medida de cada agencia" />
           </div>
@@ -90,7 +90,7 @@ export function Producto() {
             Cada agencia trabaja distinto.
             <br />
             <span className="text-grey5">
-              Por eso <Brand /> no es un CRM: es el tuyo.
+              Por eso <Brand wordmark /> no es un CRM: es el tuyo.
             </span>
           </h2>
         </div>

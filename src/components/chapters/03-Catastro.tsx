@@ -76,7 +76,7 @@ export function Catastro() {
         </div>
 
         {/* Historial de rastreos, compacto, bajo el texto (en pantallas bajas no cabe y se omite) */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[440px] flex-col gap-1 p-4 md:flex [@media(max-height:780px)]:md:hidden" style={{ opacity: 0 }}>
+        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[420px] flex-col gap-1 p-4 md:flex [@media(max-height:780px)]:md:hidden" style={{ opacity: 0 }}>
           <div className="mb-1 flex items-center justify-between text-[13px] text-white8">
             <span>Historial de rastreos</span>
             <span className="mono text-[11px] text-grey5">por calle · por código postal</span>

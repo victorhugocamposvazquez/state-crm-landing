@@ -34,7 +34,7 @@ export function Slate() {
   return (
     <div
       ref={wrapRef}
-      className="mono pointer-events-none fixed left-[var(--gutter)] top-[76px] z-40 flex items-center gap-[10px] text-[11px] tracking-[0.04em] text-grey5 transition-opacity duration-300 md:top-[84px] md:text-[12px]"
+      className="mono pointer-events-none fixed left-[var(--edge)] top-[76px] z-40 flex items-center gap-[10px] text-[11px] tracking-[0.04em] text-grey5 transition-opacity duration-300 md:top-[84px] md:text-[12px]"
       aria-live="off"
     >
       <span ref={numRef}>00</span>

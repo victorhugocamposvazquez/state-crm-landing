@@ -28,7 +28,7 @@ export function Ciudad() {
   return (
     <Chapter id="ciudad">
       <div ref={ref} className="stagewrap">
-        <div className="copy copy-block md:w-[560px]">
+        <div className="copy copy-block md:w-[520px]">
           <div className="kick mb-5" style={{ opacity: 0 }}>
             <Kicker module="Captación" what="detecta los anuncios de particulares en los portales" />
           </div>

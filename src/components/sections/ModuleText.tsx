@@ -16,7 +16,7 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
 
   return (
     <section ref={ref} id={`${id}-texto`} className="module-text relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[120px]" aria-labelledby={`${id}-texto-h`}>
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-20">
+      <div className="mx-auto grid max-w-[1040px] grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-16">
         <div className="flex flex-col gap-6">
           <div data-reveal>
             <Kicker module={m.module} what={m.what} />

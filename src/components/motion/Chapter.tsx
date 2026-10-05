@@ -84,7 +84,12 @@ export function Chapter({
     >
       <div className="stage" style={{ background: solid ? "var(--black0)" : "transparent" }}>
         {children}
-        <ChapterToasts id={id} />
+        {/* las notificaciones, en las esquinas del contenedor centrado, no de la pantalla */}
+        <div className="pointer-events-none absolute inset-0 z-20">
+          <div className="stagewrap">
+            <ChapterToasts id={id} />
+          </div>
+        </div>
       </div>
     </section>
   );

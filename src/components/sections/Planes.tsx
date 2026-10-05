@@ -27,7 +27,7 @@ export function Planes() {
 
   return (
     <section ref={ref} id="planes" className="relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[128px]" aria-labelledby="planes-h">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1040px]">
         <div className="max-w-[760px]">
           <div data-reveal className="mb-6">
             <Kicker module="Planes" what="tres cuotas mensuales, según lo que use tu agencia" />
