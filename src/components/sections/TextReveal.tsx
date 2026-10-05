@@ -50,9 +50,9 @@ export function TextReveal({ id }: { id: TransitionId }) {
 
   return (
     <section ref={ref} id={`transicion-${id}`} className="textreveal relative z-[2] bg-black0" aria-labelledby={`transicion-${id}-h`}>
-      <div className="pin flex items-center gutter">
-        <div className="mx-auto w-full max-w-[1000px]">
-          <p id={`transicion-${id}-h`} className="t-statement m-0 text-white8">
+      <div className="pin flex items-center justify-center gutter">
+        <div className="mx-auto w-full max-w-[1240px] text-center">
+          <p id={`transicion-${id}-h`} className="t-statement mx-auto my-0 text-white8">
             {words.map((w, i) => (
               <span key={`${i}-${w}`}>
                 <span className="w" style={FROM}>
