@@ -25,53 +25,51 @@
 
 @layer components {
   /* ESCALA TIPOGRÁFICA — una sola para toda la landing. Los componentes no fijan px.
-     Space Grotesk 500 en titulares (el 700 queda para el wordmark), 400 en texto.
-     Tracking negativo solo por encima de 28 px (guía de marca). */
+     Inter 500 en titulares, 400 en texto. El eje óptico de Inter ya afina los titulares grandes;
+     el tracking acompaña: ≈ −0.05 em en los grandes (como la referencia), −0.0125 em en el cuerpo. */
   .t-hero {
     font-weight: 500;
     font-size: clamp(38px, 2rem + 2.4vw, 68px);
-    line-height: 1.04;
-    letter-spacing: -0.028em;
+    line-height: 1.05;
+    letter-spacing: -0.05em;
     text-wrap: balance;
   }
   .t-statement {
     font-weight: 500;
     font-size: clamp(40px, 1.8rem + 3.4vw, 88px);
     line-height: 1.06;
-    letter-spacing: -0.028em;
+    letter-spacing: -0.05em;
     text-wrap: balance;
   }
   .t-h1 {
     font-weight: 500;
     font-size: clamp(28px, 1.3rem + 1.6vw, 46px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
     text-wrap: balance;
   }
   .t-h2 {
     font-weight: 500;
     font-size: clamp(24px, 1.1rem + 0.9vw, 32px);
-    line-height: 1.18;
-    letter-spacing: 0;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     text-wrap: balance;
-  }
-  @media (min-width: 768px) {
-    .t-h2 {
-      letter-spacing: -0.012em;
-    }
   }
   .t-h3 {
     font-weight: 500;
     font-size: 17px;
     line-height: 1.35;
+    letter-spacing: -0.015em;
   }
   .t-lead {
     font-size: clamp(16px, 0.95rem + 0.25vw, 18px);
     line-height: 1.55;
+    letter-spacing: -0.0125em;
   }
   .t-body {
     font-size: 15px;
     line-height: 1.6;
+    letter-spacing: -0.0125em;
   }
   @media (min-width: 768px) {
     .t-body {
@@ -81,6 +79,7 @@
   .t-small {
     font-size: 13px;
     line-height: 1.5;
+    letter-spacing: -0.005em;
   }
   .t-label {
     font-size: 12px;
@@ -115,6 +114,23 @@
       width: 440px;
     }
   }
+
+  /* Columna visual de un capítulo: lo que el CRM enseña, a la derecha del texto y SIEMPRE dentro
+     del lienzo (acaba en el gutter derecho, nunca más allá). En móvil, debajo del texto. */
+  .visual-col {
+    position: absolute;
+    left: var(--gutter);
+    right: var(--gutter);
+    top: 360px;
+    bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .visual-col {
+      left: 520px;
+      top: 96px;
+      bottom: 48px;
+    }
+  }
 }
 
 @theme inline {
@@ -129,8 +145,10 @@
   --color-white8: var(--white8);
   --color-green: var(--green);
   --color-amber: var(--amber);
-  --font-sans: var(--font-space), "Space Grotesk", system-ui, sans-serif;
-  --font-mono: var(--font-space), "Space Grotesk", system-ui, sans-serif;
+  /* Inter para todo el texto; Space Grotesk queda solo para el wordmark (.wordmark) */
+  --font-sans: var(--font-inter), Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-inter), Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-brand: var(--font-space), "Space Grotesk", var(--font-inter), system-ui, sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -164,7 +182,12 @@ body {
   background: var(--black0);
   color: var(--white7);
   font-family: var(--font-sans);
+  /* alternativas de Inter como en la referencia: 1 con base, l con cola, I con remates, comillas redondas */
+  font-feature-settings: "cv01", "cv05", "cv08", "ss03";
+  letter-spacing: -0.0125em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -182,14 +205,24 @@ body {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
+/* datos de la interfaz del CRM (ids, horas, metadatos): misma familia, cifras tabulares, sin apretar */
 .mono {
   font-family: var(--font-mono);
-  font-feature-settings: "tnum" 1;
+  font-feature-settings: "cv01", "cv05", "cv08", "ss03", "tnum";
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+/* el wordmark: la única pieza en Space Grotesk, como en el lockup de marca */
+.wordmark {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-feature-settings: normal;
 }
 /* compat: lo que aún use .display hereda el peso y el aire de la escala */
 .display {
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
   line-height: 1.08;
 }
 .hairline {
@@ -314,6 +347,17 @@ body {
 .textreveal .w {
   display: inline-block;
   will-change: filter, opacity;
+}
+
+/* El proceso: sección alta con la pantalla pegada mientras el scroll recorre los pasos.
+   min-height y no height: si en una pantalla baja el contenido no cabe, se ve entero al final del tramo. */
+.proceso {
+  height: calc(280 * var(--vh-unit));
+}
+.proceso > .pin {
+  position: sticky;
+  top: 0;
+  min-height: var(--stage-h);
 }
 
 .will-change {

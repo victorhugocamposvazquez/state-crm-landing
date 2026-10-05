@@ -1,4 +1,26 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
+
+/**
+ * El nombre de la marca en texto corrido, con los colores del lockup: «state» en blanco, «crm» en el gris del logo.
+ * Hereda la tipografía del texto donde va (el wordmark en Space Grotesk es solo el del logo).
+ */
+export function Brand({ className = "" }: { className?: string }) {
+  return (
+    <span className={`whitespace-nowrap ${className}`}>
+      <span className="text-white8">state</span>
+      <span className="text-grey6">crm</span>
+    </span>
+  );
+}
+
+const BRAND_RE = /(statecrm)/gi;
+
+/** Convierte un texto plano en nodos, sustituyendo cada «statecrm» por <Brand />. */
+export function brandify(text: string): ReactNode {
+  const parts = text.split(BRAND_RE);
+  if (parts.length === 1) return text;
+  return parts.map((p, i) => (p.toLowerCase() === "statecrm" ? <Brand key={i} /> : <Fragment key={i}>{p}</Fragment>));
+}
 
 export function Check({ size = 10 }: { size?: number }) {
   return (
@@ -49,8 +71,8 @@ export function Kicker({ module, what }: { module: string; what: string }) {
         <circle cx="22" cy="22" r="12" stroke="#6E6E6E" strokeWidth="6" />
         <path d="M22 10 A12 12 0 0 1 34 22" stroke="#FFFFFF" strokeWidth="6" />
       </svg>
-      <span className="t-label text-white7">{module}</span>
-      <span className="t-small text-grey5">{what}</span>
+      <span className="t-label text-white7">{brandify(module)}</span>
+      <span className="t-small text-grey5">{brandify(what)}</span>
     </div>
   );
 }
@@ -83,7 +105,7 @@ export function ChapterCopy({
           </>
         )}
       </h2>
-      {body && <p className="t-body m-0 max-w-[440px] text-grey6">{body}</p>}
+      {body && <p className="t-body m-0 max-w-[440px] text-grey6">{typeof body === "string" ? brandify(body) : body}</p>}
     </div>
   );
 }

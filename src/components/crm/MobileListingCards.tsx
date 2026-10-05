@@ -17,7 +17,7 @@ export function MobileListingCards() {
     const apply = () => {
       const s = useScroll.getState();
       setMobile(s.isMobile);
-      const p = s.active === "ciudad" ? s.progress.ciudad : 0;
+      const p = s.onScreen.ciudad ? s.progress.ciudad : 0;
       let i = -1;
       cityPhoto.anchors.forEach((_, k) => {
         if (p >= revealAt(k)) i = k;

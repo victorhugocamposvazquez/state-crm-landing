@@ -36,7 +36,7 @@ export function Chapter({
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const { setProgress, setActive, setPinned } = useScroll.getState();
+    const { setProgress, setActive, setPinned, setOnScreen } = useScroll.getState();
     const st = ScrollTrigger.create({
       trigger: el,
       start: "top top",
@@ -55,9 +55,22 @@ export function Chapter({
         if (on) setActive(id);
       },
     });
+    // la sección toca el viewport: desde que su borde superior asoma por abajo hasta que el inferior sale por arriba
+    const vis = ScrollTrigger.create({
+      trigger: el,
+      start: "top bottom",
+      end: "bottom top",
+      onToggle: (self) => setOnScreen(id, self.isActive),
+      onRefresh: (self) => {
+        const y = self.scroll();
+        setOnScreen(id, y >= self.start && y <= self.end);
+      },
+    });
     return () => {
       st.kill();
+      vis.kill();
       setPinned(id, false);
+      setOnScreen(id, false);
     };
   }, [id]);
 

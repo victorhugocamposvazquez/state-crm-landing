@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { Check, Kicker } from "@/components/ui/atoms";
+import { Brand, Check, Kicker } from "@/components/ui/atoms";
 
 const modules = [
   { name: "Captación", n: "02", line: "Anuncios de particulares, cada mañana, con teléfono y fotos.", metric: "38 captados hoy", kind: "g" },
@@ -89,17 +89,19 @@ export function Producto() {
           <h2 className="t-h1 m-0 text-white8">
             Cada agencia trabaja distinto.
             <br />
-            <span className="text-grey5">Por eso statecrm no es un CRM: es el tuyo.</span>
+            <span className="text-grey5">
+              Por eso <Brand /> no es un CRM: es el tuyo.
+            </span>
           </h2>
         </div>
 
         {/* barra lateral conceptual */}
-        <div className="sidebar absolute left-[var(--gutter)] top-[310px] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
+        <div className="sidebar absolute left-[var(--gutter)] top-[300px] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
           {sidebar.map((g) => (
             <div key={g.sec ?? "top"}>
-              {g.sec && <div className="px-[10px] pb-1 pt-[14px] text-[10px] uppercase tracking-[0.12em] text-grey4">{g.sec}</div>}
+              {g.sec && <div className="px-[10px] pb-1 pt-[10px] text-[10px] uppercase tracking-[0.12em] text-grey4">{g.sec}</div>}
               {g.items.map((it) => (
-                <div key={it} data-mod={it} className="side-item flex items-center gap-[10px] rounded-[6px] px-[10px] py-[7px] text-[13px] text-grey5">
+                <div key={it} data-mod={it} className="side-item flex items-center gap-[10px] rounded-[6px] px-[10px] py-[5px] text-[13px] text-grey5">
                   <span className="h-[14px] w-[14px] rounded-[3px] border border-grey4" />
                   {it}
                   <span className="seen ml-auto" style={{ opacity: 0 }}>
@@ -113,19 +115,20 @@ export function Producto() {
           ))}
         </div>
 
-        {/* el espacio de módulos */}
-        <div className="absolute inset-x-0 bottom-0 top-[320px] md:left-[320px] md:top-[200px]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
+        {/* el espacio de módulos: a la derecha de la barra lateral y dentro del lienzo */}
+        <div className="absolute inset-x-[var(--gutter)] bottom-0 top-[320px] md:left-[300px] md:top-[220px]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
           <div className="space relative h-full" style={{ transformStyle: "preserve-3d" }}>
             {modules.map((m, k) => {
-              const lane = k % 3; // izquierda, centro, derecha
-              const x = lane === 0 ? -34 : lane === 1 ? 6 : 46;
-              const y = (k % 4) * 9 + 8;
+              const lane = k % 3; // izquierda, centro, derecha (siempre dentro del espacio)
+              const x = lane === 0 ? 2 : lane === 1 ? 33 : 64;
+              const y = (k % 4) * 9 + 6;
               return (
                 <div
                   key={m.name}
                   className="mod card absolute flex w-[280px] flex-col gap-[10px] p-[14px] md:w-[320px]"
                   style={{
-                    left: `${x}%`,
+                    // nunca más allá del borde derecho del espacio (en móvil, todos casi a la izquierda: túnel vertical)
+                    left: `min(${x}%, calc(100% - 320px))`,
                     top: `${y}%`,
                     transform: `translate3d(0,0,${-k * STEP}px) rotateY(${lane === 0 ? 10 : lane === 2 ? -10 : 0}deg)`,
                     opacity: panelLit(k) ? 1 : 0,
@@ -151,7 +154,7 @@ export function Producto() {
         </div>
 
         {/* la lista final con checks */}
-        <div className="checks absolute inset-x-[var(--gutter)] bottom-8 z-10 border-t border-[#171717] pt-5 md:bottom-10" style={{ opacity: 0 }}>
+        <div className="checks absolute inset-x-[var(--gutter)] bottom-8 z-10 border-t border-[#171717] pt-5 md:left-[300px] md:bottom-10" style={{ opacity: 0 }}>
           <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-[10px] p-0 text-[13px] text-white7 sm:grid-cols-2 md:grid-cols-3 md:text-[14px]">
             {checks.map((c) => (
               <li key={c} className="flex items-center gap-[10px]">

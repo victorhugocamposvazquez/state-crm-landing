@@ -19,7 +19,8 @@ import { TextReveal } from "@/components/sections/TextReveal";
 /**
  * La landing es un único scroll: diez capítulos en orden, el canvas 3D detrás
  * y dos capas fijas (cabecera y pizarra). Las notificaciones viven dentro de cada capítulo.
- * Tras el hero, una frase de transición (TextReveal) y el proceso completo de un vistazo (Proceso);
+ * Tras el hero, una frase de transición (TextReveal) y el camino de captación paso a paso, frotado
+ * por el scroll (Proceso; el Catastro va por libre y se cuenta en su propio capítulo);
  * tras la pantalla animada de cada módulo entra su texto (ModuleText); otra frase cierra los módulos
  * antes del producto, y antes de la demo, los planes.
  */

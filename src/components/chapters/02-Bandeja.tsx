@@ -5,21 +5,22 @@ import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 import { CheckList, ChapterCopy } from "@/components/ui/atoms";
 import { listings, euro } from "@/lib/script";
 
-const rows = listings.slice(0, 6);
+/** cuatro filas: la protagonista, dos particulares y una agencia (para que el filtro tenga a quién apagar) */
+const rows = [...listings.slice(0, 3), { ...listings[3], kind: "agencia" as const, phone: "en cola" as const }];
 
 /**
- * 02 · 07:52 · La bandeja de Captación: la pantalla conceptual del CRM, inclinada,
- * con las filas entrando una a una, los filtros pulsándose solos y el 3º izquierda elevándose.
+ * 02 · 07:52 · La bandeja de Captación: la pantalla del CRM, plana y centrada en su columna,
+ * con las filas entrando una a una, los filtros pulsándose solos y la fila protagonista destacándose.
  */
 export function Bandeja() {
   const ref = useRef<HTMLDivElement>(null);
 
   useScrollTimeline(ref, (tl, q, enter) => {
     // entrada: el panel y el copy aterrizan mientras la pantalla sube; las filas llegan ya en el tramo
-    enter.fromTo(q(".panel3d"), { opacity: 0, y: 80, rotateX: 14 }, { opacity: 1, y: 0, rotateX: 5, duration: 1 }, 0)
+    enter.fromTo(q(".panel-main"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1 }, 0)
       .fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
 
-    tl.fromTo(q(".row"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.08, stagger: 0.04 }, 0.15)
+    tl.fromTo(q(".row"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.08, stagger: 0.05 }, 0.15)
       .fromTo(q(".kpi .n"), { opacity: 0.2 }, { opacity: 1, duration: 0.1, stagger: 0.03 }, 0.12)
       // los filtros se pulsan solos
       .to(q(".chip-part"), { borderColor: "#737373", color: "#fff", duration: 0.05 }, 0.42)
@@ -28,10 +29,9 @@ export function Bandeja() {
       // el teléfono se captura
       .to(q(".phone-dash"), { opacity: 0, duration: 0.04 }, 0.55)
       .fromTo(q(".phone-ok"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.06 }, 0.56)
-      // la fila protagonista se eleva como capa
-      .to(q(".hero-row"), { z: 70, boxShadow: "0 30px 60px rgba(0,0,0,.7)", borderColor: "#3A3A3A", background: "#171717", duration: 0.12 }, 0.62)
-      .fromTo(q(".hero-extra"), { opacity: 0, height: 0 }, { opacity: 1, height: "auto", duration: 0.1 }, 0.66)
-      .fromTo(q(".counter-card"), { opacity: 0, y: 20, z: 110 }, { opacity: 1, y: 0, z: 110, duration: 0.12 }, 0.3);
+      // la fila protagonista se destaca
+      .to(q(".hero-row"), { boxShadow: "0 20px 40px rgba(0,0,0,.6)", borderColor: "#3A3A3A", background: "#171717", duration: 0.12 }, 0.62)
+      .fromTo(q(".hero-extra"), { opacity: 0, height: 0 }, { opacity: 1, height: "auto", duration: 0.1 }, 0.66);
   });
 
   return (
@@ -72,11 +72,8 @@ export function Bandeja() {
           </div>
         </div>
 
-        <div
-          className="absolute bottom-0 right-0 top-[300px] md:left-[520px] md:top-[100px] lg:left-[560px]"
-          style={{ perspective: 1800, perspectiveOrigin: "20% 40%", width: "100%", maxWidth: 900 }}
-        >
-          <div className="panel3d panel relative mx-[var(--gutter)] md:mx-0" style={{ transformStyle: "preserve-3d", transform: "rotateY(-9deg) rotateX(5deg)", opacity: 0 }}>
+        <div className="visual-col flex flex-col justify-start md:justify-center-safe">
+          <div className="panel-main panel relative" style={{ opacity: 0 }}>
             <div className="flex flex-col gap-4 px-4 pt-4 md:px-5 md:pt-5">
               <div className="flex items-center justify-between">
                 <span className="text-[18px] font-medium tracking-[-0.02em] text-white8 md:text-[20px]">Captación</span>
@@ -103,8 +100,8 @@ export function Bandeja() {
                   ["9", "Bajadas de precio", ""],
                   ["0", "En seguimiento", ""],
                 ].map(([n, l, c]) => (
-                  <div key={l} className="kpi flex flex-col gap-1 rounded-[10px] border border-grey3 bg-black2 p-3 md:p-4">
-                    <span className={`n text-[22px] font-medium tracking-[-0.02em] text-white8 md:text-[26px] ${c}`}>{n}</span>
+                  <div key={l} className="kpi flex flex-col gap-1 rounded-[10px] border border-grey3 bg-black2 p-3">
+                    <span className={`n text-[22px] font-medium tracking-[-0.02em] text-white8 md:text-[24px] ${c}`}>{n}</span>
                     <span className="text-[11px] text-grey5 md:text-[12px]">{l}</span>
                   </div>
                 ))}
@@ -141,7 +138,7 @@ export function Bandeja() {
                 <div
                   key={l.id}
                   className={`row ${isHero ? "hero-row" : ""} ${isAgencia ? "row-agencia" : ""} grid grid-cols-[44px_1fr_90px_110px] items-center gap-3 border-t border-[#1F1F1F] px-4 py-3 md:grid-cols-[44px_1fr_110px_60px_150px] md:px-5`}
-                  style={isHero ? { border: "1px solid transparent", borderRadius: 10, transformStyle: "preserve-3d" } : undefined}
+                  style={isHero ? { border: "1px solid transparent", borderRadius: 10 } : undefined}
                 >
                   <div className="h-11 w-11 rounded-[6px]" style={{ background: "linear-gradient(135deg,#2A2A2A,#1A1A1A)" }} />
                   <div className="flex min-w-0 flex-col gap-[6px]">
@@ -186,18 +183,6 @@ export function Bandeja() {
               );
             })}
             <div className="h-3" />
-
-            <div
-              className="counter-card card mono absolute -right-4 -top-5 flex flex-col gap-[6px] px-[14px] py-3 text-[12px] text-grey6 md:-right-14 md:-top-3"
-              style={{ opacity: 0, transform: "translateZ(110px)" }}
-            >
-              <span className="text-grey5">captados_hoy</span>
-              <span className="text-[28px] tracking-[-0.02em] text-white8">38</span>
-              <span className="flex items-center gap-[6px]">
-                <span className="h-[6px] w-[6px] rounded-full bg-green" />
-                134 particulares · <span className="text-amber">3 encubiertas</span>
-              </span>
-            </div>
           </div>
         </div>
       </div>

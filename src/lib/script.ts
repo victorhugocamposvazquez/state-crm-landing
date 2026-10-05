@@ -116,7 +116,7 @@ export const chapters: Chapter[] = [
       { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Piso en calle de Posse" },
       { at: 0.8, kind: "new", text: "Solicitud de visita · Piso en calle de Posse", meta: "12:48" },
     ],
-    toasts: "tr",
+    toasts: "bl",
   },
   {
     id: "equipo",

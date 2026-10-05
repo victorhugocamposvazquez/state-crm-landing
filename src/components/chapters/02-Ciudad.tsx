@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 import { countTo } from "@/components/motion/count";
-import { Kicker } from "@/components/ui/atoms";
+import { Brand, Kicker } from "@/components/ui/atoms";
 import { MobileListingCards } from "@/components/crm/MobileListingCards";
 
 /**
@@ -50,7 +50,7 @@ export function Ciudad() {
             </h2>
           </div>
           <p className="t-body m-0 mt-5 max-w-[440px] text-grey6">
-            Cada punto es un anuncio de particular recién publicado. statecrm rastrea los portales cada mañana y lo guarda con precio, metros, habitaciones y teléfono. Sin buscar a mano.
+            Cada punto es un anuncio de particular recién publicado. <Brand /> rastrea los portales cada mañana y lo guarda con precio, metros, habitaciones y teléfono. Sin buscar a mano.
           </p>
         </div>
 

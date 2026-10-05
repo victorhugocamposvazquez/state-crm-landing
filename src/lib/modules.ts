@@ -47,7 +47,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     what: "la finca real detrás de cada anuncio",
     title: "Vincula cada anuncio a su finca real y pide la nota simple sin salir del CRM.",
     body:
-      "Un anuncio dice «92 m² en el centro»; el Catastro dice qué finca es. statecrm rastrea la zona por calle o código postal, separa las fincas candidatas y vincula el inmueble a su referencia. La nota simple se pide desde la misma ficha.",
+      "El Catastro va por libre: no hace falta un anuncio para usarlo. statecrm rastrea una zona por calle o código postal, separa las fincas candidatas y, cuando toca, vincula un inmueble a su referencia. Lo que encuentra pasa a tareas, seguimiento y equipo comercial; la nota simple se pide desde la misma ficha.",
     features: [
       { title: "Rastreos por calle o código postal", text: "Se pausan, se reanudan y quedan en un historial." },
       { title: "Fincas candidatas", text: "Las que encajan con el anuncio, por zona y por comercial." },

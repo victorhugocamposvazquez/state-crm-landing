@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import { useScroll } from "@/lib/store";
+import { Brand } from "@/components/ui/atoms";
 
 /**
  * El anillo de progreso de statecrm.
  * Retícula 44 px, grosor 6, anillo #6E6E6E + cuadrante blanco.
  * Con `progress`, el aro se rellena en blanco a medida que avanza la web.
+ * El wordmark va en Space Grotesk 700, «state» blanco y «crm» gris, como en el lockup.
  */
 export function Logo({ size = 28, progress = false, wordmark = true }: { size?: number; progress?: boolean; wordmark?: boolean }) {
   const ref = useRef<SVGCircleElement>(null);
@@ -45,8 +47,8 @@ export function Logo({ size = 28, progress = false, wordmark = true }: { size?: 
         />
       </svg>
       {wordmark && (
-        <span className="text-[18px] font-bold tracking-[-0.02em] text-white8 md:text-[20px]">
-          statecrm
+        <span className="wordmark text-[18px] md:text-[20px]">
+          <Brand />
         </span>
       )}
     </span>

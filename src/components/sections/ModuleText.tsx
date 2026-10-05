@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { moduleTexts, type ModuleTextId } from "@/lib/modules";
-import { Kicker } from "@/components/ui/atoms";
+import { Kicker, brandify } from "@/components/ui/atoms";
 import { useReveal } from "@/components/motion/reveal";
 
 /**
@@ -22,10 +22,10 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
             <Kicker module={m.module} what={m.what} />
           </div>
           <h3 id={`${id}-texto-h`} data-reveal className="t-h2 m-0 text-white8">
-            {m.title}
+            {brandify(m.title)}
           </h3>
           <p data-reveal className="t-body m-0 max-w-[500px] text-grey6">
-            {m.body}
+            {brandify(m.body)}
           </p>
           <a data-reveal href="#manana" className="t-small mt-2 inline-flex items-center gap-2 self-start font-medium text-white7 no-underline hover:text-white8">
             Ver {m.module.split(" · ")[0]} en una demo
@@ -50,7 +50,7 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
                   </span>
                   {f.title}
                 </div>
-                <p className="m-0 text-[15px] leading-[1.6] text-grey6">{f.text}</p>
+                <p className="m-0 text-[15px] leading-[1.6] text-grey6">{brandify(f.text)}</p>
               </li>
             ))}
           </ul>

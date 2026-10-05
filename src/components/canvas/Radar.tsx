@@ -74,15 +74,18 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
   useFrame((state) => {
     const s = readScroll();
     const t = state.clock.elapsedTime;
+    // los progresos se quedan en 0 antes del capítulo y en 1 después: sirven también fuera del tramo pegado
     const pr = s.progress.radar;
     const pp = s.progress.prologo;
-    const visible = s.active === "prologo" || s.active === "radar" || (s.active === "ciudad" && s.progress.ciudad < 0.2);
+    const o = s.onScreen;
+    // solo mientras el prólogo o el 01 tocan el viewport; nunca con la ciudad (ahí el fondo es el skyline)
+    const visible = !!(o.prologo || o.radar) && !(o.ciudad || o.bandeja);
     if (group.current) group.current.visible = visible;
     if (!visible) return;
 
-    // Opacidad: entra durante el prólogo, sale al final del 01 / principio del 02
-    const fadeIn = s.active === "prologo" ? Math.min(1, pp / 0.7) : 1;
-    const fadeOut = s.active === "ciudad" ? 1 - s.progress.ciudad / 0.2 : s.active === "radar" ? 1 - Math.max(0, pr - 0.85) / 0.15 : 1;
+    // Opacidad: entra durante el prólogo, se apaga en el último tramo del 01
+    const fadeIn = Math.min(1, pp / 0.7);
+    const fadeOut = 1 - Math.max(0, pr - 0.85) / 0.15;
     const opacity = Math.max(0, Math.min(1, fadeIn * fadeOut));
 
     const angle = -t * 0.8;
@@ -95,7 +98,7 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
     });
 
     if (inst.current) {
-      const lift = s.active === "radar" ? Math.max(0, pr - 0.8) / 0.2 : s.active === "ciudad" ? 1 : 0;
+      const lift = Math.max(0, pr - 0.8) / 0.2;
       dots.forEach((d, i) => {
         // El plano del barrido está girado -90° en X: su ángulo uv equivale a atan2(-z, x)
         const a = Math.atan2(-d.z, d.x);

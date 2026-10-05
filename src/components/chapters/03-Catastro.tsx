@@ -24,7 +24,7 @@ export function Catastro() {
   useScrollTimeline(ref, (tl, q, enter) => {
     // entrada: copy, mapa y panel de rastreos suben ya puestos con la pantalla
     enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
-      .fromTo(q(".map3d"), { opacity: 0, rotateX: 50, y: 80 }, { opacity: 1, rotateX: 38, y: 0, duration: 0.9 }, 0.1)
+      .fromTo(q(".map3d"), { opacity: 0, rotateX: 40, y: 80 }, { opacity: 1, rotateX: 28, y: 0, duration: 0.9 }, 0.1)
       .fromTo(q(".scans"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3);
 
     scans.forEach((sc, k) => {
@@ -75,8 +75,8 @@ export function Catastro() {
           </div>
         </div>
 
-        {/* Historial de rastreos, compacto */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[440px] flex-col gap-1 p-4 md:flex" style={{ opacity: 0 }}>
+        {/* Historial de rastreos, compacto, bajo el texto (en pantallas bajas no cabe y se omite) */}
+        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[440px] flex-col gap-1 p-4 md:flex [@media(max-height:780px)]:md:hidden" style={{ opacity: 0 }}>
           <div className="mb-1 flex items-center justify-between text-[13px] text-white8">
             <span>Historial de rastreos</span>
             <span className="mono text-[11px] text-grey5">por calle · por código postal</span>
@@ -97,11 +97,11 @@ export function Catastro() {
           ))}
         </div>
 
-        {/* El mapa en 3D */}
-        <div className="absolute inset-x-0 bottom-0 top-[330px] md:left-[520px] md:right-[var(--gutter)] md:top-[20px]" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
+        {/* El mapa, ligeramente tumbado, en su columna */}
+        <div className="visual-col" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
           <div
-            className="map3d absolute left-[var(--gutter)] right-[var(--gutter)] top-[20px] md:left-0 md:right-0 md:top-[70px]"
-            style={{ transform: "rotateX(38deg)", transformOrigin: "50% 35%", opacity: 0, maskImage: "radial-gradient(ellipse at 50% 45%, #000 55%, transparent 85%)" }}
+            className="map3d absolute inset-x-0 top-[20px] md:top-0"
+            style={{ transform: "rotateX(28deg)", transformOrigin: "50% 35%", opacity: 0, maskImage: "radial-gradient(ellipse at 50% 45%, #000 55%, transparent 85%)" }}
           >
             <div style={{ aspectRatio: "1200 / 900", background: "#0C0C0C", border: "1px solid #1C1C1C" }}>
               <StreetMap />
@@ -123,7 +123,7 @@ export function Catastro() {
           </div>
 
           {/* la vinculación */}
-          <div className="vinc card absolute left-[var(--gutter)] right-[var(--gutter)] top-[290px] z-10 flex flex-col gap-2 p-[16px] md:left-auto md:right-[40px] md:top-[380px] md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
+          <div className="vinc card absolute inset-x-0 top-[290px] z-10 flex flex-col gap-2 p-[16px] md:bottom-[40px] md:left-auto md:right-0 md:top-auto md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Casa en Camino Rianxiño, 115</span>
               <span className="vinc-chip mono text-[11px] text-green" style={{ opacity: 0 }}>

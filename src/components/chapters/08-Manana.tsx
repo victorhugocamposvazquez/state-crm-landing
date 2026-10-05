@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { Kicker } from "@/components/ui/atoms";
+import { Brand, Kicker } from "@/components/ui/atoms";
 
 /**
  * 08 · 07:00 · Mañana. El anillo del logo, un punto nuevo, la pregunta, el formulario y los precios.
@@ -48,7 +48,7 @@ export function Manana() {
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>
           <p className="t-lead m-0 max-w-[560px] text-grey6">
-            Te enseñamos statecrm con tu zona: los anuncios de particulares de esta mañana y uno de ellos cruzado con el catastro.
+            Te enseñamos <Brand /> con tu zona: los anuncios de particulares de esta mañana y uno de ellos cruzado con el catastro.
           </p>
         </div>
 

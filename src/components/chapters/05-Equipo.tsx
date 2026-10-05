@@ -21,8 +21,9 @@ const week = [
 ] as const;
 
 /**
- * 05 · 13:00 · Tareas, calendario y equipo. El badge sube, las tareas entran con avatar,
- * el calendario coloca cada una en su hora y el móvil entra girando con la PWA.
+ * 05 · 13:00 · Tareas, calendario y equipo. En la columna visual, tareas y calendario apilados
+ * y el móvil al lado: el badge sube, las tareas entran con avatar, el calendario coloca cada una
+ * en su hora y el móvil sube con la PWA.
  */
 export function Equipo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,11 +34,11 @@ export function Equipo() {
       .fromTo(q(".tasks"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.9 }, 0.1);
 
     tl.fromTo(q(".task"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.06, stagger: 0.03 }, 0.1)
-      .fromTo(q(".cal"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.12 }, 0.22)
+      .fromTo(q(".cal"), { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.12 }, 0.22)
       .fromTo(q(".slot.on, .slot.g"), { background: "#171717", borderColor: "#1F1F1F" }, { background: "#262626", borderColor: "#3A3A3A", duration: 0.05, stagger: 0.01 }, 0.3)
       .to(q(".slot.g"), { background: "rgba(34,197,94,.22)", borderColor: "#22C55E", duration: 0.05 }, 0.42)
       .fromTo(q(".office-line"), { scaleX: 0 }, { scaleX: 1, duration: 0.08, transformOrigin: "left" }, 0.44)
-      .fromTo(q(".phone"), { opacity: 0, y: 160, rotateY: -40 }, { opacity: 1, y: 0, rotateY: -18, duration: 0.14 }, 0.5)
+      .fromTo(q(".phone"), { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.14 }, 0.5)
       .to(q(".phone-task .pbox"), { background: "#22C55E", borderColor: "#22C55E", duration: 0.04 }, 0.7)
       .to(q(".phone-task .ptxt"), { color: "#737373", textDecoration: "line-through", duration: 0.04 }, 0.7)
       .to(q(".task-hero .tbox"), { background: "#22C55E", borderColor: "#22C55E", duration: 0.04 }, 0.72)
@@ -60,10 +61,10 @@ export function Equipo() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 top-[360px] md:left-[540px] md:top-[100px]" style={{ perspective: 1700, perspectiveOrigin: "20% 40%" }}>
-          <div className="relative h-full" style={{ transformStyle: "preserve-3d" }}>
+        <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_200px] md:items-start md:gap-4">
+          <div className="flex flex-col gap-4">
             {/* Tareas */}
-            <div className="tasks panel absolute left-[var(--gutter)] right-[var(--gutter)] top-0 flex flex-col gap-3 p-4 md:left-0 md:right-auto md:w-[420px]" style={{ transform: "rotateY(-8deg) rotateX(3deg)", opacity: 0 }}>
+            <div className="tasks panel flex flex-col gap-3 p-4" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span className="flex items-center gap-2">
                   Tareas <span className="badge mono rounded-full bg-green px-2 py-[1px] text-[11px] text-[#06240F]">5</span>
@@ -89,7 +90,7 @@ export function Equipo() {
             </div>
 
             {/* Calendario */}
-            <div className="cal panel absolute left-[var(--gutter)] right-[var(--gutter)] top-[380px] hidden flex-col gap-3 p-4 sm:flex md:left-[300px] md:right-auto md:top-[330px] md:w-[560px]" style={{ transform: "translateZ(-80px) rotateY(-8deg) rotateX(3deg)", opacity: 0 }}>
+            <div className="cal panel hidden flex-col gap-3 p-4 sm:flex" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Calendario</span>
                 <span className="mono relative text-[11px] text-grey5">
@@ -111,33 +112,33 @@ export function Equipo() {
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Móvil con la PWA */}
-            <div className="phone absolute right-[var(--gutter)] top-[10px] hidden h-[380px] md:flex w-[190px] flex-col gap-[10px] rounded-[26px] border border-grey4 p-3 md:right-[20px] md:top-[20px] md:h-[400px] md:w-[200px]" style={{ background: "#0F0F0F", transform: "translateZ(60px) rotateY(-18deg) rotateX(4deg)", boxShadow: "0 40px 80px rgba(0,0,0,.7)", opacity: 0 }}>
-              <div className="mx-auto h-[6px] w-[60px] rounded-[3px] bg-grey3" />
-              <div className="phone-screen flex flex-1 flex-col gap-2 rounded-[14px] p-2 text-[11px]" style={{ background: "#0F0F0F", color: "#E5E5E5" }}>
-                <div className="flex items-center justify-between text-[12px]">
-                  <span className="font-medium">Tareas</span>
-                  <span className="mono rounded-full bg-green px-[6px] text-[10px] text-[#06240F]">3</span>
+          {/* Móvil con la PWA */}
+          <div className="phone hidden h-[400px] w-[200px] flex-col gap-[10px] rounded-[26px] border border-grey4 p-3 md:flex" style={{ background: "#0F0F0F", boxShadow: "0 40px 80px rgba(0,0,0,.7)", opacity: 0 }}>
+            <div className="mx-auto h-[6px] w-[60px] rounded-[3px] bg-grey3" />
+            <div className="phone-screen flex flex-1 flex-col gap-2 rounded-[14px] p-2 text-[11px]" style={{ background: "#0F0F0F", color: "#E5E5E5" }}>
+              <div className="flex items-center justify-between text-[12px]">
+                <span className="font-medium">Tareas</span>
+                <span className="mono rounded-full bg-green px-[6px] text-[10px] text-[#06240F]">3</span>
+              </div>
+              <div className="phone-task flex items-center gap-2 rounded-[8px] border border-grey4 bg-black2 p-[10px]">
+                <span className="pbox h-[14px] w-[14px] flex-shrink-0 rounded-[3px] border border-grey4" />
+                <div className="flex flex-col gap-[3px]">
+                  <span className="ptxt">Visita · calle de Posse</span>
+                  <span className="mono text-[10px] text-green">13:00 · Familia López</span>
                 </div>
-                <div className="phone-task flex items-center gap-2 rounded-[8px] border border-grey4 bg-black2 p-[10px]">
-                  <span className="pbox h-[14px] w-[14px] flex-shrink-0 rounded-[3px] border border-grey4" />
-                  <div className="flex flex-col gap-[3px]">
-                    <span className="ptxt">Visita · calle de Posse</span>
-                    <span className="mono text-[10px] text-green">13:00 · Familia López</span>
-                  </div>
+              </div>
+              {[70, 60].map((w, i) => (
+                <div key={i} className="flex flex-col gap-[6px] rounded-[8px] border border-grey3 p-[10px]" style={{ background: "#141414" }}>
+                  <span className="bar" style={{ width: `${w}%` }} />
+                  <span className="bar" style={{ width: `${w - 25}%`, height: 5 }} />
                 </div>
-                {[70, 60].map((w, i) => (
-                  <div key={i} className="flex flex-col gap-[6px] rounded-[8px] border border-grey3 p-[10px]" style={{ background: "#141414" }}>
-                    <span className="bar" style={{ width: `${w}%` }} />
-                    <span className="bar" style={{ width: `${w - 25}%`, height: 5 }} />
-                  </div>
+              ))}
+              <div className="mt-auto flex justify-around border-t border-[#1F1F1F] pt-2">
+                {[0, 1, 2, 3].map((i) => (
+                  <span key={i} className="h-[14px] w-[14px] rounded-[3px]" style={{ background: i === 0 ? "#fff" : "#262626" }} />
                 ))}
-                <div className="mt-auto flex justify-around border-t border-[#1F1F1F] pt-2">
-                  {[0, 1, 2, 3].map((i) => (
-                    <span key={i} className="h-[14px] w-[14px] rounded-[3px]" style={{ background: i === 0 ? "#fff" : "#262626" }} />
-                  ))}
-                </div>
               </div>
             </div>
           </div>

@@ -1,12 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
-/** Única familia de marca: Space Grotesk (Brand Guidelines v1.0). */
+/**
+ * Dos familias:
+ *  - Inter (variable, con eje óptico) para todo el texto de la web: titulares, cuerpo y la interfaz del CRM.
+ *    Es la tipografía de referencia (tryprofound.com) y en pantalla es más suave que la geométrica de marca.
+ *  - Space Grotesk 700 solo para el wordmark «statecrm», como en el lockup de marca.
+ */
+const inter = Inter({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 const space = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["700"],
   variable: "--font-space",
   display: "swap",
 });
@@ -31,7 +43,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={space.variable}>
+    <html lang="es" className={`${inter.variable} ${space.variable}`}>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>

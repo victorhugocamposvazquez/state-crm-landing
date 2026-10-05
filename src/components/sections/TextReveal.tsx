@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { transitions, type TransitionId } from "@/lib/transitions";
+import { brandify } from "@/components/ui/atoms";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,7 +57,7 @@ export function TextReveal({ id }: { id: TransitionId }) {
             {words.map((w, i) => (
               <span key={`${i}-${w}`}>
                 <span className="w" style={FROM}>
-                  {w}
+                  {brandify(w)}
                 </span>{" "}
               </span>
             ))}

@@ -165,16 +165,16 @@ export function CityPhoto({ distance = 10 }: { distance?: number }) {
 
   useFrame(() => {
     const s = readScroll();
-    const visible = s.active === "ciudad" || s.active === "bandeja" || (s.active === "radar" && s.progress.radar > 0.8);
+    // la ciudad está puesta desde que la pantalla del 02 asoma por abajo hasta que la bandeja la funde a negro
+    const visible = !!(s.onScreen.ciudad || s.onScreen.bandeja);
     if (group.current) group.current.visible = visible && !!tex;
     if (!visible || !tex) return;
     const m = mat.current;
     if (!m) return;
     const u = m.uniforms as typeof uniforms;
-    const p = s.active === "ciudad" ? s.progress.ciudad : s.active === "bandeja" ? 1 : 0;
-    const fadeIn = s.active === "radar" ? 0 : Math.min(1, p / 0.14);
-    const fadeOut = s.active === "bandeja" ? Math.max(0, 1 - s.progress.bandeja / 0.25) : 1;
-    u.uOpacity.value = fadeIn * fadeOut;
+    // progress.ciudad vale 0 antes de pegarse y 1 después: vale mientras entra y durante la bandeja
+    const p = s.progress.ciudad;
+    u.uOpacity.value = Math.max(0, 1 - s.progress.bandeja / 0.25);
     cityPhoto.anchors.forEach((a, i) => {
       const at = revealAt(i);
       u.uAnchors.value[i].w = p >= at ? Math.min(1, (p - at) / 0.04) : 0;
@@ -212,10 +212,11 @@ function ListingCard({ position, index, side }: { position: [number, number, num
     const el = ref.current;
     if (!el) return;
     const s = readScroll();
-    const p = s.active === "ciudad" ? s.progress.ciudad : s.active === "bandeja" ? 1 : 0;
+    const p = s.progress.ciudad;
     const t = Math.max(0, Math.min(1, (p - at) / 0.05));
-    const end = s.active === "bandeja" ? 1 : Math.max(0, (p - 0.86) / 0.1);
-    const vis = s.isMobile ? 0 : t * (1 - end); // en móvil las tarjetas van en DOM, apiladas abajo
+    const end = Math.min(1, Math.max(0, (p - 0.86) / 0.1));
+    // en móvil las tarjetas van en DOM, apiladas abajo; y solo cuelgan mientras la ciudad está en pantalla
+    const vis = s.isMobile || !s.onScreen.ciudad ? 0 : t * (1 - end);
     el.style.opacity = String(vis);
     el.style.transform = `translateY(${(1 - t) * 16}px)`;
   });
