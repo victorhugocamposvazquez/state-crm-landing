@@ -5,35 +5,40 @@ import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 import { Kicker } from "@/components/ui/atoms";
 
 /**
- * 01 · 07:00 · El radar. Titular + CTA a la izquierda; el disco 3D habla solo.
- * Sin stats ni etiquetas laterales: una misión, un mensaje.
+ * 01 · 07:00 · El radar. El titular se parte en dos líneas y la cámara desciende hacia el disco;
+ * una ventana se enciende y una etiqueta la señala.
  */
 export function Radar() {
   const ref = useRef<HTMLDivElement>(null);
 
   useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy"), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0)
+    tl.fromTo(q(".copy, .stats"), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0)
       .fromTo(q(".l2"), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }, 0.02)
       .to(q(".l1"), { y: -10, duration: 0.3 }, 0.05)
       .fromTo(q(".sub"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.2)
       .fromTo(q(".cta"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2 }, 0.28)
-      // Se mantiene hasta que el siguiente capítulo lo cubre — sin cortina negra
-      .to(q(".copy"), { opacity: 0.35, duration: 0.12 }, 0.92);
+      .fromTo(q(".tag"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15 }, 0.55)
+      .fromTo(q(".tag .ln"), { scaleY: 0 }, { scaleY: 1, duration: 0.1, transformOrigin: "bottom" }, 0.5);
+      // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
     <Chapter id="radar">
       <div ref={ref} className="relative h-full gutter">
-        <div className="copy absolute left-[var(--gutter)] top-[34%] max-w-[560px] -translate-y-1/2 md:top-[42%] md:max-w-[640px]" style={{ opacity: 0 }}>
+        <div className="halo" style={{ right: "-10%", bottom: "-20%", width: 900, height: 700 }} />
+
+        <div className="copy absolute left-[var(--gutter)] top-[34%] max-w-[880px] -translate-y-1/2 md:top-[42%]" style={{ opacity: 0 }}>
           <div className="mb-6">
-            <Kicker module="statecrm" what="CRM inmobiliario a medida" />
+            <Kicker module="statecrm" what="CRM inmobiliario a medida para agencias" />
           </div>
-          <h1 className="display m-0 text-[38px] text-white8 md:text-[56px] lg:text-[64px]">
+          <h1 className="display m-0 text-[38px] text-white8 md:text-[64px] lg:text-[72px]">
             <span className="l1 block">Antes de que lo sepa nadie,</span>
             <span className="l2 block text-grey5">lo sabe tu CRM.</span>
           </h1>
-          <p className="sub mt-6 max-w-[420px] text-[15px] leading-[1.55] text-grey6 md:text-[16px]">
-            Captación de particulares, catastro, equipo y obra — en un solo sistema construido para tu agencia.
+          <p className="sub mono mt-6 max-w-[520px] text-[12px] leading-[1.7] text-grey6 md:text-[14px]">
+            statecrm · CRM inmobiliario a medida
+            <br />
+            captación de particulares · catastro · equipo · obra y facturación
           </p>
           <div className="cta mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="#ciudad" className="btn btn-w">
@@ -46,6 +51,27 @@ export function Radar() {
               Pedir una demo
             </a>
           </div>
+        </div>
+
+        {/* etiqueta de la ventana que se enciende */}
+        <div className="tag mono absolute bottom-[22%] right-[8%] flex flex-col items-start text-[11px] text-grey6 md:bottom-[26%] md:right-[18%]" style={{ opacity: 0 }}>
+          <span className="ln mb-2 ml-[2px] block h-9 w-px bg-grey4" />
+          <span>
+            3º izquierda · 92 m² · <span className="text-green">publicado hace 0 min</span>
+          </span>
+        </div>
+
+        <div className="stats mono absolute bottom-10 left-[var(--gutter)] flex gap-6 text-[11px] text-grey5 md:text-[12px]" style={{ opacity: 0 }}>
+          <span>
+            <span className="text-white7">991</span> en novedad
+          </span>
+          <span>
+            <span className="text-white7">134</span> particulares
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="h-[6px] w-[6px] rounded-full bg-green" />
+            rastreo en curso
+          </span>
         </div>
       </div>
     </Chapter>

@@ -65,9 +65,9 @@ export function ChapterCopy({
   className?: string;
 }) {
   return (
-    <div className={`flex flex-col gap-4 ${className}`}>
+    <div className={`flex flex-col gap-5 ${className}`}>
       {module && what && <Kicker module={module} what={what} />}
-      <h2 className="display m-0 text-[28px] text-white8 md:text-[36px] lg:text-[40px]">
+      <h2 className="display m-0 text-[30px] text-white8 md:text-[40px]">
         {title}
         {grey && (
           <>
@@ -76,7 +76,7 @@ export function ChapterCopy({
           </>
         )}
       </h2>
-      {body && <p className="m-0 max-w-[360px] text-[15px] leading-[1.55] text-grey6 md:text-[16px]">{body}</p>}
+      {body && <p className="m-0 max-w-[460px] text-[15px] leading-[1.6] text-grey6 md:text-[17px]">{body}</p>}
     </div>
   );
 }
