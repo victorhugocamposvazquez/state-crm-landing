@@ -3,7 +3,7 @@ import type { EventKind } from "./tokens";
 /**
  * EL GUION DE SCROLL COMO DATOS.
  * Cada capítulo declara cuánto scroll ocupa (en alturas de viewport), su hora en la historia,
- * los textos de la pizarra y los eventos que suelta en la bandeja de notificaciones.
+ * los textos de la pizarra y las notificaciones que suelta dentro de su pantalla.
  * Cambiar un texto, una hora o la duración de un tramo es tocar una línea aquí.
  */
 
@@ -19,8 +19,11 @@ export type ChapterId =
   | "producto"
   | "manana";
 
+/** esquina de la pantalla del capítulo donde aparecen sus notificaciones */
+export type ToastCorner = "br" | "bl" | "tr" | "tl";
+
 export interface LiveEvent {
-  /** 0–1 dentro del capítulo: cuándo entra en la bandeja */
+  /** 0–1 dentro del capítulo: cuándo aparece la notificación */
   at: number;
   kind: EventKind;
   text: string;
@@ -41,8 +44,10 @@ export interface Chapter {
    * que frota la timeline del capítulo); después se despega y sale con el scroll mientras entra la siguiente.
    */
   vh: number;
-  /** eventos que suelta en la bandeja */
+  /** notificaciones que suelta, dentro de su propia pantalla */
   events: LiveEvent[];
+  /** esquina libre de ese capítulo para las notificaciones (por defecto, abajo a la derecha) */
+  toasts?: ToastCorner;
 }
 
 const h = (hh: number, mm: number) => hh * 60 + mm;
@@ -86,6 +91,7 @@ export const chapters: Chapter[] = [
     label: "CAPTACIÓN",
     vh: 220,
     events: [{ at: 0.6, kind: "ok", text: "Teléfono capturado · Camino Rianxiño, 115", meta: "asignado a Ana" }],
+    toasts: "bl",
   },
   {
     id: "catastro",
@@ -110,6 +116,7 @@ export const chapters: Chapter[] = [
       { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Piso en calle de Posse" },
       { at: 0.8, kind: "new", text: "Solicitud de visita · Piso en calle de Posse", meta: "12:48" },
     ],
+    toasts: "tr",
   },
   {
     id: "equipo",
@@ -122,6 +129,7 @@ export const chapters: Chapter[] = [
       { at: 0.35, kind: "alert", text: "Bajada de precio · Dúplex en Cacheiras", meta: "Teo · −15.000 €" },
       { at: 0.75, kind: "ok", text: "Visita realizada · Luis", meta: "13:00 · calle de Posse" },
     ],
+    toasts: "bl",
   },
   {
     id: "obra",
@@ -134,6 +142,7 @@ export const chapters: Chapter[] = [
       { at: 0.35, kind: "ok", text: "Presupuesto aceptado · PRS-2026-0001", meta: "74.536,00 €" },
       { at: 0.8, kind: "ok", text: "Factura cobrada · FAC-2026-0001", meta: "16:52" },
     ],
+    toasts: "bl",
   },
   {
     id: "producto",
@@ -151,7 +160,7 @@ export const chapters: Chapter[] = [
     hourEnd: h(7, 0),
     label: "MAÑANA",
     vh: 160,
-    events: [{ at: 0.3, kind: "new", text: "Nuevo anuncio de particular", meta: "07:40 · mañana" }],
+    events: [],
   },
 ];
 

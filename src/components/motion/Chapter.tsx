@@ -5,12 +5,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { chapters, chapterIndex, type ChapterId } from "@/lib/script";
 import { useScroll } from "@/lib/store";
+import { ChapterToasts } from "./ChapterToasts";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Una sección alta (N vh) con una pantalla pegada arriba (sticky, no pin: iOS lo agradece).
- * Escribe su progreso 0–1 en el store para que la pizarra, la bandeja y el canvas lo lean.
+ * Escribe su progreso 0–1 en el store para que la pizarra, las notificaciones y el canvas lo lean.
  *
  * Sin transición entre capítulos. Las secciones van una detrás de otra en el flujo normal
  * de la página: cuando un capítulo agota su tramo, su pantalla se despega y sube con el
@@ -56,6 +57,7 @@ export function Chapter({
     >
       <div className="stage" style={{ background: solid ? "var(--black0)" : "transparent" }}>
         {children}
+        <ChapterToasts id={id} />
       </div>
     </section>
   );
@@ -69,6 +71,9 @@ export function Chapter({
  *  - `enter` · de 0 a 1 = la entrada de la pantalla, mientras sube desde el borde inferior hasta
  *              media pantalla. Aquí van los beats de aparición (el copy, el panel principal) para que
  *              el capítulo llegue ya compuesto y no entre como un rectángulo vacío.
+ * Regla: una misma propiedad de un mismo elemento no se anima en `enter` y en `tl` a la vez (los dos
+ * scrubs se solapan medio segundo y el último en pintar gana). Lo que `tl` vaya a apagar después,
+ * que nazca visible en el JSX en vez de encenderse en `enter`.
  */
 export function useScrollTimeline(
   scope: RefObject<HTMLElement | null>,

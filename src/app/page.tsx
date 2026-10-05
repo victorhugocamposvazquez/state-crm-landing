@@ -1,6 +1,5 @@
 import { Nav } from "@/components/shell/Nav";
 import { Slate } from "@/components/shell/Slate";
-import { Tray } from "@/components/shell/Tray";
 import { StageClient } from "@/components/canvas/StageClient";
 import { Prologo } from "@/components/chapters/00-Prologo";
 import { Radar } from "@/components/chapters/01-Radar";
@@ -14,8 +13,8 @@ import { Producto } from "@/components/chapters/07-Producto";
 import { Manana } from "@/components/chapters/08-Manana";
 
 /**
- * La landing es un único scroll: nueve capítulos en orden, el canvas 3D detrás
- * y tres capas fijas (cabecera, pizarra, bandeja de notificaciones).
+ * La landing es un único scroll: diez capítulos en orden, el canvas 3D detrás
+ * y dos capas fijas (cabecera y pizarra). Las notificaciones viven dentro de cada capítulo.
  */
 export default function Page() {
   return (
@@ -23,7 +22,6 @@ export default function Page() {
       <StageClient />
       <Nav />
       <Slate />
-      <Tray />
       <main className="relative z-[1]">
         <Prologo />
         <Radar />

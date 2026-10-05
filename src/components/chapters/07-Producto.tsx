@@ -39,6 +39,10 @@ const checks = [
 ];
 
 const STEP = 420; // separación en z entre paneles
+/** momento del tramo (0–1) en que la cámara llega al panel k */
+const panelAt = (k: number) => 0.06 + (k / (modules.length - 1)) * 0.78;
+/** los paneles a los que la cámara llega antes del 30 % del tramo nacen ya encendidos */
+const panelLit = (k: number) => panelAt(k) - 0.3 <= 0;
 
 /**
  * 07 · 20:30 · Todo el producto. Los doce módulos como paneles en un espacio negro;
@@ -58,11 +62,9 @@ export function Producto() {
     // la cámara avanza por el espacio
     tl.fromTo(q(".space"), { z: 0 }, { z: STEP * (modules.length - 1) + 200, duration: 0.78, ease: "none" }, 0.06);
     panels.forEach((p, k) => {
-      const t = 0.06 + (k / (modules.length - 1)) * 0.78;
-      const at = t - 0.3;
-      // los primeros paneles ya vienen encendidos con la pantalla; el resto se enciende al acercarse la cámara
-      if (at <= 0) enter.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.2);
-      else tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1 }, at);
+      const t = panelAt(k);
+      // los primeros paneles nacen encendidos (ver `lit` en el JSX); el resto se enciende al acercarse la cámara
+      if (!panelLit(k)) tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1 }, t - 0.3);
       tl.to(p, { opacity: 0, duration: 0.03 }, t + 0.012);
       const side = sides.find((s) => s.getAttribute("data-mod") === modules[k].name);
       if (side) {
@@ -126,7 +128,7 @@ export function Producto() {
                     left: `${x}%`,
                     top: `${y}%`,
                     transform: `translate3d(0,0,${-k * STEP}px) rotateY(${lane === 0 ? 10 : lane === 2 ? -10 : 0}deg)`,
-                    opacity: 0,
+                    opacity: panelLit(k) ? 1 : 0,
                     background: "#111",
                     borderColor: "#262626",
                   }}

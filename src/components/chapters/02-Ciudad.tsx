@@ -13,9 +13,9 @@ export function Ciudad() {
   const ref = useRef<HTMLDivElement>(null);
 
   useScrollTimeline(ref, (tl, q, enter) => {
-    // entrada: kicker, contador y el primer titular suben ya puestos con la pantalla
-    enter.fromTo(q(".counter, .kick"), { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0)
-      .fromTo(q(".t1"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
+    // entrada: kicker y contador suben ya puestos con la pantalla. El primer titular (.t1) viene
+    // visible de serie: tl lo apaga en 0.26 y una misma propiedad no debe vivir en dos timelines.
+    enter.fromTo(q(".counter, .kick"), { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0);
 
     tl.to(q(".t1"), { opacity: 0, y: -16, duration: 0.06 }, 0.26)
       .fromTo(q(".t2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.1 }, 0.33)
