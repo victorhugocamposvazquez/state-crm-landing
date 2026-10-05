@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Guidelines v1.0 — paleta acromática */
+  --black0: #0a0a0a; /* negro base */
+  --black1: #0f0f0f; /* superficie */
+  --black2: #161616; /* tarjetas */
+  --grey3: #222222; /* borde */
+  --grey4: #3a3a3a;
+  --grey5: #6e6e6e; /* anillo */
+  --grey6: #a3a3a3; /* gris crm */
+  --white7: #e5e5e5;
+  --white8: #ffffff;
+  --green: #22c55e; /* solo éxito funcional */
+  --green-dim: rgba(34, 197, 94, 0.14);
+  --amber: #d4a017; /* solo alerta funcional */
+  --amber-dim: rgba(212, 160, 23, 0.14);
+  --gutter: 56px;
+  --vh-unit: 1vh;
+  --stage-h: 100vh;
+}
+@supports (height: 100dvh) {
+  :root {
+    --stage-h: 100dvh;
+  }
+}
+
+@theme inline {
+  --color-black0: var(--black0);
+  --color-black1: var(--black1);
+  --color-black2: var(--black2);
+  --color-grey3: var(--grey3);
+  --color-grey4: var(--grey4);
+  --color-grey5: var(--grey5);
+  --color-grey6: var(--grey6);
+  --color-white7: var(--white7);
+  --color-white8: var(--white8);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --font-sans: var(--font-space), "Space Grotesk", system-ui, sans-serif;
+  --font-mono: var(--font-space), "Space Grotesk", system-ui, sans-serif;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 20px;
+    --vh-unit: 0.8vh;
+  }
+}
+
+html {
+  background: var(--black0);
+  color-scheme: dark;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--black0);
+  color: var(--white7);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--white8);
+  color: var(--black0);
+}
+
+/* Utilidades de la landing */
+.gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum" 1;
+}
+.display {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+}
+.hairline {
+  border: 1px solid var(--grey3);
+}
+.panel {
+  background: var(--black1);
+  border: 1px solid var(--grey3);
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+.card {
+  background: var(--black2);
+  border: 1px solid var(--grey4);
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+.halo {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 70%);
+}
+.st {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+.st-g {
+  background: var(--green-dim);
+  color: var(--green);
+}
+.st-a {
+  background: var(--amber-dim);
+  color: var(--amber);
+}
+.st-n {
+  background: var(--black2);
+  color: var(--grey6);
+}
+.bar {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--grey3);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn-w {
+  background: var(--white8);
+  color: var(--black0);
+}
+.btn-w:hover {
+  background: var(--white7);
+}
+.btn-g {
+  background: transparent;
+  color: var(--white7);
+  border-color: var(--grey4);
+}
+.btn-g:hover {
+  border-color: var(--grey5);
+  color: var(--white8);
+}
+.chk {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--green-dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Capítulos: una sección alta con una pantalla pegada */
+.chapter {
+  position: relative;
+}
+.chapter > .stage {
+  position: sticky;
+  top: 0;
+  height: var(--stage-h);
+  overflow: hidden;
+}
+
+.will-change {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-only {
+    display: none !important;
+  }
+}
