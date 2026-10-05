@@ -220,30 +220,28 @@ function ListingCard({ position, index, side }: { position: [number, number, num
     el.style.transform = `translateY(${(1 - t) * 16}px)`;
   });
 
-  const lineH = isHero ? 96 : 64;
+  const lineH = isHero ? 72 : 48;
   return (
-    <Html position={position} zIndexRange={[20, 10]} style={{ pointerEvents: "none" }} center={false}>
-      <div ref={ref} className="flex flex-col items-start" style={{ opacity: 0, transform: "translateY(16px)" }}>
+    <Html position={position} zIndexRange={[20, 10]} style={{ pointerEvents: "none" }} center={false} occlude={false}>
+      <div ref={ref} className="flex flex-col items-start" style={{ opacity: 0, transform: "translateY(16px)", maxWidth: 260 }}>
         <div className="ml-[3px] w-px" style={{ height: lineH, background: `linear-gradient(to top, ${color}, #737373)` }} />
         <div
-          className="card flex w-[280px] flex-col gap-[7px] px-4 py-[13px] md:w-[320px]"
+          className="card flex w-[240px] flex-col gap-[6px] px-3 py-2.5 md:w-[260px]"
           style={{
-            marginTop: -lineH - (isHero ? 118 : 96),
-            marginLeft: side === "left" ? -316 : 0,
+            marginTop: -lineH - (isHero ? 96 : 78),
+            marginLeft: side === "left" ? -252 : 0,
             borderColor: isHero ? color : "#3A3A3A",
-            boxShadow: isHero ? `0 0 0 1px ${color}40, 0 30px 60px rgba(0,0,0,.7)` : undefined,
+            boxShadow: isHero ? `0 0 0 1px ${color}40, 0 20px 40px rgba(0,0,0,.7)` : undefined,
           }}
         >
-          <div className="mono flex items-center justify-between gap-2 text-[11px] text-grey5">
-            <span className="whitespace-nowrap">
-              hace {1 + index * 3} min · {l.portal}
-            </span>
+          <div className="mono flex items-center justify-between gap-2 text-[10px] text-grey5">
+            <span className="truncate">hace {1 + index * 3} min · {l.portal}</span>
             <span className={`st ${l.kind === "particular" ? "st-g" : l.kind === "encubierta" ? "st-a" : "st-n"}`}>
-              {l.kind === "particular" ? `● particular${l.phone === "capturado" ? " · tel." : ""}` : l.kind === "encubierta" ? "● agencia encubierta" : "agencia"}
+              {l.kind === "particular" ? "● particular" : l.kind === "encubierta" ? "● encubierta" : "agencia"}
             </span>
           </div>
-          <div className="text-[15px] font-medium text-white8">{l.title}</div>
-          <div className="flex gap-[10px] text-[12px] text-grey6">
+          <div className="truncate text-[14px] font-medium text-white8">{l.title}</div>
+          <div className="flex gap-2 text-[11px] text-grey6">
             <span>
               <b className="font-medium text-white8">{l.m2}</b> m²
             </span>
@@ -251,13 +249,9 @@ function ListingCard({ position, index, side }: { position: [number, number, num
               <b className="font-medium text-white8">{l.rooms}</b> hab
             </span>
             <span>
-              <b className="font-medium text-white8">{l.baths}</b> baños
-            </span>
-            <span>
               <b className="font-medium text-white8">{euro(l.price)}</b>
             </span>
           </div>
-          {isHero && <div className="mono text-[11px] text-grey5">id.{l.id} · 3º izq · 14 fotos · asignado a Ana</div>}
         </div>
       </div>
     </Html>

@@ -60,7 +60,7 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 0),
     hourEnd: h(7, 40),
     label: "EL RADAR",
-    vh: 220,
+    vh: 180,
     events: [{ at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" }],
   },
   {
@@ -69,7 +69,7 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 40),
     hourEnd: h(7, 52),
     label: "LA CIUDAD",
-    vh: 320,
+    vh: 260,
     events: [
       { at: 0.3, kind: "ok", text: "Nuevo inmueble de particular · Plaza de Castilla", meta: "92 m² · 260.000 €" },
       { at: 0.65, kind: "alert", text: "Agencia encubierta detectada · Barrio Sur", meta: "id.111647374" },
@@ -81,7 +81,7 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 52),
     hourEnd: h(9, 15),
     label: "CAPTACIÓN",
-    vh: 220,
+    vh: 180,
     events: [{ at: 0.6, kind: "ok", text: "Teléfono capturado · Camino Rianxiño, 115", meta: "asignado a Ana" }],
   },
   {
@@ -90,7 +90,7 @@ export const chapters: Chapter[] = [
     hourStart: h(9, 15),
     hourEnd: h(11, 30),
     label: "CATASTRO",
-    vh: 300,
+    vh: 240,
     events: [
       { at: 0.4, kind: "ok", text: "Rastreo CP 15009 · 85 candidatas", meta: "378 fincas" },
       { at: 0.85, kind: "ok", text: "Nota simple solicitada", meta: "Rianxo · 09:17" },
@@ -101,8 +101,8 @@ export const chapters: Chapter[] = [
     slate: "04",
     hourStart: h(11, 30),
     hourEnd: h(13, 0),
-    label: "INMUEBLES · DEMANDAS · SEGUIMIENTO",
-    vh: 320,
+    label: "SEGUIMIENTO",
+    vh: 240,
     events: [
       { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Piso en calle de Posse" },
       { at: 0.8, kind: "new", text: "Solicitud de visita · Piso en calle de Posse", meta: "12:48" },
@@ -113,8 +113,8 @@ export const chapters: Chapter[] = [
     slate: "05",
     hourStart: h(13, 0),
     hourEnd: h(17, 0),
-    label: "TAREAS · CALENDARIO · EQUIPO",
-    vh: 280,
+    label: "EQUIPO",
+    vh: 220,
     events: [
       { at: 0.35, kind: "alert", text: "Bajada de precio · Dúplex en Cacheiras", meta: "Teo · −15.000 €" },
       { at: 0.75, kind: "ok", text: "Visita realizada · Luis", meta: "13:00 · calle de Posse" },
@@ -125,8 +125,8 @@ export const chapters: Chapter[] = [
     slate: "06",
     hourStart: h(17, 0),
     hourEnd: h(20, 30),
-    label: "PRESUPUESTOS · FACTURAS · INFORMES",
-    vh: 300,
+    label: "OBRA",
+    vh: 220,
     events: [
       { at: 0.35, kind: "ok", text: "Presupuesto aceptado · PRS-2026-0001", meta: "74.536,00 €" },
       { at: 0.8, kind: "ok", text: "Factura cobrada · FAC-2026-0001", meta: "16:52" },
@@ -137,8 +137,8 @@ export const chapters: Chapter[] = [
     slate: "07",
     hourStart: h(20, 30),
     hourEnd: h(23, 59),
-    label: "TODO EL PRODUCTO",
-    vh: 320,
+    label: "PRODUCTO",
+    vh: 200,
     events: [],
   },
   {
@@ -147,7 +147,7 @@ export const chapters: Chapter[] = [
     hourStart: h(6, 59),
     hourEnd: h(7, 0),
     label: "MAÑANA",
-    vh: 160,
+    vh: 140,
     events: [{ at: 0.3, kind: "new", text: "Nuevo anuncio de particular", meta: "07:40 · mañana" }],
   },
 ];
@@ -265,10 +265,10 @@ export const cityPhoto = {
   /** cuánto se hunde la imagen según la profundidad (unidades de escena) */
   depthStrength: 1.6,
   anchors: [
-    { listing: 0, u: 0.6, v: 0.37, r: 0.045, side: "right" },
-    { listing: 1, u: 0.17, v: 0.5, r: 0.035, side: "right" },
-    { listing: 2, u: 0.9, v: 0.46, r: 0.035, side: "left" },
-    { listing: 3, u: 0.4, v: 0.68, r: 0.03, side: "right" },
+    { listing: 0, u: 0.58, v: 0.4, r: 0.045, side: "right" },
+    { listing: 1, u: 0.22, v: 0.52, r: 0.035, side: "right" },
+    { listing: 2, u: 0.82, v: 0.48, r: 0.035, side: "left" },
+    { listing: 3, u: 0.42, v: 0.66, r: 0.03, side: "right" },
   ] as CityAnchor[],
   /** puntos secundarios que se encienden en blanco, sin tarjeta (u, v) */
   sparks: [

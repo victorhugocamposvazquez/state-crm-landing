@@ -32,7 +32,7 @@ export function Manana() {
             </svg>
             <span className="newdot absolute h-2 w-2 rounded-full bg-green" style={{ left: 98, top: 30, boxShadow: "0 0 14px 4px rgba(34,197,94,.6)", opacity: 0 }} />
           </div>
-          <div className="toast card mono absolute left-[calc(50%+70px)] top-[8px] hidden items-center gap-[10px] px-[14px] py-[10px] text-[12px] text-grey6 md:flex" style={{ opacity: 0 }}>
+          <div className="toast card mono absolute left-1/2 top-[108%] hidden -translate-x-1/2 items-center gap-[10px] px-[14px] py-[10px] text-[12px] text-grey6 md:flex" style={{ opacity: 0 }}>
             <span className="h-[6px] w-[6px] rounded-full bg-white8" style={{ boxShadow: "0 0 10px #fff" }} />
             Nuevo anuncio de particular · 07:40
           </div>

@@ -11,6 +11,10 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * Una sección alta (N vh) con una pantalla pegada arriba (sticky, no pin: iOS lo agradece).
  * Escribe su progreso 0–1 en el store para que la pizarra, la bandeja y el canvas lo lean.
+ *
+ * Transiciones: el siguiente capítulo cubre al anterior con overlap de 1 viewport.
+ * Sin fade a negro al final — el contenido se mantiene hasta que el siguiente sticky lo tapa.
+ * Así no hay “cortina negra” entre secciones.
  */
 export function Chapter({
   id,
@@ -21,7 +25,7 @@ export function Chapter({
   id: ChapterId;
   children: React.ReactNode;
   className?: string;
-  /** fondo negro propio (cubre al capítulo anterior al entrar); los capítulos que dejan ver el canvas 3D van transparentes */
+  /** fondo propio (cubre al capítulo anterior). Los del canvas 3D van transparentes. */
   opaque?: boolean;
 }) {
   const ref = useRef<HTMLElement>(null);
@@ -41,11 +45,11 @@ export function Chapter({
     return () => st.kill();
   }, [id]);
 
-  // Cada capítulo cubre al anterior: el siguiente empieza justo donde termina el tramo pegado del anterior,
-  // así no hay un hueco de 100 vh en negro entre capítulo y capítulo. El último no se solapa con nada.
   const index = chapterIndex[id];
   const last = index === chapters.length - 1;
-  const solid = opaque ?? index >= chapterIndex.catastro;
+  // Fondo sólido solo cuando el canvas 3D ya no está: evita cortinas negras artificiales
+  // sobre el radar/ciudad, y da continuidad cuando el canvas se apaga.
+  const solid = opaque ?? index >= chapterIndex.bandeja;
   return (
     <section
       ref={ref}
@@ -58,7 +62,7 @@ export function Chapter({
         zIndex: index + 1,
       }}
     >
-      <div className="stage" style={{ background: solid ? "#0A0A0A" : "transparent" }}>
+      <div className="stage" style={{ background: solid ? "var(--black0)" : "transparent" }}>
         {children}
       </div>
     </section>
