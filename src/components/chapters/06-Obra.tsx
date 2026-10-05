@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { ChapterCopy, CheckList } from "@/components/ui/atoms";
+import { ChapterCopy } from "@/components/ui/atoms";
 import { countTo } from "@/components/motion/count";
 
 const partidas = [
@@ -54,13 +54,11 @@ export function Obra() {
   return (
     <Chapter id="obra">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="06" module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." body="Presupuestos por partidas que se convierten en factura en un clic, con su PDF. E informes por oficina y por operación." />
-          <div className="copy-extra mt-6">
-            <CheckList items={["Presupuestos por partidas, con estados y tasa de aceptación", "Conversión a factura en un clic, PDF incluido", "Facturas enlazadas al inmueble y al cliente", "Informes por oficina y por operación"]} />
-          </div>
+          <ChapterCopy n="06" module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-4">
@@ -69,7 +67,7 @@ export function Obra() {
             <div className="screen panel hidden flex-col gap-3 p-[18px] md:flex" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Presupuestos</span>
-                <span className="mono hidden text-[11px] text-grey5 lg:block">por partidas · a factura en un clic</span>
+                <span className="mono hidden text-[13px] text-grey6 lg:block">por partidas · a factura en un clic</span>
               </div>
               <div className="grid grid-cols-2 gap-[10px]">
                 {[
@@ -80,11 +78,11 @@ export function Obra() {
                 ].map(([cls, n, l]) => (
                   <div key={l} className="flex flex-col gap-1 rounded-[10px] border border-grey3 bg-black2 p-[14px]">
                     <span className={`${cls} text-[24px] font-medium tracking-[-0.02em] text-white8`}>{n}</span>
-                    <span className="text-[11px] text-grey5">{l}</span>
+                    <span className="text-[13px] text-grey6">{l}</span>
                   </div>
                 ))}
               </div>
-              <div className="mono flex gap-3 text-[11px] text-grey5">
+              <div className="mono flex gap-3 text-[13px] text-grey6">
                 <span className="text-white8">Todos</span>
                 <span>Borrador</span>
                 <span>Enviado</span>
@@ -138,7 +136,7 @@ export function Obra() {
             <div className="report panel flex flex-col gap-2 p-[18px]" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Informes</span>
-                <span className="mono text-[11px] text-grey5">captación → venta</span>
+                <span className="mono text-[13px] text-grey6">captación → venta</span>
               </div>
               <svg width="100%" height="90" viewBox="0 0 262 90" fill="none" preserveAspectRatio="none" aria-hidden="true">
                 <path className="line-main" d="M0 70 C 40 66, 60 50, 90 52 S 150 22, 190 30 S 240 10, 262 6" stroke="#fff" strokeWidth="1.5" strokeDasharray="600" strokeDashoffset="600" vectorEffect="non-scaling-stroke" />
@@ -173,6 +171,7 @@ export function Obra() {
               ))}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </Chapter>

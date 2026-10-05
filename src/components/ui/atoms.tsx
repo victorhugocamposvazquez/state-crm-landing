@@ -33,21 +33,6 @@ export function Check({ size = 10 }: { size?: number }) {
   );
 }
 
-export function CheckList({ items }: { items: string[] }) {
-  return (
-    <ul className="m-0 flex list-none flex-col gap-[10px] p-0 text-[14px] leading-[1.5] text-white7">
-      {items.map((t) => (
-        <li key={t} className="flex items-start gap-3">
-          <span className="mt-[1px]">
-            <Check />
-          </span>
-          {t}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 export function Chip({ kind = "n", children }: { kind?: "g" | "a" | "n"; children: ReactNode }) {
   return <span className={`st st-${kind}`}>{children}</span>;
 }
@@ -76,7 +61,8 @@ export function Kicker({ n, module, what }: { n?: string; module: string; what: 
 }
 
 /**
- * Copy de capítulo: etiqueta de sección, titular (con remate en gris) y un párrafo.
+ * Copy de capítulo: etiqueta de sección y titular con remate en gris.
+ * El párrafo y los puntos viven en ModuleText, para no contar el módulo dos veces.
  * Titular y remate: dos líneas como máximo cada uno (≈ 19 caracteres por línea; ver .t-h1).
  */
 export function ChapterCopy({
@@ -85,7 +71,6 @@ export function ChapterCopy({
   what,
   title,
   grey,
-  body,
   className = "",
 }: {
   n?: string;
@@ -93,7 +78,6 @@ export function ChapterCopy({
   what?: string;
   title: ReactNode;
   grey?: ReactNode;
-  body?: ReactNode;
   className?: string;
 }) {
   return (
@@ -108,7 +92,6 @@ export function ChapterCopy({
           </>
         )}
       </h2>
-      {body && <p className="t-body m-0 max-w-[440px] text-grey6">{typeof body === "string" ? brandify(body) : body}</p>}
     </div>
   );
 }

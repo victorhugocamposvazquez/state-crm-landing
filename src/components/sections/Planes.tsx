@@ -26,8 +26,8 @@ export function Planes() {
   useReveal(ref);
 
   return (
-    <section ref={ref} id="planes" className="relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[128px]" aria-labelledby="planes-h">
-      <div className="mx-auto max-w-[1040px]">
+    <section ref={ref} id="planes" className="relative z-[2] border-t border-[#171717] bg-black0 py-[80px] md:py-[128px]" aria-labelledby="planes-h">
+      <div className="mx-auto w-full max-w-[var(--content-max)] px-[var(--gutter)]">
         <div className="max-w-[760px]">
           <div data-reveal className="mb-6">
             <Kicker module="Planes" what="tres cuotas mensuales, según lo que use tu agencia" />

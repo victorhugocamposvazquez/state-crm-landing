@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 import { countTo } from "@/components/motion/count";
-import { Brand, Kicker } from "@/components/ui/atoms";
+import { Kicker } from "@/components/ui/atoms";
 import { MobileListingCards } from "@/components/crm/MobileListingCards";
 
 /**
@@ -28,6 +28,7 @@ export function Ciudad() {
   return (
     <Chapter id="ciudad">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="copy copy-block md:w-[560px]">
           <div className="kick mb-5" style={{ opacity: 0 }}>
             <Kicker n="02" module="Captación" what="detecta los anuncios de particulares en los portales" />
@@ -49,19 +50,16 @@ export function Ciudad() {
               <span className="text-grey5">cada mañana.</span>
             </h2>
           </div>
-          <p className="t-body m-0 mt-5 max-w-[440px] text-grey6">
-            Cada punto es un anuncio de particular recién publicado. <Brand /> rastrea los portales cada mañana y lo guarda con precio, metros, habitaciones y teléfono. Sin buscar a mano.
-          </p>
         </div>
 
-        <div className="counter mono absolute right-[var(--gutter)] top-[var(--copy-top)] flex items-center gap-[10px] text-[11px] text-grey5 md:text-[12px]" style={{ opacity: 0 }}>
+        <div className="counter mono absolute right-0 top-[var(--copy-top)] flex items-center gap-[10px] text-[13px] text-grey6 md:text-[12px]" style={{ opacity: 0 }}>
           <span className="h-[6px] w-[6px] rounded-full bg-green" style={{ boxShadow: "0 0 10px #22C55E" }} />
           captados_hoy <span className="n text-[16px] text-white8">0</span>
         </div>
 
         <MobileListingCards />
 
-        <div className="legend mono absolute bottom-10 left-[var(--gutter)] hidden flex-wrap gap-x-6 gap-y-2 text-[11px] text-grey5 md:flex" style={{ opacity: 0 }}>
+        <div className="legend mono absolute bottom-10 left-0 hidden flex-wrap gap-x-6 gap-y-2 text-[13px] text-grey6 md:flex" style={{ opacity: 0 }}>
           <span className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-white8" />
             nuevo anuncio
@@ -78,6 +76,7 @@ export function Ciudad() {
             <span className="h-2 w-2 rounded-full bg-grey4" />
             ya en seguimiento
           </span>
+        </div>
         </div>
       </div>
     </Chapter>

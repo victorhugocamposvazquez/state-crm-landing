@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 import { Brand, Kicker } from "@/components/ui/atoms";
 
@@ -10,6 +10,7 @@ import { Brand, Kicker } from "@/components/ui/atoms";
  */
 export function Manana() {
   const ref = useRef<HTMLDivElement>(null);
+  const [sent, setSent] = useState(false);
 
   useScrollTimeline(ref, (tl, q, enter) => {
     // entrada: el anillo y el titular suben ya puestos con la pantalla
@@ -23,7 +24,8 @@ export function Manana() {
 
   return (
     <Chapter id="manana">
-      <div ref={ref} className="stagewrap flex flex-col">
+      <div ref={ref} className="stagewrap">
+        <div className="stageframe flex flex-col">
         <div className="halo" style={{ left: "50%", top: "30%", width: 900, height: 700, transform: "translate(-50%,-50%)" }} />
 
         <div className="relative mx-auto mt-[var(--copy-top)] flex flex-col items-center">
@@ -53,20 +55,28 @@ export function Manana() {
         </div>
 
         <div className="mx-auto mt-6 w-full max-w-[560px] md:mt-14">
-          <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => e.preventDefault()}>
-            <label htmlFor="nombre" className="t-small text-grey6 sm:col-span-2">
-              Nombre y agencia
-            </label>
-            <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
-            <input id="agencia" name="agencia" type="text" placeholder="Agencia y ciudad" aria-label="Agencia y ciudad" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
-            <label htmlFor="email" className="t-small text-grey6 sm:col-span-2">
-              Email
-            </label>
-            <input id="email" name="email" type="email" placeholder="tu@agencia.es" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5 sm:col-span-2" />
-            <button type="submit" className="btn btn-w sm:col-span-2">
-              Reservar demo
-            </button>
-            <span className="mono text-[11px] text-grey5 sm:col-span-2">sin compromiso · respondemos en el día</span>
+          <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+            {sent ? (
+              <p className="t-body col-span-full m-0 text-white8" role="status">
+                Recibido. Te escribimos hoy para concretar la demo.
+              </p>
+            ) : (
+              <>
+                <label htmlFor="nombre" className="t-small text-grey6 sm:col-span-2">
+                  Nombre y agencia
+                </label>
+                <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
+                <input id="agencia" name="agencia" type="text" required placeholder="Agencia y ciudad" aria-label="Agencia y ciudad" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
+                <label htmlFor="email" className="t-small text-grey6 sm:col-span-2">
+                  Email
+                </label>
+                <input id="email" name="email" type="email" required placeholder="tu@agencia.es" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5 sm:col-span-2" />
+                <button type="submit" className="btn btn-w sm:col-span-2">
+                  Reservar demo
+                </button>
+                <span className="mono text-[13px] text-grey6 sm:col-span-2">sin compromiso · respondemos en el día</span>
+              </>
+            )}
           </form>
         </div>
 
@@ -87,6 +97,7 @@ export function Manana() {
             </a>
           </span>
         </footer>
+        </div>
       </div>
     </Chapter>
   );

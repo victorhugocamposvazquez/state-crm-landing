@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { ChapterCopy, CheckList } from "@/components/ui/atoms";
+import { ChapterCopy } from "@/components/ui/atoms";
 
 const demands = [
   { who: "Familia Castro", what: "2 hab · hasta 250.000 · zona sur", ok: false },
@@ -49,6 +49,7 @@ export function Seguimiento() {
   return (
     <Chapter id="seguimiento">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ left: "20%", top: "10%", width: 1100, height: 700 }} />
 
         <div className="copy copy-block">
@@ -65,16 +66,6 @@ export function Seguimiento() {
             }
             grey="Y cada operación, por etapas."
           />
-          <div className="copy-extra mt-6">
-            <CheckList
-              items={[
-                "Stock de la agencia con referencia propia, estado y comercial",
-                "Demandas que se cruzan solas con el stock",
-                "Seguimiento por etapas, con llamadas, visitas y documentos",
-                "Compradores y propietarios en un mismo hilo",
-              ]}
-            />
-          </div>
         </div>
 
         {/* la columna visual: inmuebles → demandas → seguimiento, de arriba abajo */}
@@ -83,9 +74,9 @@ export function Seguimiento() {
           <div className="inm panel flex flex-col gap-2 p-4" style={{ opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Inmuebles</span>
-              <span className="mono text-[11px] text-grey5">stock de la agencia · 2 disponibles</span>
+              <span className="mono text-[13px] text-grey6">stock de la agencia · 2 disponibles</span>
             </div>
-            <div className="mono grid grid-cols-[36px_1fr_90px_100px] gap-3 text-[11px] text-grey5">
+            <div className="mono grid grid-cols-[36px_1fr_90px_100px] gap-3 text-[13px] text-grey6">
               <span />
               <span>inmueble</span>
               <span className="text-right">precio</span>
@@ -153,7 +144,7 @@ export function Seguimiento() {
           <div className="kanban panel hidden flex-col gap-3 p-4 md:flex" style={{ opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Seguimiento</span>
-              <span className="mono text-[11px] text-grey5">etapas configurables</span>
+              <span className="mono text-[13px] text-grey6">etapas configurables</span>
             </div>
             <div className="relative flex gap-[10px]">
               {columns.map((c, k) => (
@@ -184,6 +175,7 @@ export function Seguimiento() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </Chapter>

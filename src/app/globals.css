@@ -97,56 +97,53 @@
     text-transform: uppercase;
   }
 
-  /* Pantalla de capítulo: mismo gutter que el resto y centrada en pantallas anchas */
+  /* Pantalla de capítulo: el mismo ancho que la cabecera, centrado. El gutter va en el marco,
+     una sola vez, para que el texto arranque donde arranca el logo (--edge). */
   .stagewrap {
     position: relative;
     height: 100%;
     width: 100%;
     max-width: var(--content-max);
     margin-inline: auto;
-    padding-inline: var(--gutter);
+  }
+  .stageframe {
+    position: absolute;
+    top: 0;
+    right: var(--gutter);
+    bottom: 0;
+    left: var(--gutter);
   }
 
   /* Bloque de texto de un capítulo: misma altura y mismo ancho en todos.
-     Un capítulo que necesite otro ancho lo pisa con una utilidad (md:w-[760px]). */
+     Un capítulo que necesite otro ancho lo pisa con una utilidad (md:w-[760px]).
+     left 0: el marco ya dejó el gutter. */
   .copy-block {
     position: absolute;
-    left: var(--gutter);
+    left: 0;
     top: var(--copy-top);
     z-index: 10;
-    width: calc(100% - 2 * var(--gutter));
+    width: 100%;
   }
   @media (min-width: 768px) {
     .copy-block {
       width: 480px;
     }
   }
-  /* lo que acompaña al copy solo en escritorio (listas de puntos): fuera en móvil y en pantallas bajas */
-  .copy-extra {
-    display: none;
-  }
-  @media (min-width: 768px) and (min-height: 801px) {
-    .copy-extra {
-      display: block;
-    }
-  }
 
   /* Columna visual de un capítulo: lo que el CRM enseña, a la derecha del texto y SIEMPRE dentro
-     del lienzo (acaba en el gutter derecho, nunca más allá). En móvil, justo debajo del titular. */
+     del lienzo. En móvil, un solo panel justo debajo del titular, sin recortarlo. */
   .visual-col {
     position: absolute;
-    left: var(--gutter);
-    right: var(--gutter);
+    left: 0;
+    right: 0;
     top: calc(var(--copy-top) + 210px);
     bottom: 12px;
-    overflow: hidden;
   }
   @media (min-width: 768px) {
     .visual-col {
-      left: 540px;
-      top: var(--copy-top); /* arranca a la altura del texto, no pegada a la cabecera */
+      left: 520px; /* 480 de texto y 40 de aire */
+      top: var(--copy-top);
       bottom: 48px;
-      overflow: visible;
     }
   }
 }
@@ -176,10 +173,6 @@
     /* la pantalla pegada llena el teléfono: con menos, debajo asomaba un hueco vacío y lo de
        abajo se cortaba contra el borde de una pantalla más baja que el viewport */
     --vh-unit: 1vh;
-  }
-  /* en el teléfono manda el titular y lo que enseña el CRM; el párrafo está en el bloque de texto de después */
-  .copy-block .t-body {
-    display: none;
   }
   /* las tarjetas de producto, en una sola columna: en tres carriles se salían del teléfono */
   .space .mod {
@@ -294,7 +287,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 13px;
   padding: 3px 8px;
   border-radius: 9999px;
   white-space: nowrap;
@@ -346,6 +339,10 @@ body {
 .btn-g:hover {
   border-color: var(--grey5);
   color: var(--white8);
+}
+:focus-visible {
+  outline: 2px solid var(--white8);
+  outline-offset: 3px;
 }
 /* palabra resaltada en un titular: fondo blanco, texto negro */
 .hl {

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { ChapterCopy, CheckList } from "@/components/ui/atoms";
+import { ChapterCopy } from "@/components/ui/atoms";
 import { countTo } from "@/components/motion/count";
 import { StreetMap } from "@/components/crm/StreetMap";
 
@@ -64,6 +64,7 @@ export function Catastro() {
   return (
     <Chapter id="catastro">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ right: "-8%", top: 0, width: 1000, height: 800 }} />
 
         <div className="copy copy-block">
@@ -79,25 +80,14 @@ export function Catastro() {
               </>
             }
             grey="Con y sin división horizontal."
-            body="Eliges una calle, un código postal o una localidad y statecrm recorre el Catastro finca a finca: las que tienen división horizontal, edificios con pisos, y las que no, casas, naves y solares. Los rastreos se pausan, se reanudan y quedan en el historial."
           />
-          <div className="copy-extra mt-5">
-            <CheckList
-              items={[
-                "Por calle, por código postal o por localidad",
-                "Con división horizontal: edificios con pisos y locales",
-                "Sin división horizontal: casas, naves y solares",
-                "Rastreos que se pausan, se reanudan y se guardan",
-              ]}
-            />
-          </div>
         </div>
 
         {/* Historial de rastreos, compacto, bajo el texto (en pantallas bajas no cabe y se omite) */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[480px] flex-col p-4 md:flex [@media(max-height:900px)]:md:hidden" style={{ opacity: 0 }}>
+        <div className="scans panel absolute bottom-6 left-0 z-10 hidden w-[480px] flex-col p-4 md:flex [@media(max-height:900px)]:md:hidden" style={{ opacity: 0 }}>
           <div className="mb-2 flex items-center justify-between text-[13px] text-white8">
             <span>Rastreos</span>
-            <span className="mono text-[11px] text-grey5">calle · código postal · localidad</span>
+            <span className="mono text-[13px] text-grey6">calle · código postal · localidad</span>
           </div>
           {scans.map((sc, k) => (
             <div key={sc.id} className={`row-${k} flex flex-col gap-[6px] border-t border-[#1F1F1F] py-[9px] text-[12px]`} style={{ opacity: 0.35 }}>
@@ -111,7 +101,7 @@ export function Catastro() {
                   <span className="pg-fill absolute inset-y-0 left-0 w-full bg-green" style={{ transform: "scaleX(0)" }} />
                 </span>
               </div>
-              <div className="mono flex items-center gap-2 pl-[100px] text-[11px] text-grey5">
+              <div className="mono flex items-center gap-2 pl-[100px] text-[13px] text-grey6">
                 <span>
                   <span className="n-fincas text-white7">0</span> fincas
                 </span>
@@ -132,7 +122,7 @@ export function Catastro() {
         {/* El mapa, ligeramente tumbado, en su columna */}
         <div className="visual-col" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
           <div
-            className="map3d absolute inset-x-0 top-[20px] hidden md:block md:top-0"
+            className="map3d absolute inset-x-0 top-0"
             style={{ transform: "rotateX(28deg)", transformOrigin: "50% 35%", opacity: 0, maskImage: "radial-gradient(ellipse at 50% 45%, #000 55%, transparent 85%)" }}
           >
             <div style={{ aspectRatio: "1200 / 900", background: "#0C0C0C", border: "1px solid #1C1C1C" }}>
@@ -143,7 +133,7 @@ export function Catastro() {
           </div>
 
           {/* etiquetas planas por zona: qué se buscó y cuántas fincas lleva */}
-          <div className="labels absolute inset-0 hidden md:block">
+          <div className="labels absolute inset-0">
             {scans.map((sc, k) => (
               <div key={sc.id} className={`lab-${k} mono absolute flex flex-col items-start text-[11px] text-grey6`} style={{ left: sc.label.left, top: sc.label.top, opacity: 0 }}>
                 <span className="ln mb-2 ml-[2px] block h-7 w-px bg-grey5" />
@@ -155,10 +145,10 @@ export function Catastro() {
           </div>
 
           {/* la lista de fincas del rastreo: cada una, con o sin división horizontal */}
-          <div className="res card absolute inset-x-0 top-0 z-10 flex flex-col p-[16px] md:bottom-[40px] md:left-auto md:right-0 md:top-auto md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
+          <div className="res card absolute inset-x-0 top-[52%] z-10 flex flex-col p-[16px] md:bottom-[40px] md:left-auto md:right-0 md:top-auto md:w-[400px]" style={{ background: "#171717", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Fincas · código postal 15009</span>
-              <span className="mono text-[11px] text-grey5">378</span>
+              <span className="mono text-[13px] text-grey6">378</span>
             </div>
             <div className="mono mt-2 flex gap-2 text-[11px]">
               <span className="rounded-full border border-[#2A2A2A] px-2 py-[2px] text-white7">todas · 378</span>
@@ -182,6 +172,7 @@ export function Catastro() {
               ))}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </Chapter>

@@ -33,7 +33,7 @@ export function MobileListingCards() {
   const show = [idx - 1, idx].filter((k) => k >= 0);
 
   return (
-    <div className="absolute inset-x-[var(--gutter)] bottom-[150px] md:hidden" aria-live="polite">
+    <div className="absolute inset-x-0 bottom-24 md:hidden" aria-live="polite">
       {show.map((k) => {
         const l = listings[cityPhoto.anchors[k].listing];
         const color = l.kind === "particular" ? "#22C55E" : l.kind === "encubierta" ? "#D4A017" : "#FFFFFF";
@@ -49,7 +49,7 @@ export function MobileListingCards() {
               transition: "opacity .35s, transform .35s",
             }}
           >
-            <div className="mono flex items-center justify-between text-[11px] text-grey5">
+            <div className="mono flex items-center justify-between text-[13px] text-grey6">
               <span>hace {1 + k * 3} min · {l.portal}</span>
               <span className={`st ${l.kind === "particular" ? "st-g" : l.kind === "encubierta" ? "st-a" : "st-n"}`}>
                 {l.kind === "particular" ? "● particular · tel." : l.kind === "encubierta" ? "● agencia encubierta" : "agencia"}

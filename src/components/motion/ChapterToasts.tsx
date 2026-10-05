@@ -62,7 +62,7 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
                 style={{ background: dot, boxShadow: latest ? `0 0 10px ${dot}` : "none" }}
               />
               <span className="truncate">{ev.text}</span>
-              <span className="mono ml-auto flex-shrink-0 text-[11px] text-grey5">{ev.meta}</span>
+              <span className="mono ml-auto flex-shrink-0 text-[13px] text-grey6">{ev.meta}</span>
             </li>
           );
         })}

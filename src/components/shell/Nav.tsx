@@ -48,6 +48,7 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
+              aria-current={on ? "true" : undefined}
               className="flex items-center gap-[6px] text-[14px] font-medium no-underline transition-colors"
               style={{ color: on ? "#fff" : seen ? "#A3A3A3" : "#6E6E6E" }}
             >
@@ -81,11 +82,14 @@ export function Nav() {
 
       {open && (
         <div className="absolute inset-x-0 top-[64px] flex flex-col gap-1 border-t border-grey3 bg-black0 p-5 md:hidden">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="py-3 text-[16px] text-white7 no-underline">
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
+            return (
+              <a key={l.href} href={l.href} aria-current={on ? "true" : undefined} onClick={() => setOpen(false)} className={`py-3 text-[16px] no-underline ${on ? "text-white8" : "text-white7"}`}>
+                {l.label}
+              </a>
+            );
+          })}
           <a href="#manana" onClick={() => setOpen(false)} className="btn btn-w mt-2">
             Pedir una demo
           </a>

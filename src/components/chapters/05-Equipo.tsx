@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { ChapterCopy, CheckList } from "@/components/ui/atoms";
+import { ChapterCopy } from "@/components/ui/atoms";
 import { countTo } from "@/components/motion/count";
 
 const tasks = [
@@ -52,13 +52,11 @@ export function Equipo() {
   return (
     <Chapter id="equipo">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="05" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." body="Cada comercial ve lo suyo; el responsable ve a todo el equipo. Dos oficinas o diez, y en el móvil del comercial sin instalar nada." />
-          <div className="copy-extra mt-6">
-            <CheckList items={["Tareas personales y del equipo, con prioridad", "Calendario compartido: visitas, firmas, llamadas", "Varias oficinas en el mismo calendario", "En el móvil sin instalar nada, con búsqueda global"]} />
-          </div>
+          <ChapterCopy n="05" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_200px] md:items-start md:gap-4">
@@ -69,7 +67,7 @@ export function Equipo() {
                 <span className="flex items-center gap-2">
                   Tareas <span className="badge mono rounded-full bg-green px-2 py-[1px] text-[11px] text-[#06240F]">5</span>
                 </span>
-                <span className="mono text-[11px] text-grey5">hoy · equipo</span>
+                <span className="mono text-[13px] text-grey6">hoy · equipo</span>
               </div>
               {tasks.map((t) => (
                 <div key={t.text} className={`task ${t.hero ? "task-hero" : ""} flex items-center gap-3 border-t border-[#1F1F1F] py-[10px] text-[13px]`} style={t.hero ? { background: "#171717", border: "1px solid #3A3A3A", borderRadius: 8, padding: "10px 12px", margin: "0 -6px" } : undefined}>
@@ -93,7 +91,7 @@ export function Equipo() {
             <div className="cal panel hidden flex-col gap-3 p-4 md:flex" style={{ opacity: 0 }}>
               <div className="flex items-center justify-between text-[13px] text-white8">
                 <span>Calendario</span>
-                <span className="mono relative text-[11px] text-grey5">
+                <span className="mono relative text-[13px] text-grey6">
                   Oficina Centro <span className="office-line mx-2 inline-block h-px w-10 bg-grey5 align-middle" style={{ transform: "scaleX(0)" }} /> Oficina Norte
                 </span>
               </div>
@@ -142,6 +140,7 @@ export function Equipo() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </Chapter>

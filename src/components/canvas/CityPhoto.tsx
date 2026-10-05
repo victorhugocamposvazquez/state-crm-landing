@@ -235,7 +235,7 @@ function ListingCard({ position, index, side }: { position: [number, number, num
             boxShadow: isHero ? `0 0 0 1px ${color}40, 0 30px 60px rgba(0,0,0,.7)` : undefined,
           }}
         >
-          <div className="mono flex items-center justify-between gap-2 text-[11px] text-grey5">
+          <div className="mono flex items-center justify-between gap-2 text-[13px] text-grey6">
             <span className="whitespace-nowrap">
               hace {1 + index * 3} min · {l.portal}
             </span>
@@ -258,7 +258,7 @@ function ListingCard({ position, index, side }: { position: [number, number, num
               <b className="font-medium text-white8">{euro(l.price)}</b>
             </span>
           </div>
-          {isHero && <div className="mono text-[11px] text-grey5">id.{l.id} · 3º izq · 14 fotos · asignado a Ana</div>}
+          {isHero && <div className="mono text-[13px] text-grey6">id.{l.id} · 3º izq · 14 fotos · asignado a Ana</div>}
         </div>
       </div>
     </Html>

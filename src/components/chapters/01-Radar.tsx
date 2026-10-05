@@ -26,9 +26,10 @@ export function Radar() {
   return (
     <Chapter id="radar">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ right: "-10%", bottom: "-20%", width: 900, height: 700 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[40%] w-[calc(100%-2*var(--gutter))] max-w-[860px] -translate-y-1/2 md:top-[46%]" style={{ opacity: 0 }}>
+        <div className="copy absolute left-0 top-[40%] w-full max-w-[860px] -translate-y-1/2 md:top-[46%]" style={{ opacity: 0 }}>
           <div className="mb-7">
             <Kicker module="statecrm" what="CRM inmobiliario a medida para agencias" />
           </div>
@@ -61,7 +62,7 @@ export function Radar() {
           </span>
         </div>
 
-        <div className="stats mono absolute bottom-10 left-[var(--gutter)] flex gap-6 text-[11px] text-grey5 md:text-[12px]" style={{ opacity: 0 }}>
+        <div className="stats mono absolute bottom-10 left-0 flex gap-6 text-[13px] text-grey6 md:text-[12px]" style={{ opacity: 0 }}>
           <span>
             <span className="text-white7">991</span> en novedad
           </span>
@@ -72,6 +73,7 @@ export function Radar() {
             <span className="h-[6px] w-[6px] rounded-full bg-green" />
             rastreo en curso
           </span>
+        </div>
         </div>
       </div>
     </Chapter>

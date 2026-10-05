@@ -80,6 +80,7 @@ export function Producto() {
   return (
     <Chapter id="producto">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ left: "30%", top: "10%", width: 1000, height: 700 }} />
 
         <div className="copy copy-block md:w-[760px]">
@@ -96,7 +97,7 @@ export function Producto() {
         </div>
 
         {/* barra lateral conceptual */}
-        <div className="sidebar absolute left-[var(--gutter)] top-[calc(var(--copy-top)+240px)] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
+        <div className="sidebar absolute left-0 top-[calc(var(--copy-top)+200px)] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
           {sidebar.map((g) => (
             <div key={g.sec ?? "top"}>
               {g.sec && <div className="px-[10px] pb-1 pt-[10px] text-[10px] uppercase tracking-[0.12em] text-grey4">{g.sec}</div>}
@@ -116,7 +117,7 @@ export function Producto() {
         </div>
 
         {/* el espacio de módulos: a la derecha de la barra lateral y dentro del lienzo */}
-        <div className="absolute inset-x-[var(--gutter)] bottom-3 top-[calc(var(--copy-top)+210px)] md:bottom-0 md:left-[300px] md:top-[calc(var(--copy-top)+160px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
+        <div className="absolute inset-x-0 bottom-3 top-[calc(var(--copy-top)+210px)] md:bottom-0 md:left-[240px] md:top-[calc(var(--copy-top)+140px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
           <div className="space relative h-full" style={{ transformStyle: "preserve-3d" }}>
             {modules.map((m, k) => {
               const lane = k % 3; // izquierda, centro, derecha (siempre dentro del espacio)
@@ -136,7 +137,7 @@ export function Producto() {
                     borderColor: "#262626",
                   }}
                 >
-                  <div className="mono flex justify-between text-[11px] text-grey5">
+                  <div className="mono flex justify-between text-[13px] text-grey6">
                     <span className="text-white8">{m.name}</span>
                     <span>{m.n}</span>
                   </div>
@@ -154,7 +155,7 @@ export function Producto() {
         </div>
 
         {/* la lista final con checks */}
-        <div className="checks absolute inset-x-[var(--gutter)] bottom-8 z-10 hidden border-t border-[#171717] pt-5 md:left-[300px] md:bottom-10 md:block" style={{ opacity: 0 }}>
+        <div className="checks absolute inset-x-0 bottom-8 z-10 hidden border-t border-[#171717] pt-5 md:left-[240px] md:bottom-10 md:block" style={{ opacity: 0 }}>
           <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-[10px] p-0 text-[13px] text-white7 sm:grid-cols-2 md:grid-cols-3 md:text-[14px]">
             {checks.map((c) => (
               <li key={c} className="flex items-center gap-[10px]">
@@ -163,6 +164,7 @@ export function Producto() {
               </li>
             ))}
           </ul>
+        </div>
         </div>
       </div>
     </Chapter>

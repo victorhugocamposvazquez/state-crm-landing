@@ -2,12 +2,12 @@
 
 import { useRef } from "react";
 import { moduleTexts, type ModuleTextId } from "@/lib/modules";
-import { Kicker, brandify } from "@/components/ui/atoms";
+import { brandify } from "@/components/ui/atoms";
 import { useReveal } from "@/components/motion/reveal";
 
 /**
  * El texto de un módulo, en flujo normal, justo después de su pantalla animada.
- * Dos columnas: a la izquierda qué hace y para qué sirve; a la derecha qué incluye, en cuatro líneas.
+ * El capítulo ya dijo el nombre: aquí quedan el titular, el párrafo y qué incluye.
  */
 export function ModuleText({ id }: { id: ModuleTextId }) {
   const m = moduleTexts[id];
@@ -15,12 +15,9 @@ export function ModuleText({ id }: { id: ModuleTextId }) {
   useReveal(ref);
 
   return (
-    <section ref={ref} id={`${id}-texto`} className="module-text relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[120px]" aria-labelledby={`${id}-texto-h`}>
-      <div className="mx-auto grid max-w-[1040px] grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-16">
+    <section ref={ref} id={`${id}-texto`} className="module-text relative z-[2] border-t border-[#171717] bg-black0 py-[80px] md:py-[120px]" aria-labelledby={`${id}-texto-h`}>
+      <div className="mx-auto grid w-full max-w-[var(--content-max)] grid-cols-1 gap-12 px-[var(--gutter)] md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] md:gap-16">
         <div className="flex flex-col gap-6">
-          <div data-reveal>
-            <Kicker module={m.module} what={m.what} />
-          </div>
           <h3 id={`${id}-texto-h`} data-reveal className="t-h2 m-0 text-white8">
             {brandify(m.title)}
           </h3>

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { CheckList, ChapterCopy } from "@/components/ui/atoms";
+import { ChapterCopy } from "@/components/ui/atoms";
 import { listings, euro } from "@/lib/script";
 
 /** cuatro filas: la protagonista, dos particulares y una agencia (para que el filtro tenga a quién apagar) */
@@ -37,6 +37,7 @@ export function Bandeja() {
   return (
     <Chapter id="bandeja">
       <div ref={ref} className="stagewrap">
+        <div className="stageframe">
         <div className="halo" style={{ right: "-14%", top: "6%", width: 1100, height: 800 }} />
 
         <div className="copy copy-block">
@@ -52,18 +53,7 @@ export function Bandeja() {
               </>
             }
             grey="Y quién hay detrás de cada anuncio."
-            body="Cada anuncio llega con teléfono, fotos y prioridad, y se asigna a un comercial. Lo que entra hoy y lo que ya estás trabajando, en la misma lista."
           />
-          <div className="copy-extra mt-6">
-            <CheckList
-              items={[
-                "Rastreo diario de los portales, por zona",
-                "Distingue particular, agencia y agencia encubierta",
-                "Teléfono y fotos antes de la primera llamada",
-                "Prioridad y asignación a un comercial",
-              ]}
-            />
-          </div>
           <div className="mono mt-6 hidden gap-4 text-[12px] text-grey5 md:flex">
             <span>idealista</span>
             <span>fotocasa</span>
@@ -78,7 +68,7 @@ export function Bandeja() {
             <div className="flex flex-col gap-4 px-4 pt-4 md:px-5 md:pt-5">
               <div className="flex items-center justify-between">
                 <span className="text-[18px] font-medium tracking-[-0.02em] text-white8 md:text-[20px]">Captación</span>
-                <span className="mono text-[11px] text-grey5">
+                <span className="mono text-[13px] text-grey6">
                   15 sin teléfono · <span className="text-green">+ nueva alerta</span>
                 </span>
               </div>
@@ -103,7 +93,7 @@ export function Bandeja() {
                 ].map(([n, l, c]) => (
                   <div key={l} className="kpi flex flex-col gap-1 rounded-[10px] border border-grey3 bg-black2 p-3">
                     <span className={`n text-[22px] font-medium tracking-[-0.02em] text-white8 md:text-[24px] ${c}`}>{n}</span>
-                    <span className="text-[11px] text-grey5 md:text-[12px]">{l}</span>
+                    <span className="text-[13px] text-grey6 md:text-[12px]">{l}</span>
                   </div>
                 ))}
               </div>
@@ -125,7 +115,7 @@ export function Bandeja() {
                 </span>
               </div>
             </div>
-            <div className="mono mt-4 grid grid-cols-[40px_minmax(0,1fr)_76px_auto] gap-2 px-4 pb-2 text-[11px] text-grey5 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5">
+            <div className="mono mt-4 grid grid-cols-[40px_minmax(0,1fr)_76px_auto] gap-2 px-4 pb-2 text-[13px] text-grey6 md:grid-cols-[44px_1fr_110px_60px_150px] md:gap-3 md:px-5">
               <span />
               <span>anuncio</span>
               <span className="text-right">precio</span>
@@ -146,7 +136,7 @@ export function Bandeja() {
                     {isHero || i === 2 ? (
                       <>
                         <span className="truncate text-[14px] text-white7">{isHero ? "Casa en Camino Rianxiño, 115" : l.title}</span>
-                        <span className="mono truncate text-[11px] text-grey5">
+                        <span className="mono truncate text-[13px] text-grey6">
                           id.{l.id} · {l.rooms} hab{isHero ? " · 40 fotos" : ""}
                         </span>
                         {isHero && (
@@ -185,6 +175,7 @@ export function Bandeja() {
             })}
             <div className="h-3" />
           </div>
+        </div>
         </div>
       </div>
     </Chapter>
