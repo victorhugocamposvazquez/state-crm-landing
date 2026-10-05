@@ -48,7 +48,7 @@ export function Manana() {
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>
           <p className="t-lead m-0 max-w-[560px] text-grey6">
-            Te enseñamos <Brand /> con tu zona: los anuncios de particulares de esta mañana y uno de ellos cruzado con el catastro.
+            Te enseñamos <Brand /> con tu zona: los anuncios de particulares de esta mañana y todas las fincas de una de tus calles en el Catastro.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 /**
  * Mapa de calles abstracto (manzanas, avenidas, una plaza y un parque) en SVG.
- * Cada manzana lleva su zona (código postal o calle) para que el Catastro las encienda por tramos.
+ * Cada manzana lleva su zona (calle, código postal o localidad) para que el Catastro las encienda por tramos.
  * Se usa inclinado en CSS 3D; las etiquetas van fuera, en una capa plana.
  */
 
@@ -95,7 +95,7 @@ export function StreetMap({ className = "" }: { className?: string }) {
       <g fontFamily="var(--font-mono), ui-monospace, monospace" fontSize="11" fill="#3A3A3A">
         <text x="740" y="615">Plaza de Castilla</text>
         <text x="60" y="170">Avenida del Norte</text>
-        <text x="1000" y="750">Barrio Sur</text>
+        <text x="1000" y="750">Oleiros</text>
         <text x="120" y="420">Rolda de Nelle</text>
       </g>
     </svg>

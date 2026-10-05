@@ -101,9 +101,11 @@ export const chapters: Chapter[] = [
     label: "CATASTRO",
     vh: 300,
     events: [
-      { at: 0.4, kind: "ok", text: "Rastreo CP 15009 · 85 candidatas", meta: "378 fincas" },
-      { at: 0.85, kind: "ok", text: "Nota simple solicitada", meta: "Rianxo · 09:17" },
+      { at: 0.26, kind: "ok", text: "Rastreo completo · Rolda de Nelle", meta: "38 fincas" },
+      { at: 0.62, kind: "new", text: "Rastreo en curso · Oleiros", meta: "Marta · 10:40" },
     ],
+    // arriba a la derecha: abajo va la lista de fincas y a la izquierda el historial de rastreos
+    toasts: "tr",
   },
   {
     id: "seguimiento",

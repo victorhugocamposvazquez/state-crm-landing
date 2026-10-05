@@ -20,13 +20,12 @@ const scans = [
 ] as const;
 
 /** La lista de fincas del código postal: cada una con su división horizontal, o sin ella. */
-const fincas = [
+const fincas: { addr: string; ref: string; dh: boolean; what: string; hero?: boolean }[] = [
   { addr: "Plaza de Castilla, 3", ref: "8731204NJ4983S", dh: true, what: "24 inmuebles" },
   { addr: "Plaza de Castilla, 5", ref: "8731205NJ4983S", dh: false, what: "casa", hero: true },
   { addr: "Plaza de Castilla, 7", ref: "8731206NJ4983S", dh: true, what: "12 inmuebles" },
   { addr: "Rúa Barcelona, 2", ref: "8731301NJ4983S", dh: false, what: "solar" },
-  { addr: "Rúa Barcelona, 4", ref: "8731302NJ4983S", dh: true, what: "8 inmuebles" },
-] as const;
+];
 
 export function Catastro() {
   const ref = useRef<HTMLDivElement>(null);
@@ -73,9 +72,9 @@ export function Catastro() {
             what="fincas por calle, código postal o localidad"
             title={
               <>
-                Todas las fincas
+                De la búsqueda
                 <br />
-                de una zona.
+                a la finca real.
               </>
             }
             grey="Con y sin división horizontal."
@@ -94,7 +93,7 @@ export function Catastro() {
         </div>
 
         {/* Historial de rastreos, compacto, bajo el texto (en pantallas bajas no cabe y se omite) */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[420px] flex-col p-4 md:flex [@media(max-height:780px)]:md:hidden" style={{ opacity: 0 }}>
+        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[420px] flex-col p-4 md:flex [@media(max-height:840px)]:md:hidden" style={{ opacity: 0 }}>
           <div className="mb-2 flex items-center justify-between text-[13px] text-white8">
             <span>Rastreos</span>
             <span className="mono text-[11px] text-grey5">calle · código postal · localidad</span>
@@ -169,8 +168,8 @@ export function Catastro() {
               {fincas.map((f) => (
                 <div
                   key={f.ref}
-                  className={`res-row ${"hero" in f && f.hero ? "res-hero" : ""} flex items-center gap-3 border-t border-[#1F1F1F] py-[8px] text-[12px]`}
-                  style={"hero" in f && f.hero ? { border: "1px solid transparent", borderRadius: 8, padding: "8px 10px", margin: "0 -6px" } : undefined}
+                  className={`res-row ${f.hero ? "res-hero" : ""} flex items-center gap-3 border-t border-[#1F1F1F] py-[8px] text-[12px]`}
+                  style={f.hero ? { border: "1px solid transparent", borderRadius: 8, padding: "8px 10px", margin: "0 -6px" } : undefined}
                 >
                   <div className="flex min-w-0 flex-1 flex-col gap-[2px]">
                     <span className="truncate text-white8">{f.addr}</span>

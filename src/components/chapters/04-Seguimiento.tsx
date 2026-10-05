@@ -106,7 +106,7 @@ export function Seguimiento() {
                     <>
                       <span className="font-medium text-white8">Piso en calle de Posse</span>
                       <span className="mono text-[11px] text-grey6">
-                        RHB-2026-0002 · 92 m² · <span className="text-green">vinculado a catastro</span>
+                        RHB-2026-0002 · 92 m² · <span className="text-green">en cartera</span>
                       </span>
                     </>
                   ) : (

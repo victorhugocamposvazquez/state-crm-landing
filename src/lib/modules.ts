@@ -44,15 +44,15 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
   catastro: {
     id: "catastro",
     module: "Catastro",
-    what: "la finca real detrás de cada anuncio",
-    title: "Vincula cada anuncio a su finca real y pide la nota simple sin salir del CRM.",
+    what: "fincas por calle, código postal o localidad",
+    title: "Busca todas las fincas de una calle, un código postal o una localidad, con y sin división horizontal.",
     body:
-      "El Catastro va por libre: no hace falta un anuncio para usarlo. statecrm rastrea una zona por calle o código postal, separa las fincas candidatas y, cuando toca, vincula un inmueble a su referencia. Lo que encuentra pasa a tareas, seguimiento y equipo comercial; la nota simple se pide desde la misma ficha.",
+      "El Catastro va por libre: no depende de ningún anuncio. Eliges una calle, un código postal o una localidad y statecrm recorre el Catastro finca a finca, separando las que tienen división horizontal, edificios con pisos y locales, de las que no, casas, naves y solares. Cada rastreo se pausa, se reanuda y queda en el historial con quién lo lanzó, y lo que encuentra pasa a tareas, seguimiento y equipo comercial.",
     features: [
-      { title: "Rastreos por calle o código postal", text: "Se pausan, se reanudan y quedan en un historial." },
-      { title: "Fincas candidatas", text: "Las que encajan con el anuncio, por zona y por comercial." },
-      { title: "Vinculación catastral", text: "Referencia, superficie, año y uso en la ficha del piso." },
-      { title: "Nota simple", text: "Solicitada sin salir del inmueble." },
+      { title: "Por calle", text: "Todas las fincas de una calle, número a número." },
+      { title: "Por código postal o localidad", text: "Zonas enteras, en rastreos que se pausan y se reanudan." },
+      { title: "Con división horizontal", text: "Edificios divididos en pisos y locales, con cuántos inmuebles tiene cada uno." },
+      { title: "Sin división horizontal", text: "Casas, naves y solares: fincas de una sola pieza." },
     ],
   },
   seguimiento: {

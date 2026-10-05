@@ -7,7 +7,7 @@ import { countTo } from "@/components/motion/count";
 
 const tasks = [
   { who: "AM", text: "Llamar al propietario · Rianxo", at: "09:30", done: true },
-  { who: "OF", text: "Nota simple · Camino Rianxiño 115", at: "10:00", done: false },
+  { who: "OF", text: "Rastreo Catastro · Rolda de Nelle", at: "10:00", done: false },
   { who: "LR", text: "Visita · Piso en calle de Posse", at: "13:00", done: false, hero: true },
   { who: "AM", text: "Preparar oferta · Familia López", at: "16:30", done: false },
   { who: "MG", text: "Revisar encubiertas de hoy", at: "18:00", done: false },

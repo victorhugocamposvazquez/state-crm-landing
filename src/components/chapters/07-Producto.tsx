@@ -6,7 +6,7 @@ import { Brand, Check, Kicker } from "@/components/ui/atoms";
 
 const modules = [
   { name: "Captación", n: "02", line: "Anuncios de particulares, cada mañana, con teléfono y fotos.", metric: "38 captados hoy", kind: "g" },
-  { name: "Catastro", n: "03", line: "Rastreos por calle o CP; fincas, candidatas, nota simple.", metric: "378 fincas · 85 candidatas", kind: "g" },
+  { name: "Catastro", n: "03", line: "Fincas por calle, código postal o localidad, con y sin división horizontal.", metric: "378 fincas · 212 con DH", kind: "g" },
   { name: "Inmuebles", n: "04", line: "El stock de la agencia con referencia, estado y comercial.", metric: "RHB-2026-0002 · 435.000 €", kind: "n" },
   { name: "Demandas", n: "04", line: "Lo que busca cada cliente, cruzado solo con el stock.", metric: "coincidencia alta", kind: "g" },
   { name: "Seguimiento", n: "04", line: "Etapas configurables; llamadas, visitas y documentos.", metric: "captado → reserva", kind: "n" },
@@ -29,7 +29,7 @@ const sidebar = [
 const checks = [
   "Captación diaria de particulares",
   "Detección de agencias encubiertas",
-  "Catastro integrado con nota simple",
+  "Catastro: fincas con y sin división horizontal",
   "Inmuebles y demandas que se cruzan solos",
   "Seguimiento por etapas",
   "Tareas y calendario de equipo",

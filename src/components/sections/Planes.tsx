@@ -38,7 +38,7 @@ export function Planes() {
             <span className="text-grey5">De 250 € al mes al plan completo, con todas las opciones.</span>
           </h2>
           <p data-reveal className="t-lead m-0 mt-6 max-w-[560px] text-grey6">
-            Toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; saber qué finca es y pedir la nota simple sin salir del CRM es lo que cierra la captación.
+            Toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; tener todas las fincas de tus calles, con y sin división horizontal, es lo que abre la siguiente.
           </p>
         </div>
 

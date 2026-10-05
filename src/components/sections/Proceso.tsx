@@ -223,7 +223,7 @@ export function Proceso() {
               <span className="text-white7">Captación.</span> Cada paso lo da el CRM solo y avisa al comercial cuando le toca actuar: teléfono capturado, llamada, visita, venta.
             </p>
             <p className="t-body m-0 text-grey6">
-              <span className="text-white7">Catastro, por libre.</span> Localiza fincas por calle o código postal cuando hace falta, y lo que encuentra alimenta tareas, seguimiento y equipo comercial.
+              <span className="text-white7">Catastro, por libre.</span> Busca todas las fincas de una calle, un código postal o una localidad, con y sin división horizontal, y lo que encuentra alimenta tareas, seguimiento y equipo comercial.
             </p>
           </div>
         </div>
