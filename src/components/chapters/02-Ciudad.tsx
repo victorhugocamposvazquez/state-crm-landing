@@ -1,83 +1,41 @@
 "use client";
 
-import { useRef } from "react";
-import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { countTo } from "@/components/motion/count";
+import { Chapter } from "@/components/motion/Chapter";
 import { Kicker } from "@/components/ui/atoms";
+import { CityPhoto } from "@/components/canvas/CityPhoto";
 import { MobileListingCards } from "@/components/crm/MobileListingCards";
+import { cityPhoto, citySequence } from "@/lib/script";
+import { useScroll } from "@/lib/store";
 
-/**
- * 02 · 07:40 · La ciudad se enciende. El 3D va en el canvas; aquí el texto, el contador y la leyenda.
- */
 export function Ciudad() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useScrollTimeline(ref, (tl, q, enter) => {
-    // entrada: kicker y contador suben ya puestos con la pantalla. El primer titular (.t1) viene
-    // visible de serie: tl lo apaga en 0.26 y una misma propiedad no debe vivir en dos timelines.
-    enter.fromTo(q(".counter, .kick"), { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0);
-
-    tl.to(q(".t1"), { opacity: 0, y: -16, duration: 0.06 }, 0.26)
-      .fromTo(q(".t2"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.1 }, 0.33)
-      .to(q(".t2"), { opacity: 0, y: -16, duration: 0.06 }, 0.56)
-      .fromTo(q(".t3"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.1 }, 0.63)
-      .fromTo(q(".legend"), { opacity: 0 }, { opacity: 1, duration: 0.1 }, 0.12);
-    countTo(tl, q(".n")[0], { from: 0, to: 38, at: 0.08, dur: 0.75 });
-  });
-
+  const progress = useScroll((state) => state.reducedMotion ? 1 : state.progress.ciudad);
+  const ready = progress >= citySequence.notificationAt;
+  const lit = cityPhoto.buildings.filter((_, index) => progress >= citySequence.lightAt(index) + citySequence.lightDuration).length;
   return (
-    <Chapter id="ciudad">
-      <div ref={ref} className="stagewrap">
-        <div className="stageframe">
-        <div className="copy copy-block md:w-[560px]">
-          <div className="kick mb-5" style={{ opacity: 0 }}>
-            <Kicker n="02" module="Captación" what="detecta los anuncios de particulares en los portales" />
+    <Chapter id="ciudad" className="city-chapter">
+      <div className="city-layout">
+        <div className="city-copy">
+          <Kicker n="01" module="Captación" what="Del portal a tu equipo" />
+          <h2 className="t-h1 mt-6 mb-5 text-white8">La ciudad se mueve.<br /><span className="text-grey6">Tu próxima oportunidad, también.</span></h2>
+          <p className="t-lead city-intro text-grey6">STATECRM revisa los portales en tus zonas. Detecta los anuncios nuevos y los reúne para que tu equipo pueda actuar.</p>
+          <ol className="city-steps" aria-label="Cómo llega un anuncio">
+            <li data-active={!ready}><span>01</span><div><strong>Los edificios se iluminan</strong><p>Cada luz representa un anuncio nuevo.</p></div></li>
+            <li data-active={ready}><span>02</span><div><strong>La oportunidad llega al CRM</strong><p>Con los datos del anuncio y una persona responsable.</p></div></li>
+          </ol>
+          <a className="city-next" href="#bandeja">Ver la bandeja de captación <span aria-hidden="true">↗</span></a>
+        </div>
+        <div className="city-scene" role="group" aria-label="Ejemplo de detección de anuncios">
+          <CityPhoto progress={progress} />
+          <div className="city-scene-header"><span className="t-label">Explorando tu zona</span><span>Ejemplo ilustrativo</span></div>
+          <div className="city-scan-status" aria-hidden="true">
+            <span className={`city-status-dot ${ready ? "is-ready" : ""}`} />
+            <span>{ready ? "Anuncio listo para tu equipo" : lit === 4 ? "Preparando la ficha…" : `${lit} de 4 edificios iluminados`}</span>
+            <span className="city-scroll-hint">{ready ? "✓" : "↓"}</span>
           </div>
-          <div className="relative h-[96px] md:h-[120px]">
-            <h2 className="t1 t-h1 absolute m-0 text-white8">
-              Un particular
-              <br />
-              <span className="text-grey5">publica su piso.</span>
-            </h2>
-            <h2 className="t2 t-h1 absolute m-0 text-white8" style={{ opacity: 0 }}>
-              Un minuto después
-              <br />
-              <span className="text-grey5">está en tu CRM.</span>
-            </h2>
-            <h2 className="t3 t-h1 absolute m-0 text-white8" style={{ opacity: 0 }}>
-              Toda la ciudad,
-              <br />
-              <span className="text-grey5">cada mañana.</span>
-            </h2>
-          </div>
+          <MobileListingCards visible={ready} />
+          <div className="city-progress" aria-hidden="true"><span style={{ transform: `scaleX(${Math.min(1, progress / citySequence.notificationAt)})` }} /></div>
         </div>
-
-        <div className="counter mono absolute right-0 top-[var(--copy-top)] flex items-center gap-[10px] text-[13px] text-grey6 md:text-[12px]" style={{ opacity: 0 }}>
-          <span className="h-[6px] w-[6px] rounded-full bg-green" style={{ boxShadow: "0 0 10px #22C55E" }} />
-          captados_hoy <span className="n text-[16px] text-white8">0</span>
-        </div>
-
-        <MobileListingCards />
-
-        <div className="legend mono absolute bottom-10 left-0 hidden flex-wrap gap-x-6 gap-y-2 text-[13px] text-grey6 md:flex" style={{ opacity: 0 }}>
-          <span className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-white8" />
-            nuevo anuncio
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-green" />
-            particular con teléfono
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-amber" />
-            agencia encubierta
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-grey4" />
-            ya en seguimiento
-          </span>
-        </div>
-        </div>
+        <p className="sr-only">Al recorrer la sección se iluminan cuatro edificios, uno a uno. Después aparece un anuncio de ejemplo: casa en Camino Rianxiño, 115, por 260.000 euros, asignada a Ana.</p>
       </div>
     </Chapter>
   );

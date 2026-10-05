@@ -76,19 +76,19 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
     const t = state.clock.elapsedTime;
     // los progresos se quedan en 0 antes del capítulo y en 1 después: sirven también fuera del tramo pegado
     const pr = s.progress.radar;
-    const pp = s.progress.prologo;
+    
     const o = s.onScreen;
     // solo mientras el prólogo o el 01 tocan el viewport; nunca con la ciudad (ahí el fondo es el skyline)
-    const visible = !!(o.prologo || o.radar) && !(o.ciudad || o.bandeja);
+    const visible = !!o.radar;
     if (group.current) group.current.visible = visible;
     if (!visible) return;
 
     // Opacidad: entra durante el prólogo, se apaga en el último tramo del 01
-    const fadeIn = Math.min(1, pp / 0.7);
+    const fadeIn = 0.85;
     const fadeOut = 1 - Math.max(0, pr - 0.85) / 0.15;
     const opacity = Math.max(0, Math.min(1, fadeIn * fadeOut));
 
-    const angle = -t * 0.8;
+    const angle = s.reducedMotion ? -1 : -t * 0.35;
     if (sweepMat.current) {
       sweepMat.current.uniforms.uAngle.value = angle;
       sweepMat.current.uniforms.uOpacity.value = opacity;

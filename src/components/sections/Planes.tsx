@@ -7,13 +7,13 @@ import { useReveal } from "@/components/motion/reveal";
 
 function Tick({ on }: { on: boolean }) {
   return on ? (
-    <span className="chk" aria-label="incluido">
+    <span className="chk" role="img" aria-label="Incluido">
       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5" aria-hidden="true">
         <path d="M20 6 9 17l-5-5" />
       </svg>
     </span>
   ) : (
-    <span className="inline-block h-px w-[14px] bg-grey4" aria-label="no incluido" />
+    <span className="inline-block h-px w-[14px] bg-grey4" role="img" aria-label="No incluido" />
   );
 }
 
@@ -33,12 +33,12 @@ export function Planes() {
             <Kicker module="Planes" what="tres cuotas mensuales, según lo que use tu agencia" />
           </div>
           <h2 id="planes-h" data-reveal className="t-h1 m-0 text-white8">
-            Un precio claro. Sin coste por usuario.
+            Una cuota para toda tu agencia.
             <br />
-            <span className="text-grey5">De 250 € al mes al plan completo.</span>
+            <span className="text-grey5">Elige lo que necesita tu agencia.</span>
           </h2>
           <p data-reveal className="t-lead m-0 mt-6 max-w-[560px] text-grey6">
-            Toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; tener todas las fincas de tus calles, con y sin división horizontal, es lo que abre la siguiente.
+            Empieza con captación y gestión comercial. Añade Catastro para explorar fincas, o el plan Completo para incorporar obra, facturación e informes.
           </p>
         </div>
 
@@ -93,12 +93,13 @@ export function Planes() {
           ))}
         </ul>
 
-        <div className="mt-14 md:mt-20">
-          <h3 data-reveal className="t-h2 m-0 mb-5 text-white8">
-            Qué entra en cada plan
-          </h3>
-          <div data-reveal className="overflow-x-auto rounded-[12px] border border-[#222222]">
+        <div className="mt-10 md:mt-14">
+          <details className="plan-comparison">
+          <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 border-y border-grey4 py-4 text-[16px] text-white7">Comparar todos los módulos <span aria-hidden="true">＋</span></summary>
+          <p className="text-[12px] text-grey6 md:hidden">Desliza la tabla para consultar los tres planes.</p>
+          <div tabIndex={0} role="region" aria-label="Comparación de planes, tabla desplazable" className="mt-5 overflow-x-auto rounded-[12px] border border-[#222222]">
             <table className="w-full min-w-[640px] border-collapse text-[14px]">
+              <caption className="sr-only">Módulos incluidos en cada plan de STATECRM</caption>
               <thead>
                 <tr className="bg-black1 text-left">
                   <th scope="col" className="px-5 py-3 text-[11px] font-medium uppercase tracking-[0.12em] text-grey5">Módulo</th>
@@ -123,6 +124,7 @@ export function Planes() {
               </tbody>
             </table>
           </div>
+          </details>
           <p data-reveal className="t-body m-0 mt-6 max-w-[600px] text-grey6">
             ¿No sabes qué plan te encaja? En la demo lo vemos con tu zona y te decimos qué módulos tienen sentido para tu agencia.
           </p>

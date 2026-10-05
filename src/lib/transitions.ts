@@ -7,8 +7,8 @@
 export type TransitionId = "saber" | "cerrar";
 
 export const transitions: Record<TransitionId, string> = {
-  // tras el hero: el problema (volumen) y la promesa (statecrm lo sabe)
-  saber: "Cientos de propiedades nuevas cada día. Y statecrm lo sabe todo sobre ellas.",
-  // tras los módulos: el resultado, en vocabulario de agencia
-  cerrar: "Menos mañanas mirando portales. Más visitas en el calendario.",
+  // tras el hero: enmarca de forma directa lo que va a mostrar la escena de Captación
+  saber: "Cada mañana, anuncios nuevos de particulares en las zonas que te importan.",
+  // tras los módulos: el resultado que experimenta el equipo
+  cerrar: "La oportunidad entra. El equipo sabe cuál es el siguiente paso.",
 };

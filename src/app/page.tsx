@@ -1,6 +1,5 @@
 import { Nav } from "@/components/shell/Nav";
 import { StageClient } from "@/components/canvas/StageClient";
-import { Prologo } from "@/components/chapters/00-Prologo";
 import { Radar } from "@/components/chapters/01-Radar";
 import { Ciudad } from "@/components/chapters/02-Ciudad";
 import { Bandeja } from "@/components/chapters/02-Bandeja";
@@ -15,28 +14,21 @@ import { Planes } from "@/components/sections/Planes";
 import { Proceso } from "@/components/sections/Proceso";
 import { TextReveal } from "@/components/sections/TextReveal";
 
-/**
- * La landing es un único scroll: diez capítulos en orden, el canvas 3D detrás
- * y una sola capa fija (la cabecera). Dónde estás lo dice el kicker de cada sección (número y
- * módulo), una sola vez; las notificaciones viven dentro de cada capítulo.
- * Tras el hero, una frase de transición (TextReveal) y el camino de captación paso a paso, frotado
- * por el scroll (Proceso; el Catastro va por libre y se cuenta en su propio capítulo);
- * tras la pantalla animada de cada módulo entra su texto (ModuleText); otra frase cierra los módulos
- * antes del producto, y antes de la demo, los planes.
+/** A direct product introduction, the skyline sequence and the connected agency workflow.
+ * Supporting explanations, module index, pricing and a configured demo destination follow.
  */
 export default function Page() {
   return (
     <>
+      <a href="#contenido" className="skip-link">Saltar al contenido</a>
       <StageClient />
       <Nav />
-      <main className="relative z-[1]">
-        <Prologo />
+      <main id="contenido" tabIndex={-1} className="relative z-[1]">
         <Radar />
-        <TextReveal id="saber" />
-        <Proceso />
         <Ciudad />
         <Bandeja />
         <ModuleText id="captacion" />
+        <Proceso />
         <Catastro />
         <ModuleText id="catastro" />
         <Seguimiento />
