@@ -39,7 +39,7 @@ export function Nav() {
         <Logo progress />
       </a>
 
-      <nav className="hidden items-center gap-7 md:flex" aria-label="Capítulos">
+      <nav className="hidden items-center gap-8 md:flex" aria-label="Capítulos">
         {links.map((l) => {
           const idx = l.chapter ? chapterIndex[l.chapter] : Infinity;
           const seen = activeIdx > idx;
@@ -48,7 +48,7 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="flex items-center gap-[6px] text-[13px] font-medium no-underline transition-colors"
+              className="flex items-center gap-[6px] text-[14px] font-medium no-underline transition-colors"
               style={{ color: on ? "#fff" : seen ? "#A3A3A3" : "#6E6E6E" }}
             >
               {l.label}

@@ -52,10 +52,10 @@ export function Obra() {
 
   return (
     <Chapter id="obra">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[110px] md:w-[420px]">
+        <div className="copy copy-block">
           <ChapterCopy module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." body="Presupuestos por partidas que se convierten en factura en un clic, con su PDF. E informes por oficina y por operación." />
           <div className="mt-6 hidden md:block">
             <CheckList items={["Presupuestos por partidas, con estados y tasa de aceptación", "Conversión a factura en un clic, PDF incluido", "Facturas enlazadas al inmueble y al cliente", "Informes por oficina y por operación"]} />

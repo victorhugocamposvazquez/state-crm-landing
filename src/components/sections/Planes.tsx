@@ -26,19 +26,19 @@ export function Planes() {
   useReveal(ref);
 
   return (
-    <section ref={ref} id="planes" className="relative z-[2] border-t border-[#171717] bg-black0 py-[64px] gutter md:py-[112px]" aria-labelledby="planes-h">
+    <section ref={ref} id="planes" className="relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[128px]" aria-labelledby="planes-h">
       <div className="mx-auto max-w-[1200px]">
         <div className="max-w-[760px]">
-          <div data-reveal className="mb-5">
+          <div data-reveal className="mb-6">
             <Kicker module="Planes" what="tres cuotas mensuales, según lo que use tu agencia" />
           </div>
-          <h2 id="planes-h" data-reveal className="display m-0 text-[30px] text-white8 md:text-[44px]">
-            Un precio claro.
+          <h2 id="planes-h" data-reveal className="t-h1 m-0 text-white8">
+            Un precio claro. Sin coste por usuario.
             <br />
             <span className="text-grey5">De 250 € al mes al plan completo, con todas las opciones.</span>
           </h2>
-          <p data-reveal className="m-0 mt-6 max-w-[560px] text-[15px] leading-[1.65] text-grey6 md:text-[17px]">
-            Sin coste por usuario: toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; saber qué finca es y pedir la nota simple sin salir del CRM es lo que cierra la captación.
+          <p data-reveal className="t-lead m-0 mt-6 max-w-[560px] text-grey6">
+            Toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; saber qué finca es y pedir la nota simple sin salir del CRM es lo que cierra la captación.
           </p>
         </div>
 
@@ -52,14 +52,14 @@ export function Planes() {
             >
               <header className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                  <span className={`text-[11px] uppercase tracking-[0.12em] ${p.highlight ? "text-green" : "text-grey5"}`}>{p.name}</span>
+                  <span className={`t-label ${p.highlight ? "text-green" : "text-grey5"}`}>{p.name}</span>
                   {p.badge && <span className="st st-g">{p.badge}</span>}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[36px] font-medium tracking-[-0.02em] text-white8">{p.price}</span>
-                  <span className="mono text-[12px] text-grey5">{p.unit}</span>
+                  <span className="text-[40px] font-medium leading-none tracking-[-0.02em] text-white8">{p.price}</span>
+                  <span className="mono text-[13px] text-grey5">{p.unit}</span>
                 </div>
-                <p className="m-0 text-[15px] leading-[1.55] text-white7">{p.lead}</p>
+                <p className="t-body m-0 text-white7">{p.lead}</p>
               </header>
 
               <ul className="m-0 flex list-none flex-col gap-[14px] p-0">
@@ -94,7 +94,7 @@ export function Planes() {
         </ul>
 
         <div className="mt-14 md:mt-20">
-          <h3 data-reveal className="display m-0 mb-4 text-[22px] text-white8 md:text-[28px]">
+          <h3 data-reveal className="t-h2 m-0 mb-5 text-white8">
             Qué entra en cada plan
           </h3>
           <div data-reveal className="overflow-x-auto rounded-[12px] border border-[#222222]">
@@ -123,7 +123,7 @@ export function Planes() {
               </tbody>
             </table>
           </div>
-          <p data-reveal className="m-0 mt-6 max-w-[640px] text-[14px] leading-[1.6] text-grey6 md:text-[15px]">
+          <p data-reveal className="t-body m-0 mt-6 max-w-[600px] text-grey6">
             ¿No sabes qué plan te encaja? En la demo lo vemos con tu zona y te decimos qué módulos tienen sentido para tu agencia.
           </p>
         </div>

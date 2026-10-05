@@ -12,10 +12,12 @@ export function Check({ size = 10 }: { size?: number }) {
 
 export function CheckList({ items }: { items: string[] }) {
   return (
-    <ul className="m-0 flex list-none flex-col gap-3 p-0 text-[14px] text-white7 md:text-[15px]">
+    <ul className="m-0 flex list-none flex-col gap-[10px] p-0 text-[14px] leading-[1.5] text-white7">
       {items.map((t) => (
-        <li key={t} className="flex items-center gap-3">
-          <Check />
+        <li key={t} className="flex items-start gap-3">
+          <span className="mt-[1px]">
+            <Check />
+          </span>
           {t}
         </li>
       ))}
@@ -36,19 +38,24 @@ export function Dot({ color = "#22C55E", glow = true }: { color?: string; glow?:
   );
 }
 
-/** Copy de capítulo: hora + dos frases. */
-/** Etiqueta de módulo: qué es esto, para quien no sigue la historia. */
+/**
+ * Etiqueta de módulo: qué es esto, para quien no sigue la historia.
+ * El anillo de la marca como indicador de fase, el módulo en versalitas y el contexto en gris.
+ */
 export function Kicker({ module, what }: { module: string; what: string }) {
   return (
-    <div className="flex items-center gap-[10px] text-[13px]">
-      <span className="h-[14px] w-[14px] flex-shrink-0 rounded-[3px] border border-grey5" />
-      <span className="font-medium text-white8">{module}</span>
-      <span className="text-grey4">·</span>
-      <span className="text-grey6">{what}</span>
+    <div className="flex flex-wrap items-center gap-x-[10px] gap-y-1">
+      <svg width="12" height="12" viewBox="0 0 44 44" fill="none" aria-hidden="true" className="flex-shrink-0">
+        <circle cx="22" cy="22" r="12" stroke="#6E6E6E" strokeWidth="6" />
+        <path d="M22 10 A12 12 0 0 1 34 22" stroke="#FFFFFF" strokeWidth="6" />
+      </svg>
+      <span className="t-label text-white7">{module}</span>
+      <span className="t-small text-grey5">{what}</span>
     </div>
   );
 }
 
+/** Copy de capítulo: etiqueta de módulo, titular (con remate en gris) y un párrafo. */
 export function ChapterCopy({
   module,
   what,
@@ -65,9 +72,9 @@ export function ChapterCopy({
   className?: string;
 }) {
   return (
-    <div className={`flex flex-col gap-5 ${className}`}>
+    <div className={`flex flex-col gap-4 md:gap-5 ${className}`}>
       {module && what && <Kicker module={module} what={what} />}
-      <h2 className="display m-0 text-[30px] text-white8 md:text-[40px]">
+      <h2 className="t-h1 m-0 text-white8">
         {title}
         {grey && (
           <>
@@ -76,7 +83,7 @@ export function ChapterCopy({
           </>
         )}
       </h2>
-      {body && <p className="m-0 max-w-[460px] text-[15px] leading-[1.6] text-grey6 md:text-[17px]">{body}</p>}
+      {body && <p className="t-body m-0 max-w-[440px] text-grey6">{body}</p>}
     </div>
   );
 }

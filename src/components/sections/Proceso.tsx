@@ -153,10 +153,10 @@ export function Proceso() {
   }, []);
 
   return (
-    <section ref={ref} id="proceso" className="relative z-[2] border-t border-[#171717] bg-black0 py-[64px] gutter md:py-[112px]" aria-labelledby="proceso-h">
+    <section ref={ref} id="proceso" className="relative z-[2] border-t border-[#171717] bg-black0 py-[80px] gutter md:py-[128px]" aria-labelledby="proceso-h">
       <div className="mx-auto flex max-w-[900px] flex-col items-center">
         <div data-reveal className="mb-8">
-          <Kicker module="Cómo funciona" what="un piso, de la captación a la venta" />
+          <Kicker module="Cómo funciona" what="del anuncio a la reserva, en seis pasos" />
         </div>
 
         {/* la ventana del CRM */}
@@ -211,13 +211,14 @@ export function Proceso() {
         </div>
 
         {/* el texto grande debajo */}
-        <div className="mt-12 max-w-[820px] text-center md:mt-16">
-          <h2 id="proceso-h" data-reveal className="display m-0 text-[28px] text-white8 md:text-[44px]">
-            Del anuncio del particular a la reserva,{" "}
-            <span className="hl">sin salir del CRM</span>.
+        <div className="mt-14 max-w-[820px] text-center md:mt-20">
+          <h2 id="proceso-h" data-reveal className="t-h1 m-0 text-white8">
+            <span className="text-grey5">statecrm detecta, captura, vincula y cruza.</span>
+            <br />
+            Tu equipo llama, enseña y cierra.
           </h2>
-          <p data-reveal className="mx-auto mt-6 max-w-[640px] text-[16px] leading-[1.6] text-grey6 md:text-[18px]">
-            statecrm detecta el anuncio, captura el teléfono, vincula la finca, cruza la demanda y pone la visita en el calendario. Tu equipo llama, enseña y cierra.
+          <p data-reveal className="t-lead mx-auto mt-6 max-w-[600px] text-grey6">
+            Cada paso lo da el CRM solo y avisa al comercial cuando le toca actuar: un teléfono capturado, una finca vinculada, una demanda que coincide, una visita en el calendario.
           </p>
         </div>
       </div>

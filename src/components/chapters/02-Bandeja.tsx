@@ -36,10 +36,10 @@ export function Bandeja() {
 
   return (
     <Chapter id="bandeja">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ right: "-14%", top: "6%", width: 1100, height: 800 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[112px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[140px] md:w-[400px]">
+        <div className="copy copy-block">
           <ChapterCopy
             module="Captación"
             what="la bandeja con lo que ha entrado hoy"
@@ -73,7 +73,7 @@ export function Bandeja() {
         </div>
 
         <div
-          className="absolute bottom-0 right-0 top-[300px] md:left-[480px] md:top-[100px] lg:left-[540px]"
+          className="absolute bottom-0 right-0 top-[300px] md:left-[520px] md:top-[100px] lg:left-[560px]"
           style={{ perspective: 1800, perspectiveOrigin: "20% 40%", width: "100%", maxWidth: 900 }}
         >
           <div className="panel3d panel relative mx-[var(--gutter)] md:mx-0" style={{ transformStyle: "preserve-3d", transform: "rotateY(-9deg) rotateX(5deg)", opacity: 0 }}>

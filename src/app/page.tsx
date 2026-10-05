@@ -14,12 +14,14 @@ import { Manana } from "@/components/chapters/08-Manana";
 import { ModuleText } from "@/components/sections/ModuleText";
 import { Planes } from "@/components/sections/Planes";
 import { Proceso } from "@/components/sections/Proceso";
+import { TextReveal } from "@/components/sections/TextReveal";
 
 /**
  * La landing es un único scroll: diez capítulos en orden, el canvas 3D detrás
  * y dos capas fijas (cabecera y pizarra). Las notificaciones viven dentro de cada capítulo.
- * Tras el hero, el proceso completo de un vistazo (Proceso); tras la pantalla animada de cada
- * módulo entra su texto (ModuleText), y antes de la demo, los planes.
+ * Tras el hero, una frase de transición (TextReveal) y el proceso completo de un vistazo (Proceso);
+ * tras la pantalla animada de cada módulo entra su texto (ModuleText); otra frase cierra los módulos
+ * antes del producto, y antes de la demo, los planes.
  */
 export default function Page() {
   return (
@@ -30,6 +32,7 @@ export default function Page() {
       <main className="relative z-[1]">
         <Prologo />
         <Radar />
+        <TextReveal id="saber" />
         <Proceso />
         <Ciudad />
         <Bandeja />
@@ -42,6 +45,7 @@ export default function Page() {
         <ModuleText id="equipo" />
         <Obra />
         <ModuleText id="obra" />
+        <TextReveal id="cerrar" />
         <Producto />
         <ModuleText id="plataforma" />
         <Planes />

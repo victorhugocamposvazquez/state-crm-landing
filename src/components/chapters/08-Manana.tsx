@@ -23,7 +23,7 @@ export function Manana() {
 
   return (
     <Chapter id="manana">
-      <div ref={ref} className="relative flex h-full flex-col gutter">
+      <div ref={ref} className="stagewrap flex flex-col">
         <div className="halo" style={{ left: "50%", top: "30%", width: 900, height: 700, transform: "translate(-50%,-50%)" }} />
 
         <div className="relative mx-auto mt-[90px] flex flex-col items-center md:mt-[100px]">
@@ -40,26 +40,26 @@ export function Manana() {
           </div>
         </div>
 
-        <div className="h mt-8 flex flex-col items-center gap-4 text-center" style={{ opacity: 0 }}>
+        <div className="h mt-8 flex flex-col items-center gap-5 text-center" style={{ opacity: 0 }}>
           <Kicker module="Demo" what="30 minutos, con tu zona y anuncios reales" />
-          <h2 className="display m-0 max-w-[900px] text-[30px] text-white8 md:text-[46px]">
+          <h2 className="t-h1 m-0 max-w-[820px] text-white8">
             Mañana, a las 7:40, alguien volverá a publicar.
             <br />
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>
-          <p className="m-0 max-w-[620px] text-[14px] leading-[1.6] text-grey6 md:text-[16px]">
+          <p className="t-lead m-0 max-w-[560px] text-grey6">
             Te enseñamos statecrm con tu zona: los anuncios de particulares de esta mañana y uno de ellos cruzado con el catastro.
           </p>
         </div>
 
         <div className="mx-auto mt-10 w-full max-w-[560px] md:mt-14">
           <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => e.preventDefault()}>
-            <label htmlFor="nombre" className="text-[12px] text-grey6 sm:col-span-2">
+            <label htmlFor="nombre" className="t-small text-grey6 sm:col-span-2">
               Nombre y agencia
             </label>
             <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
             <input id="agencia" name="agencia" type="text" placeholder="Agencia y ciudad" aria-label="Agencia y ciudad" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5" />
-            <label htmlFor="email" className="text-[12px] text-grey6 sm:col-span-2">
+            <label htmlFor="email" className="t-small text-grey6 sm:col-span-2">
               Email
             </label>
             <input id="email" name="email" type="email" placeholder="tu@agencia.es" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5 sm:col-span-2" />

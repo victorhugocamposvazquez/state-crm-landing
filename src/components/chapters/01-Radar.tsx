@@ -25,22 +25,22 @@ export function Radar() {
 
   return (
     <Chapter id="radar">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ right: "-10%", bottom: "-20%", width: 900, height: 700 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[34%] max-w-[880px] -translate-y-1/2 md:top-[42%]" style={{ opacity: 0 }}>
-          <div className="mb-6">
+        <div className="copy absolute left-[var(--gutter)] top-[40%] w-[calc(100%-2*var(--gutter))] max-w-[860px] -translate-y-1/2 md:top-[46%]" style={{ opacity: 0 }}>
+          <div className="mb-7">
             <Kicker module="statecrm" what="CRM inmobiliario a medida para agencias" />
           </div>
-          <h1 className="display m-0 text-[38px] text-white8 md:text-[64px] lg:text-[72px]">
-            <span className="l1 block">Antes de que lo sepa nadie,</span>
-            <span className="l2 block text-grey5">lo sabe tu CRM.</span>
+          <h1 className="t-hero m-0 text-white8">
+            <span className="l1 block">El CRM inmobiliario para ganar</span>
+            <span className="l2 block text-grey5">la captación de particulares.</span>
           </h1>
-          <p className="sub mt-6 max-w-[560px] text-[14px] leading-[1.6] text-grey6 md:text-[17px]">
-            Cada mañana detecta los pisos que acaban de publicar los particulares y te los pone en el CRM, con teléfono.
-            Y lleva el resto del día de la agencia: catastro, seguimiento, equipo, obra y facturación.
+          <p className="sub t-lead mt-7 max-w-[560px] text-grey6">
+            Multiplica lo que capta tu agencia con un CRM que sabe, cada mañana, qué han publicado los particulares,
+            qué finca hay detrás de cada anuncio y qué cliente la está buscando.
           </p>
-          <div className="cta mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="cta mt-8 flex flex-col gap-3 sm:flex-row">
             <a href="#proceso" className="btn btn-w">
               Ver cómo funciona
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">

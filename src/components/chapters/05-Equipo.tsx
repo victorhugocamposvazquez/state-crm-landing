@@ -50,10 +50,10 @@ export function Equipo() {
 
   return (
     <Chapter id="equipo">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[110px] md:w-[420px]">
+        <div className="copy copy-block">
           <ChapterCopy module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." body="Cada comercial ve lo suyo; el responsable ve a todo el equipo. Dos oficinas o diez, y en el móvil del comercial sin instalar nada." />
           <div className="mt-6 hidden md:block">
             <CheckList items={["Tareas personales y del equipo, con prioridad", "Calendario compartido: visitas, firmas, llamadas", "Varias oficinas en el mismo calendario", "En el móvil sin instalar nada, con búsqueda global"]} />

@@ -27,29 +27,29 @@ export function Ciudad() {
 
   return (
     <Chapter id="ciudad">
-      <div ref={ref} className="relative h-full gutter">
-        <div className="copy absolute left-[var(--gutter)] top-[112px] max-w-[560px] md:top-[128px]">
+      <div ref={ref} className="stagewrap">
+        <div className="copy copy-block md:w-[560px]">
           <div className="kick mb-5" style={{ opacity: 0 }}>
             <Kicker module="Captación" what="detecta los anuncios de particulares en los portales" />
           </div>
-          <div className="relative h-[120px] md:h-[150px]">
-            <h2 className="t1 display absolute m-0 text-[32px] text-white8 md:text-[42px]">
+          <div className="relative h-[72px] md:h-[112px]">
+            <h2 className="t1 t-h1 absolute m-0 text-white8">
               Un particular
               <br />
               <span className="text-grey5">publica su piso.</span>
             </h2>
-            <h2 className="t2 display absolute m-0 text-[32px] text-white8 md:text-[42px]" style={{ opacity: 0 }}>
+            <h2 className="t2 t-h1 absolute m-0 text-white8" style={{ opacity: 0 }}>
               Un minuto después
               <br />
               <span className="text-grey5">está en tu CRM.</span>
             </h2>
-            <h2 className="t3 display absolute m-0 text-[32px] text-white8 md:text-[42px]" style={{ opacity: 0 }}>
+            <h2 className="t3 t-h1 absolute m-0 text-white8" style={{ opacity: 0 }}>
               Toda la ciudad,
               <br />
               <span className="text-grey5">cada mañana.</span>
             </h2>
           </div>
-          <p className="m-0 mt-4 max-w-[420px] text-[14px] leading-[1.6] text-grey6 md:text-[15px]">
+          <p className="t-body m-0 mt-5 max-w-[440px] text-grey6">
             Cada punto es un anuncio de particular recién publicado. statecrm rastrea los portales cada mañana y lo guarda con precio, metros, habitaciones y teléfono. Sin buscar a mano.
           </p>
         </div>

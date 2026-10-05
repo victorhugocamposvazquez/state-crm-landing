@@ -31,7 +31,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "captacion",
     module: "Captación",
     what: "anuncios de particulares, cada mañana",
-    title: "Los pisos que los particulares publican hoy, en tu CRM antes de abrir la oficina.",
+    title: "Captura cada mañana los anuncios de particulares, con teléfono, antes de que abra la oficina.",
     body:
       "Cada mañana statecrm rastrea los portales en tus zonas y guarda cada anuncio nuevo de particular con precio, metros, fotos y teléfono. Distingue particular, agencia y agencia encubierta, y lo que entra se asigna a un comercial.",
     features: [
@@ -45,7 +45,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "catastro",
     module: "Catastro",
     what: "la finca real detrás de cada anuncio",
-    title: "Del anuncio a la referencia catastral y a la nota simple, sin salir del CRM.",
+    title: "Vincula cada anuncio a su finca real y pide la nota simple sin salir del CRM.",
     body:
       "Un anuncio dice «92 m² en el centro»; el Catastro dice qué finca es. statecrm rastrea la zona por calle o código postal, separa las fincas candidatas y vincula el inmueble a su referencia. La nota simple se pide desde la misma ficha.",
     features: [
@@ -59,7 +59,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "seguimiento",
     module: "Inmuebles · Demandas · Seguimiento",
     what: "tu cartera, tus clientes y cada operación",
-    title: "Cada piso que entra se cruza con lo que buscan tus clientes.",
+    title: "Cruza cada piso nuevo con lo que buscan tus clientes y avisa al comercial en el momento.",
     body:
       "La cartera, las demandas de los clientes y cada operación, conectadas con la captación. Cuando entra un piso que encaja con una demanda, el CRM avisa al comercial; a partir de ahí la operación avanza por etapas: captado, contacto, visita, oferta, reserva.",
     features: [
@@ -73,7 +73,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "equipo",
     module: "Tareas · Calendario",
     what: "el trabajo de todo el equipo, a la vista",
-    title: "Cada comercial ve lo suyo. El responsable, a todo el equipo.",
+    title: "Reparte el trabajo del día y pone visitas, firmas y llamadas en un calendario que ve todo el equipo.",
     body:
       "Las tareas del día tienen responsable, prioridad y hora. Las visitas, firmas y llamadas van a un calendario compartido, con varias oficinas si las hay. Y funciona en el móvil del comercial sin instalar nada.",
     features: [
@@ -87,7 +87,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "obra",
     module: "Presupuestos · Facturas · Informes",
     what: "la obra y la facturación, en la ficha del piso",
-    title: "Si tu agencia también reforma: del presupuesto a la factura cobrada.",
+    title: "Convierte el presupuesto aceptado en factura con un clic, dentro de la ficha del piso.",
     body:
       "El presupuesto de la reforma se hace por partidas en la ficha del piso. Cuando el cliente acepta, un clic lo convierte en factura con su PDF. Los informes recogen captación, seguimiento y obra por oficina.",
     features: [
@@ -100,7 +100,7 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "plataforma",
     module: "Hecho a medida",
     what: "cómo se construye y cómo arranca",
-    title: "Se construye con los módulos y las reglas de tu agencia.",
+    title: "Construido para agencias que trabajan a su manera.",
     body:
       "statecrm se monta con los módulos que necesitas, con tus etapas, tus campos y tus informes. Al arrancar migramos la cartera que ya tienes, formamos al equipo y lo dejamos funcionando con tus zonas de captación activas.",
     features: [

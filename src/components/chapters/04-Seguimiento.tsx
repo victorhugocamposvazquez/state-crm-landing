@@ -44,10 +44,10 @@ export function Seguimiento() {
 
   return (
     <Chapter id="seguimiento">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ left: "20%", top: "10%", width: 1100, height: 700 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[96px] md:w-[760px]">
+        <div className="copy copy-block md:w-[760px]">
           <ChapterCopy
             module="Inmuebles · Demandas · Seguimiento"
             what="tu cartera, cruzada con lo que buscan tus clientes"
@@ -57,7 +57,7 @@ export function Seguimiento() {
         </div>
 
         {/* Inmuebles */}
-        <div className="absolute left-[var(--gutter)] top-[280px] hidden w-[520px] md:block" style={{ perspective: 1600 }}>
+        <div className="absolute left-[var(--gutter)] top-[350px] hidden w-[520px] md:block" style={{ perspective: 1600 }}>
           <div className="inm panel flex flex-col gap-3 p-4" style={{ transformStyle: "preserve-3d", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Inmuebles</span>
@@ -103,7 +103,7 @@ export function Seguimiento() {
         </div>
 
         {/* Demandas */}
-        <div className="absolute right-0 top-[330px] h-[220px] w-full overflow-hidden md:left-[560px] md:right-auto md:top-[290px] md:w-[760px]">
+        <div className="absolute right-0 top-[330px] h-[220px] w-full overflow-hidden md:left-[560px] md:right-auto md:top-[360px] md:w-[760px]">
           {demands.map((d, i) => (
             <div
               key={d.who}
@@ -134,7 +134,7 @@ export function Seguimiento() {
         </div>
 
         {/* Kanban */}
-        <div className="absolute inset-x-0 bottom-0 top-[520px] md:left-[560px] md:top-[520px]" style={{ perspective: 1400, perspectiveOrigin: "0% 50%" }}>
+        <div className="absolute inset-x-0 bottom-0 top-[520px] md:left-[560px] md:top-[570px]" style={{ perspective: 1400, perspectiveOrigin: "0% 50%" }}>
           <div className="kanban panel absolute left-[var(--gutter)] flex w-[900px] flex-col gap-3 p-4 md:left-0" style={{ transform: "rotateY(-14deg)", transformOrigin: "left center", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Seguimiento</span>

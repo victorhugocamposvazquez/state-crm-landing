@@ -53,10 +53,10 @@ export function Catastro() {
 
   return (
     <Chapter id="catastro">
-      <div ref={ref} className="relative h-full gutter">
+      <div ref={ref} className="stagewrap">
         <div className="halo" style={{ right: "-8%", top: 0, width: 1000, height: 800 }} />
 
-        <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[120px] md:w-[400px]">
+        <div className="copy copy-block">
           <ChapterCopy
             module="Catastro"
             what="localiza la finca real detrás de cada anuncio"
@@ -76,7 +76,7 @@ export function Catastro() {
         </div>
 
         {/* Historial de rastreos, compacto */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[400px] flex-col gap-1 p-4 md:flex" style={{ opacity: 0 }}>
+        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[440px] flex-col gap-1 p-4 md:flex" style={{ opacity: 0 }}>
           <div className="mb-1 flex items-center justify-between text-[13px] text-white8">
             <span>Historial de rastreos</span>
             <span className="mono text-[11px] text-grey5">por calle · por código postal</span>
@@ -98,7 +98,7 @@ export function Catastro() {
         </div>
 
         {/* El mapa en 3D */}
-        <div className="absolute inset-x-0 bottom-0 top-[330px] md:left-[460px] md:right-[var(--gutter)] md:top-[20px]" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
+        <div className="absolute inset-x-0 bottom-0 top-[330px] md:left-[520px] md:right-[var(--gutter)] md:top-[20px]" style={{ perspective: 1500, perspectiveOrigin: "50% 20%" }}>
           <div
             className="map3d absolute left-[var(--gutter)] right-[var(--gutter)] top-[20px] md:left-0 md:right-0 md:top-[70px]"
             style={{ transform: "rotateX(38deg)", transformOrigin: "50% 35%", opacity: 0, maskImage: "radial-gradient(ellipse at 50% 45%, #000 55%, transparent 85%)" }}
