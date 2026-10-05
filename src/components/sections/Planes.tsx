@@ -35,7 +35,7 @@ export function Planes() {
           <h2 id="planes-h" data-reveal className="t-h1 m-0 text-white8">
             Un precio claro. Sin coste por usuario.
             <br />
-            <span className="text-grey5">De 250 € al mes al plan completo, con todas las opciones.</span>
+            <span className="text-grey5">De 250 € al mes al plan completo.</span>
           </h2>
           <p data-reveal className="t-lead m-0 mt-6 max-w-[560px] text-grey6">
             Toda la agencia entra con la cuota. El plan Catastro es el recomendado: captar es el principio; tener todas las fincas de tus calles, con y sin división horizontal, es lo que abre la siguiente.

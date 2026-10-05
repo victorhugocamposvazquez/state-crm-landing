@@ -7,8 +7,8 @@ import { chapters, chapterIndex, type ChapterId, type LiveEvent, type ToastCorne
 const corners: Record<ToastCorner, string> = {
   br: "bottom-4 right-[var(--gutter)] md:bottom-7",
   bl: "bottom-4 left-[var(--gutter)] md:bottom-7",
-  tr: "top-[120px] right-[var(--gutter)] md:top-[96px]",
-  tl: "top-[120px] left-[var(--gutter)] md:top-[96px]",
+  tr: "top-[var(--copy-top)] right-[var(--gutter)]",
+  tl: "top-[var(--copy-top)] left-[var(--gutter)]",
 };
 
 /**

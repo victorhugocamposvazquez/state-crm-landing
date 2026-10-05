@@ -26,7 +26,7 @@ export function Manana() {
       <div ref={ref} className="stagewrap flex flex-col">
         <div className="halo" style={{ left: "50%", top: "30%", width: 900, height: 700, transform: "translate(-50%,-50%)" }} />
 
-        <div className="relative mx-auto mt-[90px] flex flex-col items-center md:mt-[100px]">
+        <div className="relative mx-auto mt-[var(--copy-top)] flex flex-col items-center">
           <div className="ring relative" style={{ opacity: 0 }}>
             <svg width="120" height="120" viewBox="0 0 220 220" fill="none" aria-hidden="true">
               <circle cx="110" cy="110" r="84" stroke="#6E6E6E" strokeWidth="28" />
@@ -41,9 +41,9 @@ export function Manana() {
         </div>
 
         <div className="h mt-8 flex flex-col items-center gap-5 text-center" style={{ opacity: 0 }}>
-          <Kicker module="Demo" what="30 minutos, con tu zona y anuncios reales" />
+          <Kicker n="08" module="Demo" what="30 minutos, con tu zona y anuncios reales" />
           <h2 className="t-h1 m-0 max-w-[820px] text-white8">
-            Mañana, a las 7:40, alguien volverá a publicar.
+            Mañana alguien volverá a publicar.
             <br />
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>

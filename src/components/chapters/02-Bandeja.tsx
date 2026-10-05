@@ -51,7 +51,7 @@ export function Bandeja() {
                 ya filtrado.
               </>
             }
-            grey="Particular, agencia o agencia disfrazada."
+            grey="Y quién hay detrás de cada anuncio."
             body="Cada anuncio llega con teléfono, fotos y prioridad, y se asigna a un comercial. Lo que entra hoy y lo que ya estás trabajando, en la misma lista."
           />
           <div className="copy-extra mt-6">

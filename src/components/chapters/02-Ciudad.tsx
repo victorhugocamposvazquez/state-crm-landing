@@ -28,11 +28,11 @@ export function Ciudad() {
   return (
     <Chapter id="ciudad">
       <div ref={ref} className="stagewrap">
-        <div className="copy copy-block md:w-[520px]">
+        <div className="copy copy-block md:w-[560px]">
           <div className="kick mb-5" style={{ opacity: 0 }}>
-            <Kicker module="Captación" what="detecta los anuncios de particulares en los portales" />
+            <Kicker n="02" module="Captación" what="detecta los anuncios de particulares en los portales" />
           </div>
-          <div className="relative h-[72px] md:h-[112px]">
+          <div className="relative h-[80px] md:h-[120px]">
             <h2 className="t1 t-h1 absolute m-0 text-white8">
               Un particular
               <br />
@@ -54,7 +54,7 @@ export function Ciudad() {
           </p>
         </div>
 
-        <div className="counter mono absolute right-[var(--gutter)] top-[76px] flex items-center gap-[10px] text-[11px] text-grey5 md:top-[84px] md:text-[12px]" style={{ opacity: 0 }}>
+        <div className="counter mono absolute right-[var(--gutter)] top-[var(--copy-top)] flex items-center gap-[10px] text-[11px] text-grey5 md:text-[12px]" style={{ opacity: 0 }}>
           <span className="h-[6px] w-[6px] rounded-full bg-green" style={{ boxShadow: "0 0 10px #22C55E" }} />
           captados_hoy <span className="n text-[16px] text-white8">0</span>
         </div>

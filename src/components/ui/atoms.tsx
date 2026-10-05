@@ -75,7 +75,10 @@ export function Kicker({ n, module, what }: { n?: string; module: string; what: 
   );
 }
 
-/** Copy de capítulo: etiqueta de sección, titular (con remate en gris) y un párrafo. */
+/**
+ * Copy de capítulo: etiqueta de sección, titular (con remate en gris) y un párrafo.
+ * Titular y remate: dos líneas como máximo cada uno (≈ 19 caracteres por línea; ver .t-h1).
+ */
 export function ChapterCopy({
   n,
   module,

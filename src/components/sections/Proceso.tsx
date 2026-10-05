@@ -216,16 +216,6 @@ export function Proceso() {
               </div>
             </div>
           </div>
-
-          {/* los caminos: la captación es uno; el Catastro va por libre */}
-          <div className="mt-8 grid w-full grid-cols-1 gap-5 md:mt-10 md:grid-cols-2 md:gap-12">
-            <p className="t-body m-0 text-grey6">
-              <span className="text-white7">Captación.</span> Cada paso lo da el CRM solo y avisa al comercial cuando le toca actuar: teléfono capturado, llamada, visita, venta.
-            </p>
-            <p className="t-body m-0 text-grey6">
-              <span className="text-white7">Catastro, por libre.</span> Busca todas las fincas de una calle, un código postal o una localidad, con y sin división horizontal, y lo que encuentra alimenta tareas, seguimiento y equipo comercial.
-            </p>
-          </div>
         </div>
       </div>
     </section>

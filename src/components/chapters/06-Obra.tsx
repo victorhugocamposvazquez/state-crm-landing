@@ -57,13 +57,13 @@ export function Obra() {
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." body="Presupuestos por partidas que se convierten en factura en un clic, con su PDF. E informes por oficina y por operación." />
-          <div className="mt-6 hidden md:block">
+          <ChapterCopy n="06" module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." body="Presupuestos por partidas que se convierten en factura en un clic, con su PDF. E informes por oficina y por operación." />
+          <div className="copy-extra mt-6">
             <CheckList items={["Presupuestos por partidas, con estados y tasa de aceptación", "Conversión a factura en un clic, PDF incluido", "Facturas enlazadas al inmueble y al cliente", "Informes por oficina y por operación"]} />
           </div>
         </div>
 
-        <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_280px] md:items-start md:gap-4">
+        <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-4">
           <div className="flex flex-col gap-4">
             {/* pantalla de presupuestos */}
             <div className="screen panel hidden flex-col gap-3 p-[18px] sm:flex" style={{ opacity: 0 }}>

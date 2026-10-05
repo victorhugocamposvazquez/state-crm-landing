@@ -55,8 +55,8 @@ export function Equipo() {
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." body="Cada comercial ve lo suyo; el responsable ve a todo el equipo. Dos oficinas o diez, y en el móvil del comercial sin instalar nada." />
-          <div className="mt-6 hidden md:block">
+          <ChapterCopy n="05" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." body="Cada comercial ve lo suyo; el responsable ve a todo el equipo. Dos oficinas o diez, y en el móvil del comercial sin instalar nada." />
+          <div className="copy-extra mt-6">
             <CheckList items={["Tareas personales y del equipo, con prioridad", "Calendario compartido: visitas, firmas, llamadas", "Varias oficinas en el mismo calendario", "En el móvil sin instalar nada, con búsqueda global"]} />
           </div>
         </div>

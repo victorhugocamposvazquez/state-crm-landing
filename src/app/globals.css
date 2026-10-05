@@ -21,6 +21,8 @@
   /* distancia del borde del viewport al borde del contenido: lo usan las capas fijas (cabecera, pizarra)
      para alinearse con el contenedor centrado en vez de con el borde de la pantalla */
   --edge: max(var(--gutter), calc((100vw - var(--content-max)) / 2 + var(--gutter)));
+  /* dónde empieza el contenido de una pantalla de capítulo: con aire bajo la cabecera (64px) */
+  --copy-top: 112px;
   /* Misma unidad en altura de capítulo y stage: si vh≠dvh aparecen cortinillas */
   --vh-unit: 1vh;
   --stage-h: calc(100 * var(--vh-unit));
@@ -44,10 +46,12 @@
     letter-spacing: -0.05em;
     text-wrap: balance;
   }
-  /* titulares de sección: grandes también en móvil, que se sepa dónde se está */
+  /* titulares de sección: grandes también en móvil, que se sepa dónde se está.
+     Regla de redacción: titular y remate gris ocupan dos líneas como máximo cada uno; a este
+     cuerpo caben ≈ 19 caracteres por línea en la columna de texto (480 px) y en un móvil (335 px). */
   .t-h1 {
     font-weight: 500;
-    font-size: clamp(36px, 1.4rem + 2.2vw, 54px);
+    font-size: clamp(34px, 1.3rem + 2vw, 50px);
     line-height: 1.06;
     letter-spacing: -0.045em;
     text-wrap: balance;
@@ -108,13 +112,12 @@
   .copy-block {
     position: absolute;
     left: var(--gutter);
-    top: 88px;
+    top: var(--copy-top);
     z-index: 10;
     width: calc(100% - 2 * var(--gutter));
   }
   @media (min-width: 768px) {
     .copy-block {
-      top: clamp(96px, 12vh, 128px);
       width: 480px;
     }
   }
@@ -122,7 +125,7 @@
   .copy-extra {
     display: none;
   }
-  @media (min-width: 768px) and (min-height: 721px) {
+  @media (min-width: 768px) and (min-height: 801px) {
     .copy-extra {
       display: block;
     }
@@ -134,13 +137,13 @@
     position: absolute;
     left: var(--gutter);
     right: var(--gutter);
-    top: 432px;
+    top: 456px;
     bottom: 0;
   }
   @media (min-width: 768px) {
     .visual-col {
       left: 540px;
-      top: 96px;
+      top: var(--copy-top); /* arranca a la altura del texto, no pegada a la cabecera */
       bottom: 48px;
     }
   }
@@ -168,6 +171,11 @@
   :root {
     --gutter: 20px;
     --vh-unit: 0.8vh; /* tramos más cortos; --stage-h sigue en 100× esta unidad */
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --copy-top: clamp(136px, 15vh, 176px);
   }
 }
 

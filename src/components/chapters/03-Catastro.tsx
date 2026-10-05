@@ -68,6 +68,7 @@ export function Catastro() {
 
         <div className="copy copy-block">
           <ChapterCopy
+            n="03"
             module="Catastro"
             what="fincas por calle, código postal o localidad"
             title={
@@ -80,7 +81,7 @@ export function Catastro() {
             grey="Con y sin división horizontal."
             body="Eliges una calle, un código postal o una localidad y statecrm recorre el Catastro finca a finca: las que tienen división horizontal, edificios con pisos, y las que no, casas, naves y solares. Los rastreos se pausan, se reanudan y quedan en el historial."
           />
-          <div className="mt-5 hidden md:block">
+          <div className="copy-extra mt-5">
             <CheckList
               items={[
                 "Por calle, por código postal o por localidad",
@@ -93,7 +94,7 @@ export function Catastro() {
         </div>
 
         {/* Historial de rastreos, compacto, bajo el texto (en pantallas bajas no cabe y se omite) */}
-        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[420px] flex-col p-4 md:flex [@media(max-height:840px)]:md:hidden" style={{ opacity: 0 }}>
+        <div className="scans panel absolute bottom-6 left-[var(--gutter)] z-10 hidden w-[480px] flex-col p-4 md:flex [@media(max-height:900px)]:md:hidden" style={{ opacity: 0 }}>
           <div className="mb-2 flex items-center justify-between text-[13px] text-white8">
             <span>Rastreos</span>
             <span className="mono text-[11px] text-grey5">calle · código postal · localidad</span>

@@ -82,21 +82,21 @@ export function Producto() {
       <div ref={ref} className="stagewrap">
         <div className="halo" style={{ left: "30%", top: "10%", width: 1000, height: 700 }} />
 
-        <div className="copy copy-block md:w-[700px]">
+        <div className="copy copy-block md:w-[760px]">
           <div className="mb-5">
-            <Kicker module="Todos los módulos" what="los doce módulos, a la medida de cada agencia" />
+            <Kicker n="07" module="Todos los módulos" what="los doce módulos, a la medida de cada agencia" />
           </div>
           <h2 className="t-h1 m-0 text-white8">
             Cada agencia trabaja distinto.
             <br />
             <span className="text-grey5">
-              Por eso <Brand wordmark /> no es un CRM: es el tuyo.
+              <Brand wordmark /> no es un CRM: es el tuyo.
             </span>
           </h2>
         </div>
 
         {/* barra lateral conceptual */}
-        <div className="sidebar absolute left-[var(--gutter)] top-[300px] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
+        <div className="sidebar absolute left-[var(--gutter)] top-[calc(var(--copy-top)+240px)] z-10 hidden w-[200px] rounded-[10px] border border-[#1F1F1F] p-2 md:block" style={{ background: "#0F0F0F", opacity: 0 }}>
           {sidebar.map((g) => (
             <div key={g.sec ?? "top"}>
               {g.sec && <div className="px-[10px] pb-1 pt-[10px] text-[10px] uppercase tracking-[0.12em] text-grey4">{g.sec}</div>}
@@ -116,7 +116,7 @@ export function Producto() {
         </div>
 
         {/* el espacio de módulos: a la derecha de la barra lateral y dentro del lienzo */}
-        <div className="absolute inset-x-[var(--gutter)] bottom-0 top-[320px] md:left-[300px] md:top-[220px]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
+        <div className="absolute inset-x-[var(--gutter)] bottom-0 top-[calc(var(--copy-top)+290px)] md:left-[300px] md:top-[calc(var(--copy-top)+160px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
           <div className="space relative h-full" style={{ transformStyle: "preserve-3d" }}>
             {modules.map((m, k) => {
               const lane = k % 3; // izquierda, centro, derecha (siempre dentro del espacio)
