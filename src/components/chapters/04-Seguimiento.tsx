@@ -19,10 +19,12 @@ const columns = ["Captado", "Contacto", "Visita", "Oferta", "Reserva"];
 export function Seguimiento() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0)
-      .fromTo(q(".inm"), { opacity: 0, y: 60, rotateY: 14 }, { opacity: 1, y: 0, rotateY: 8, duration: 0.14 }, 0.02)
-      .to(q(".inm-hero"), { z: 50, background: "#171717", borderColor: "#3A3A3A", boxShadow: "0 20px 40px rgba(0,0,0,.6)", duration: 0.08 }, 0.16)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: copy y ficha del inmueble suben ya puestos con la pantalla
+    enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .fromTo(q(".inm"), { opacity: 0, y: 60, rotateY: 14 }, { opacity: 1, y: 0, rotateY: 8, duration: 0.9 }, 0.1);
+
+    tl.to(q(".inm-hero"), { z: 50, background: "#171717", borderColor: "#3A3A3A", boxShadow: "0 20px 40px rgba(0,0,0,.6)", duration: 0.08 }, 0.16)
       // las demandas cruzan de derecha a izquierda, rápidas; la que coincide frena y se acopla
       .fromTo(q(".dem-0"), { x: 700, opacity: 0 }, { x: -900, opacity: 0.6, duration: 0.18, ease: "none" }, 0.22)
       .fromTo(q(".dem-1"), { x: 700, opacity: 0 }, { x: -900, opacity: 0.6, duration: 0.18, ease: "none" }, 0.3)
@@ -38,7 +40,6 @@ export function Seguimiento() {
       .to(q(".kcol-2"), { color: "#fff", borderColor: "#fff", duration: 0.05 }, 0.78)
       .to(q(".kcol-1"), { color: "#737373", borderColor: "#262626", duration: 0.05 }, 0.78)
       .to(q(".kcard .ktag"), { opacity: 1, duration: 0.03 }, 0.8);
-      // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
@@ -49,14 +50,14 @@ export function Seguimiento() {
         <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[96px] md:w-[760px]">
           <ChapterCopy
             module="Inmuebles · Demandas · Seguimiento"
-            what="tu stock, cruzado con lo que buscan tus clientes"
-            title="11:30. Hay alguien buscando exactamente esto desde marzo."
-            grey="Tu CRM lo sabía antes que tú."
+            what="tu cartera, cruzada con lo que buscan tus clientes"
+            title="Cada piso nuevo se cruza con las demandas de tus clientes."
+            grey="Y cada operación, por etapas."
           />
         </div>
 
         {/* Inmuebles */}
-        <div className="absolute left-[var(--gutter)] top-[240px] hidden w-[520px] md:block" style={{ perspective: 1600 }}>
+        <div className="absolute left-[var(--gutter)] top-[280px] hidden w-[520px] md:block" style={{ perspective: 1600 }}>
           <div className="inm panel flex flex-col gap-3 p-4" style={{ transformStyle: "preserve-3d", opacity: 0 }}>
             <div className="flex items-center justify-between text-[13px] text-white8">
               <span>Inmuebles</span>
@@ -102,7 +103,7 @@ export function Seguimiento() {
         </div>
 
         {/* Demandas */}
-        <div className="absolute right-0 top-[330px] h-[220px] w-full overflow-hidden md:left-[560px] md:right-auto md:top-[250px] md:w-[760px]">
+        <div className="absolute right-0 top-[330px] h-[220px] w-full overflow-hidden md:left-[560px] md:right-auto md:top-[290px] md:w-[760px]">
           {demands.map((d, i) => (
             <div
               key={d.who}

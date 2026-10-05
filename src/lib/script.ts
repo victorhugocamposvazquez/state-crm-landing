@@ -36,7 +36,10 @@ export interface Chapter {
   /** hora al terminar el tramo */
   hourEnd: number;
   label: string;
-  /** altura total del tramo en vh (incluye la pantalla pinned) */
+  /**
+   * altura total de la sección en vh. La pantalla va pegada durante `vh − 100` (ese es el tramo
+   * que frota la timeline del capítulo); después se despega y sale con el scroll mientras entra la siguiente.
+   */
   vh: number;
   /** eventos que suelta en la bandeja */
   events: LiveEvent[];

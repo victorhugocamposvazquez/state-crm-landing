@@ -11,11 +11,13 @@ import { Kicker } from "@/components/ui/atoms";
 export function Manana() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".ring"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.15 }, 0)
-      .fromTo(q(".newdot"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.08, ease: "back.out(3)" }, 0.18)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: el anillo y el titular suben ya puestos con la pantalla
+    enter.fromTo(q(".ring"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.9 }, 0)
+      .fromTo(q(".h"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
+
+    tl.fromTo(q(".newdot"), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.08, ease: "back.out(3)" }, 0.18)
       .fromTo(q(".toast"), { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.08 }, 0.22)
-      .fromTo(q(".h"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.14 }, 0.1)
       .fromTo(q(".form, .prices"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.14, stagger: 0.05 }, 0.3);
   });
 
@@ -39,13 +41,15 @@ export function Manana() {
         </div>
 
         <div className="h mt-8 flex flex-col items-center gap-4 text-center" style={{ opacity: 0 }}>
-          <Kicker module="Demo" what="30 minutos con tu zona y un anuncio real" />
+          <Kicker module="Demo" what="30 minutos, con tu zona y anuncios reales" />
           <h2 className="display m-0 max-w-[900px] text-[30px] text-white8 md:text-[46px]">
             Mañana, a las 7:40, alguien volverá a publicar.
             <br />
             <span className="text-grey5">¿Quién lo captará?</span>
           </h2>
-          <p className="mono m-0 text-[12px] text-grey5 md:text-[13px]">statecrm · una demo de 30 minutos con tu zona y un anuncio real cruzado con catastro</p>
+          <p className="m-0 max-w-[620px] text-[14px] leading-[1.6] text-grey6 md:text-[16px]">
+            Te enseñamos statecrm con tu zona: los anuncios de particulares de esta mañana y uno de ellos cruzado con el catastro.
+          </p>
         </div>
 
         <div className="mt-10 grid grid-cols-1 items-start gap-8 md:mt-14 md:grid-cols-[460px_1fr] md:gap-10">

@@ -27,10 +27,12 @@ const week = [
 export function Equipo() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0)
-      .fromTo(q(".tasks"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.12 }, 0.04)
-      .fromTo(q(".task"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.06, stagger: 0.03 }, 0.1)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: copy y panel de tareas suben ya puestos con la pantalla; las tareas entran en el tramo
+    enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .fromTo(q(".tasks"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.9 }, 0.1);
+
+    tl.fromTo(q(".task"), { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.06, stagger: 0.03 }, 0.1)
       .fromTo(q(".cal"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.12 }, 0.22)
       .fromTo(q(".slot.on, .slot.g"), { background: "#171717", borderColor: "#1F1F1F" }, { background: "#262626", borderColor: "#3A3A3A", duration: 0.05, stagger: 0.01 }, 0.3)
       .to(q(".slot.g"), { background: "rgba(34,197,94,.22)", borderColor: "#22C55E", duration: 0.05 }, 0.42)
@@ -43,7 +45,6 @@ export function Equipo() {
       // modo claro un instante
       .to(q(".phone-screen"), { background: "#F3F3F3", color: "#111", duration: 0.04 }, 0.8)
       .to(q(".phone-screen"), { background: "#0F0F0F", color: "#E5E5E5", duration: 0.04 }, 0.86);
-      // sin fade a negro al final: el siguiente capítulo cubre este
     countTo(tl, q(".badge")[0], { from: 5, to: 8, at: 0.1, dur: 0.16 });
   });
 
@@ -53,9 +54,9 @@ export function Equipo() {
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
         <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[110px] md:w-[420px]">
-          <ChapterCopy module="Tareas · Calendario" what="el trabajo del equipo, repartido y a la vista" title={<>13:00.<br />Llamar, visitar, firmar.</>} grey="Sin una sola reunión." body="Cada comercial ve lo suyo; cada responsable ve al equipo. Dos oficinas o diez, un solo calendario, y el móvil del comercial sin instalar nada." />
+          <ChapterCopy module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." body="Cada comercial ve lo suyo; el responsable ve a todo el equipo. Dos oficinas o diez, y en el móvil del comercial sin instalar nada." />
           <div className="mt-6 hidden md:block">
-            <CheckList items={["Tareas personales y del equipo, con prioridad", "Calendario compartido: visitas, firmas, llamadas", "Varias oficinas sincronizadas", "PWA móvil, búsqueda global ⌘K, modo claro y oscuro"]} />
+            <CheckList items={["Tareas personales y del equipo, con prioridad", "Calendario compartido: visitas, firmas, llamadas", "Varias oficinas en el mismo calendario", "En el móvil sin instalar nada, con búsqueda global"]} />
           </div>
         </div>
 

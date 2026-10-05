@@ -48,17 +48,22 @@ const STEP = 420; // separación en z entre paneles
 export function Producto() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
+  useScrollTimeline(ref, (tl, q, enter) => {
     const panels = q(".mod");
     const sides = q(".side-item");
-    tl.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.08 }, 0)
-      .fromTo(q(".sidebar"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.08 }, 0.02)
-      // la cámara avanza por el espacio
-      .fromTo(q(".space"), { z: 0 }, { z: STEP * (modules.length - 1) + 200, duration: 0.78, ease: "none" }, 0.06);
+    // entrada: copy y barra lateral suben ya puestos con la pantalla
+    enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .fromTo(q(".sidebar"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.8 }, 0.2);
+
+    // la cámara avanza por el espacio
+    tl.fromTo(q(".space"), { z: 0 }, { z: STEP * (modules.length - 1) + 200, duration: 0.78, ease: "none" }, 0.06);
     panels.forEach((p, k) => {
       const t = 0.06 + (k / (modules.length - 1)) * 0.78;
-      tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1 }, Math.max(0, t - 0.3))
-        .to(p, { opacity: 0, duration: 0.03 }, t + 0.012);
+      const at = t - 0.3;
+      // los primeros paneles ya vienen encendidos con la pantalla; el resto se enciende al acercarse la cámara
+      if (at <= 0) enter.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0.2);
+      else tl.fromTo(p, { opacity: 0 }, { opacity: 1, duration: 0.1 }, at);
+      tl.to(p, { opacity: 0, duration: 0.03 }, t + 0.012);
       const side = sides.find((s) => s.getAttribute("data-mod") === modules[k].name);
       if (side) {
         tl.to(side, { color: "#fff", background: "#171717", duration: 0.03 }, t - 0.03)
@@ -68,7 +73,6 @@ export function Producto() {
     });
     tl.fromTo(q(".checks"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.08 }, 0.86)
       .fromTo(q(".checks li"), { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.03, stagger: 0.008 }, 0.87);
-      // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
@@ -78,7 +82,7 @@ export function Producto() {
 
         <div className="copy absolute left-[var(--gutter)] top-[112px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[120px] md:w-[760px]">
           <div className="mb-5">
-            <Kicker module="Todos los módulos" what="un CRM construido a la medida de cada agencia" />
+            <Kicker module="Todos los módulos" what="los doce módulos, a la medida de cada agencia" />
           </div>
           <h2 className="display m-0 text-[28px] text-white8 md:text-[38px]">
             Cada agencia trabaja distinto.

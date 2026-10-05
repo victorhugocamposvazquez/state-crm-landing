@@ -184,7 +184,8 @@ body {
   flex-shrink: 0;
 }
 
-/* Capítulos: una sección alta con una pantalla pegada */
+/* Capítulos: una sección alta con una pantalla pegada. Van una detrás de otra, sin solape:
+   al acabar su tramo la pantalla se despega y sube con el scroll, como cualquier sección. */
 .chapter {
   position: relative;
 }

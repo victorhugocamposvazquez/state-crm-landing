@@ -19,10 +19,12 @@ const partidas = [
 export function Obra() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0)
-      .fromTo(q(".screen"), { opacity: 0, y: 60 }, { opacity: 0.75, y: 0, duration: 0.12 }, 0.03)
-      .fromTo(q(".sheet"), { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.12 }, 0.12)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: copy y pantalla de fondo suben ya puestos; el presupuesto se despliega en el tramo
+    enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .fromTo(q(".screen"), { opacity: 0, y: 60 }, { opacity: 0.75, y: 0, duration: 0.9 }, 0.1);
+
+    tl.fromTo(q(".sheet"), { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.12 }, 0.12)
       .fromTo(q(".pbar"), { scaleX: 0 }, { scaleX: 1, duration: 0.1, stagger: 0.02, transformOrigin: "left" }, 0.18)
       // estados: borrador → enviado → aceptado
       .to(q(".st-borrador"), { opacity: 0, duration: 0.03 }, 0.34)
@@ -43,7 +45,6 @@ export function Obra() {
       .fromTo(q(".line-main"), { strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: 0.14, ease: "none" }, 0.76)
       .fromTo(q(".line-sec"), { strokeDashoffset: 600 }, { strokeDashoffset: 0, duration: 0.14, ease: "none" }, 0.78)
       .fromTo(q(".line-dot"), { opacity: 0 }, { opacity: 1, duration: 0.02 }, 0.9);
-      // sin fade a negro al final: el siguiente capítulo cubre este
     countTo(tl, q(".n-env")[0], { from: 0, to: 12, at: 0.08, dur: 0.14 });
     countTo(tl, q(".n-acc")[0], { from: 0, to: 68, at: 0.1, dur: 0.14, format: (n) => `${Math.round(n)} %` });
     countTo(tl, q(".total")[0], { from: 0, to: 74536, at: 0.2, dur: 0.16, format: (n) => Math.round(n).toLocaleString("es-ES") + ",00 €" });
@@ -55,7 +56,7 @@ export function Obra() {
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
         <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[110px] md:w-[420px]">
-          <ChapterCopy module="Presupuestos · Facturas · Informes" what="obra y facturación en el mismo expediente" title={<>17:00.<br />Tres meses después.</>} body="Presupuesto, factura e informe, en el mismo expediente que el anuncio de las 7:40. De la obra a la factura sin salir del CRM." />
+          <ChapterCopy module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." body="Presupuestos por partidas que se convierten en factura en un clic, con su PDF. E informes por oficina y por operación." />
           <div className="mt-6 hidden md:block">
             <CheckList items={["Presupuestos por partidas, con estados y tasa de aceptación", "Conversión a factura en un clic, PDF incluido", "Facturas enlazadas al inmueble y al cliente", "Informes por oficina y por operación"]} />
           </div>

@@ -14,10 +14,12 @@ const rows = listings.slice(0, 6);
 export function Bandeja() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".panel3d"), { opacity: 0, y: 80, rotateX: 14 }, { opacity: 1, y: 0, rotateX: 5, duration: 0.2 }, 0)
-      .fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.15 }, 0.05)
-      .fromTo(q(".row"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.08, stagger: 0.04 }, 0.15)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: el panel y el copy aterrizan mientras la pantalla sube; las filas llegan ya en el tramo
+    enter.fromTo(q(".panel3d"), { opacity: 0, y: 80, rotateX: 14 }, { opacity: 1, y: 0, rotateX: 5, duration: 1 }, 0)
+      .fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0.2);
+
+    tl.fromTo(q(".row"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.08, stagger: 0.04 }, 0.15)
       .fromTo(q(".kpi .n"), { opacity: 0.2 }, { opacity: 1, duration: 0.1, stagger: 0.03 }, 0.12)
       // los filtros se pulsan solos
       .to(q(".chip-part"), { borderColor: "#737373", color: "#fff", duration: 0.05 }, 0.42)
@@ -30,7 +32,6 @@ export function Bandeja() {
       .to(q(".hero-row"), { z: 70, boxShadow: "0 30px 60px rgba(0,0,0,.7)", borderColor: "#3A3A3A", background: "#171717", duration: 0.12 }, 0.62)
       .fromTo(q(".hero-extra"), { opacity: 0, height: 0 }, { opacity: 1, height: "auto", duration: 0.1 }, 0.66)
       .fromTo(q(".counter-card"), { opacity: 0, y: 20, z: 110 }, { opacity: 1, y: 0, z: 110, duration: 0.12 }, 0.3);
-      // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
@@ -41,22 +42,22 @@ export function Bandeja() {
         <div className="copy absolute left-[var(--gutter)] top-[112px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[140px] md:w-[400px]">
           <ChapterCopy
             module="Captación"
-            what="bandeja de novedades de particulares"
+            what="la bandeja con lo que ha entrado hoy"
             title={
               <>
-                07:52.
+                Lo nuevo de hoy,
                 <br />
-                Particular, agencia
+                ya filtrado.
               </>
             }
-            grey="o agencia disfrazada."
-            body="Teléfono, fotos y prioridad antes de la primera llamada. Lo que entra hoy y lo que estás trabajando, en una sola bandeja."
+            grey="Particular, agencia o agencia disfrazada."
+            body="Cada anuncio llega con teléfono, fotos y prioridad, y se asigna a un comercial. Lo que entra hoy y lo que ya estás trabajando, en la misma lista."
           />
           <div className="mt-6 hidden md:block">
             <CheckList
               items={[
-                "Rastreo diario de portales por zona",
-                "Particular, agencia o agencia encubierta",
+                "Rastreo diario de los portales, por zona",
+                "Distingue particular, agencia y agencia encubierta",
                 "Teléfono y fotos antes de la primera llamada",
                 "Prioridad y asignación a un comercial",
               ]}

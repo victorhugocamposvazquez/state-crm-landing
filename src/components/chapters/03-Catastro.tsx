@@ -21,10 +21,11 @@ const scans = [
 export function Catastro() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0)
-      .fromTo(q(".map3d"), { opacity: 0, rotateX: 50, y: 80 }, { opacity: 1, rotateX: 38, y: 0, duration: 0.14 }, 0.02)
-      .fromTo(q(".scans"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0.08);
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: copy, mapa y panel de rastreos suben ya puestos con la pantalla
+    enter.fromTo(q(".copy"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8 }, 0)
+      .fromTo(q(".map3d"), { opacity: 0, rotateX: 50, y: 80 }, { opacity: 1, rotateX: 38, y: 0, duration: 0.9 }, 0.1)
+      .fromTo(q(".scans"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3);
 
     scans.forEach((sc, k) => {
       const blocksSel = q(`.blk.z-${sc.zone}`);
@@ -48,7 +49,6 @@ export function Catastro() {
       .fromTo(q(".vinc-chip"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.04 }, 0.84)
       .fromTo(q(".stamp"), { opacity: 0, scale: 1.4, rotate: -6 }, { opacity: 1, scale: 1, rotate: -3, duration: 0.05, ease: "back.out(2)" }, 0.9);
     typeText(tl, q(".refcat")[0], "0000000XX0000X0000XX", { at: 0.78, dur: 0.08 });
-    // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
@@ -59,19 +59,19 @@ export function Catastro() {
         <div className="copy absolute left-[var(--gutter)] top-[104px] z-10 w-[calc(100%-2*var(--gutter))] md:top-[120px] md:w-[400px]">
           <ChapterCopy
             module="Catastro"
-            what="buscador catastral y rastreos por zona"
+            what="localiza la finca real detrás de cada anuncio"
             title={
               <>
-                09:15.
+                Del anuncio
                 <br />
-                ¿Qué piso es,
+                a la finca real.
               </>
             }
-            grey="de verdad?"
-            body="El Catastro trabaja por zonas: un código postal, una calle. statecrm rastrea cada zona, separa las fincas candidatas y vincula el anuncio a su referencia. Nota simple incluida."
+            grey="Y a su nota simple."
+            body="Buscas por calle o código postal, statecrm separa las fincas candidatas y vincula el anuncio a su referencia catastral. La nota simple, a un clic."
           />
           <div className="mt-5 hidden md:block">
-            <CheckList items={["Rastreos por calle o código postal, reanudables", "Fincas y candidatas por zona y por comercial", "Vinculación catastral del inmueble", "Nota simple sin salir de la ficha"]} />
+            <CheckList items={["Rastreos por calle o código postal, reanudables", "Fincas candidatas por zona y por comercial", "Vinculación catastral del inmueble", "Nota simple sin salir de la ficha"]} />
           </div>
         </div>
 

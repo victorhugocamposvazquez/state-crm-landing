@@ -11,15 +11,16 @@ import { Kicker } from "@/components/ui/atoms";
 export function Radar() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q) => {
-    tl.fromTo(q(".copy, .stats"), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0)
-      .fromTo(q(".l2"), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }, 0.02)
+  useScrollTimeline(ref, (tl, q, enter) => {
+    // entrada: el titular y las cifras ya vienen puestos mientras la pantalla sube
+    enter.fromTo(q(".copy, .stats"), { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
+
+    tl.fromTo(q(".l2"), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }, 0.02)
       .to(q(".l1"), { y: -10, duration: 0.3 }, 0.05)
       .fromTo(q(".sub"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.2)
       .fromTo(q(".cta"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2 }, 0.28)
       .fromTo(q(".tag"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15 }, 0.55)
       .fromTo(q(".tag .ln"), { scaleY: 0 }, { scaleY: 1, duration: 0.1, transformOrigin: "bottom" }, 0.5);
-      // sin fade a negro al final: el siguiente capítulo cubre este
   });
 
   return (
@@ -35,10 +36,9 @@ export function Radar() {
             <span className="l1 block">Antes de que lo sepa nadie,</span>
             <span className="l2 block text-grey5">lo sabe tu CRM.</span>
           </h1>
-          <p className="sub mono mt-6 max-w-[520px] text-[12px] leading-[1.7] text-grey6 md:text-[14px]">
-            statecrm · CRM inmobiliario a medida
-            <br />
-            captación de particulares · catastro · equipo · obra y facturación
+          <p className="sub mt-6 max-w-[560px] text-[14px] leading-[1.6] text-grey6 md:text-[17px]">
+            Cada mañana detecta los pisos que acaban de publicar los particulares y te los pone en el CRM, con teléfono.
+            Y lleva el resto del día de la agencia: catastro, seguimiento, equipo, obra y facturación.
           </p>
           <div className="cta mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="#ciudad" className="btn btn-w">
