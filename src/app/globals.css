@@ -496,16 +496,22 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 @media (max-width: 767px) {
-  .benefits-row { grid-template-columns: max-content; gap: 6px; }
-  .b-step {
-    min-height: 36px;
-    justify-content: flex-start;
-    padding: 7px 12px;
-    border-radius: 9px;
-    transform: translateX(-2px) scale(0.985);
+  .benefits { width: 100%; }
+  .benefits-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
-  .b-step.is-on { transform: translateX(2px) scale(1); }
-  .b-label { font-size: 14px; }
+  .b-sale { grid-column: 1 / -1; }
+  .b-step {
+    min-height: 44px;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transform: translateY(3px) scale(0.98);
+  }
+  .b-step.is-on { transform: translateY(-2px) scale(1); }
+  .b-label { font-size: 13px; }
+  .b-sale .b-label { font-size: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .b-step { opacity: 1; transform: none !important; transition: none; }
