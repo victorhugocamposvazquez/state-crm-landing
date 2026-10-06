@@ -9,7 +9,21 @@ import { Brand } from "@/components/ui/atoms";
  * No se rellena con el scroll: el diseño del lockup no cambia a lo largo de la web.
  * El wordmark va en Space Grotesk 700, «state» blanco y «crm» gris.
  */
-export function Logo({ size = 40, progress = false, wordmark = true }: { size?: number; progress?: boolean; wordmark?: boolean }) {
+export function Logo({
+  size = 40,
+  progress = false,
+  wordmark = true,
+  className = "",
+  markClassName = "h-10 w-10 md:h-12 md:w-12",
+  wordClassName = "text-[20px] md:text-[26px]",
+}: {
+  size?: number;
+  progress?: boolean;
+  wordmark?: boolean;
+  className?: string;
+  markClassName?: string;
+  wordClassName?: string;
+}) {
   const ref = useRef<SVGCircleElement>(null);
   // Brand: r=12 en viewBox 44 → circunferencia 2πr
   const r = 12;
@@ -27,8 +41,8 @@ export function Logo({ size = 40, progress = false, wordmark = true }: { size?: 
   }, [progress, c]);
 
   return (
-    <span className="inline-flex items-center gap-3 md:gap-4">
-      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-10 w-10 md:h-12 md:w-12">
+    <span className={`inline-flex items-center gap-3 md:gap-4 ${className}`}>
+      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true" className={markClassName}>
         <circle cx="22" cy="22" r={r} stroke="#6E6E6E" strokeWidth="6" />
         <circle
           ref={ref}
@@ -44,7 +58,7 @@ export function Logo({ size = 40, progress = false, wordmark = true }: { size?: 
         />
       </svg>
       {wordmark && (
-        <span className="wordmark text-[20px] md:text-[26px]">
+        <span className={`wordmark ${wordClassName}`}>
           <Brand />
         </span>
       )}
