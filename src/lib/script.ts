@@ -73,9 +73,9 @@ export const chapters: Chapter[] = [
     vh: 220,
     stack: true,
     events: [
-      { at: 0, kind: "new", text: "Nuevo anuncio de particular", meta: "Plaza de Castilla · 07:36" },
-      { at: 0.28, kind: "new", text: "Nuevo anuncio de particular", meta: "Rianxo · 07:38" },
-      { at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" },
+      { at: 0.18, kind: "new", text: "Nuevo anuncio de particular", meta: "Plaza de Castilla · 07:36" },
+      { at: 0.42, kind: "new", text: "Nuevo anuncio de particular", meta: "Rianxo · 07:38" },
+      { at: 0.68, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" },
     ],
   },
   {

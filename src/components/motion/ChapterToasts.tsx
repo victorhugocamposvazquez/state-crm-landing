@@ -19,9 +19,9 @@ const corners: Record<ToastCorner, string> = {
 export function ChapterToasts({ id }: { id: ChapterId }) {
   const chapter = chapters[chapterIndex[id]];
   const [items, setItems] = useState<LiveEvent[]>([]);
-  const onScreen = useSyncExternalStore(
+  const pinned = useSyncExternalStore(
     useScroll.subscribe,
-    () => useScroll.getState().onScreen[id],
+    () => !!useScroll.getState().pinned[id],
     () => false,
   );
 
@@ -36,7 +36,8 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
     return useScroll.subscribe(compute);
   }, [id, chapter]);
 
-  if (!chapter.events.length || items.length === 0 || !onScreen) return null;
+  if (!chapter.events.length || items.length === 0) return null;
+  if (chapter.stack && !pinned) return null;
   const corner = corners[chapter.toasts ?? "br"];
   // la más reciente, pegada a la esquina: arriba en las esquinas superiores, abajo en las inferiores
   const last = items[items.length - 1];
