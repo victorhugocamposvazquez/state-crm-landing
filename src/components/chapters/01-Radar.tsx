@@ -26,12 +26,14 @@ export function Radar() {
 
     if (reduced) {
       gsap.set(q(".step, .sub, .cta, .tag, .tag .ln, .rail"), { opacity: 1, y: 0, scaleX: 1, scaleY: 1 });
+      gsap.set(q(".mark"), { opacity: 1, scale: 1 });
       el.classList.add("is-live");
       return;
     }
 
     gsap.set(q(".rail"), mobile ? { scaleY: 0, transformOrigin: "top center" } : { scaleX: 0, transformOrigin: "left center" });
     gsap.set(q(".step"), { opacity: 0, y: 8 });
+    gsap.set(q(".mark"), { opacity: 0, scale: 0.4 });
     gsap.set(q(".sub, .cta"), { opacity: 0, y: 14 });
     gsap.set(q(".tag"), { opacity: 0, y: 8 });
     gsap.set(q(".tag .ln"), { scaleY: 0, transformOrigin: "bottom" });
@@ -39,6 +41,7 @@ export function Radar() {
     const tl = gsap.timeline({ paused: true });
     tl.to(q(".rail"), mobile ? { scaleY: 1, duration: 0.7, ease: "power2.inOut" } : { scaleX: 1, duration: 0.7, ease: "power2.inOut" })
       .to(q(".step"), { opacity: 1, y: 0, duration: 0.4, stagger: 0.16, ease: "power2.out" }, 0.2)
+      .to(q(".mark"), { opacity: 1, scale: 1, duration: 0.35, stagger: 0.2, ease: "back.out(2.2)" }, "-=0.15")
       .add(() => el.classList.add("is-live"))
       .to(q(".sub"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.15")
       .to(q(".cta"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
@@ -76,15 +79,15 @@ export function Radar() {
               <span className="pulse" />
             </span>
             <span className="step">
-              <span className="dot" aria-hidden="true" />
+              <span className="dot" aria-hidden="true"><Check /></span>
               <span className="lbl">Más captación</span>
             </span>
             <span className="step">
-              <span className="dot" aria-hidden="true" />
+              <span className="dot" aria-hidden="true"><Check /></span>
               <span className="lbl">más oportunidades</span>
             </span>
             <span className="step step-end">
-              <span className="dot" aria-hidden="true" />
+              <span className="dot" aria-hidden="true"><Check /></span>
               <span className="lbl">Más ventas</span>
             </span>
           </div>
@@ -114,5 +117,15 @@ export function Radar() {
         </div>
       </div>
     </Chapter>
+  );
+}
+
+function Check() {
+  return (
+    <span className="mark">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </span>
   );
 }
