@@ -35,7 +35,7 @@ export function Logo({
   }, [progress, c]);
 
   return (
-    <span className={`logo ${className || "text-[20px] md:text-[26px]"}`}>
+    <span className={`logo ${className || "text-[26px]"}`}>
       <svg data-logo-mark viewBox="6 6 32 32" fill="none" aria-hidden="true" className="logo-mark">
         <circle cx="22" cy="22" r={r} stroke="#6E6E6E" strokeWidth="6" />
         <circle

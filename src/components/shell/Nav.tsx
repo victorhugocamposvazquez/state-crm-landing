@@ -63,28 +63,30 @@ export function Nav() {
         })}
       </nav>
 
-      <div className="flex items-center gap-2 md:gap-6">
+      <div className="flex items-center gap-1 md:gap-6">
         <a href="#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
           Ver planes
         </a>
-        <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-10 items-center justify-center text-white7 no-underline hover:text-white8 md:h-11 md:w-11">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
-            <circle cx="12" cy="12" r="9.25" />
-            <circle cx="12" cy="9.2" r="2.4" />
-            <path d="M7.2 17.6c.7-2.15 2.5-3.3 4.8-3.3s4.1 1.15 4.8 3.3" strokeLinecap="round" />
-          </svg>
-        </Link>
-        <button
-          type="button"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center md:hidden"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5E5E5" strokeWidth="1.8" aria-hidden="true">
-            {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-          </svg>
-        </button>
+        <div className="flex items-center md:contents">
+          <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-8 items-center justify-center text-white7 no-underline hover:text-white8 md:h-11 md:w-11">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
+              <circle cx="12" cy="12" r="9.25" />
+              <circle cx="12" cy="9.2" r="2.4" />
+              <path d="M7.2 17.6c.7-2.15 2.5-3.3 4.8-3.3s4.1 1.15 4.8 3.3" strokeLinecap="round" />
+            </svg>
+          </Link>
+          <button
+            type="button"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="-ml-0.5 flex h-10 w-8 items-center justify-center md:hidden"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5E5E5" strokeWidth="1.8" aria-hidden="true">
+              {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (
