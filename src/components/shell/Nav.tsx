@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore } from "react";
+import Link from "next/link";
 import { Logo } from "./Logo";
 import { useScroll } from "@/lib/store";
 import { chapterIndex, type ChapterId } from "@/lib/script";
@@ -11,7 +12,6 @@ const links: { label: string; href: string; chapter?: ChapterId }[] = [
   { label: "Seguimiento", href: "#seguimiento", chapter: "seguimiento" },
   { label: "Equipo", href: "#equipo", chapter: "equipo" },
   { label: "Obra", href: "#obra", chapter: "obra" },
-  { label: "Planes", href: "#planes" },
 ];
 
 /**
@@ -63,7 +63,17 @@ export function Nav() {
         })}
       </nav>
 
-      <div className="flex items-center gap-[10px]">
+      <div className="flex items-center gap-4 md:gap-6">
+        <a href="#planes" className="text-[14px] font-medium text-white8 no-underline">
+          Planes
+        </a>
+        <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-11 w-11 items-center justify-center text-white7 no-underline hover:text-white8">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.25" />
+            <circle cx="12" cy="9.2" r="2.4" />
+            <path d="M7.2 17.6c.7-2.15 2.5-3.3 4.8-3.3s4.1 1.15 4.8 3.3" strokeLinecap="round" />
+          </svg>
+        </Link>
         <a href="#manana" className="btn btn-w hidden !min-h-[38px] md:inline-flex">
           Pedir una demo
         </a>
