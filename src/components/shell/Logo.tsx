@@ -31,7 +31,7 @@ export function Logo({ size = 28, progress = false, wordmark = true }: { size?: 
 
   return (
     <span className="inline-flex items-center" style={{ gap }}>
-      <svg width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true">
         <circle cx="22" cy="22" r={r} stroke="#6E6E6E" strokeWidth="6" />
         <circle
           ref={ref}

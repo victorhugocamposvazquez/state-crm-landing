@@ -8,6 +8,19 @@ import { useScroll } from "@/lib/store";
 
 gsap.registerPlugin(ScrollTrigger);
 
+let lenisRef: Lenis | null = null;
+
+/** Desplaza hasta un punto con el mismo scroll suave de la página. */
+export function scrollTo(target: HTMLElement | string | number, duration = 1.15) {
+  if (lenisRef) {
+    lenisRef.scrollTo(target, { duration });
+    return;
+  }
+  if (typeof target === "number") window.scrollTo({ top: target, behavior: "smooth" });
+  else if (typeof target === "string") document.querySelector(target)?.scrollIntoView();
+  else target.scrollIntoView();
+}
+
 /**
  * Lenis + GSAP ScrollTrigger, con un único ticker.
  * En móvil Lenis deja mandar al scroll nativo (syncTouch) y las secciones usan sticky, no pin.
@@ -25,6 +38,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       anchors: true,
     });
 
+    lenisRef = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -47,6 +61,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       globalST.kill();
       gsap.ticker.remove(tick);
       lenis.destroy();
+      lenisRef = null;
     };
   }, []);
 
