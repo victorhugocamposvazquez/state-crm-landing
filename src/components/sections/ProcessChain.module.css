@@ -1,0 +1,250 @@
+/* ProcessChain — estilos. Colores pensados sobre fondo #0a0a0a.
+   Cambia las variables de abajo si tu landing usa otros tokens. */
+
+.chain {
+  --bg: #0a0a0a;
+  --line: #262626;
+  --teeth-off: #2e2e2e;
+  --icon-off: #7a7a7a;
+  --label-off: #8a8a8a;
+  --on: #ffffff;
+  --green: #22c55e;
+  --green-off: #15803d;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  height: 36px;
+}
+
+/* ---------- paso ---------- */
+
+.station {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.station:focus-visible {
+  outline: 2px solid var(--on);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.node {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  transition: filter 0.5s ease;
+}
+.node svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.disc {
+  fill: var(--bg);
+}
+.teeth {
+  stroke: var(--teeth-off);
+  transition: stroke 0.5s ease;
+}
+.ring {
+  stroke: var(--line);
+  transition: stroke 0.5s ease;
+}
+.icon {
+  stroke: var(--icon-off);
+  transition: stroke 0.5s ease;
+}
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  color: var(--label-off);
+  transition: color 0.4s ease;
+}
+
+/* engranaje: las impares giran al revés */
+.gear {
+  animation: spin 36s linear infinite;
+}
+.gearCcw {
+  animation-direction: reverse;
+}
+
+/* arco de carga: dura lo que el paso está encendido */
+.charge {
+  stroke: var(--on);
+  animation: charge var(--step-ms, 1600ms) linear forwards;
+}
+/* último paso o tras un clic: se cierra rápido y se queda */
+.chargeClose {
+  animation-duration: 400ms;
+  animation-timing-function: ease-out;
+}
+
+/* ---------- estado activo ---------- */
+
+.station[data-active='true'] .teeth,
+.station[data-active='true'] .icon {
+  stroke: var(--on);
+}
+.station[data-active='true'] .ring {
+  stroke: rgba(255, 255, 255, 0.22);
+}
+.station[data-active='true'] .label {
+  color: var(--on);
+}
+.station[data-active='true'] .node {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
+}
+
+/* ---------- paso verde (Más ventas) ---------- */
+
+.station[data-accent='green'] .icon {
+  stroke: var(--green-off);
+}
+.station[data-accent='green'][data-active='true'] .teeth,
+.station[data-accent='green'][data-active='true'] .icon,
+.station[data-accent='green'][data-active='true'] .charge {
+  stroke: var(--green);
+}
+.station[data-accent='green'][data-active='true'] .ring {
+  stroke: rgba(34, 197, 94, 0.35);
+}
+.station[data-accent='green'][data-active='true'] .node {
+  filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.45));
+}
+
+/* ---------- conector ---------- */
+
+.seg {
+  position: relative;
+  flex: 1 1 24px;
+  min-width: 24px;
+  height: 2px;
+  margin: 0 12px;
+  background: var(--line);
+}
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--on);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left center;
+  transition: transform var(--travel-ms, 600ms) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dot {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--on);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.14),
+    0 0 12px rgba(255, 255, 255, 0.7);
+  animation: travelX var(--travel-ms, 600ms) cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ---------- móvil: cadena vertical ---------- */
+
+@media (max-width: 767px) {
+  .chain {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    max-width: none;
+  }
+  .station {
+    height: 44px;
+    gap: 12px;
+  }
+  .label {
+    font-size: 14px;
+  }
+  .seg {
+    flex: none;
+    width: 2px;
+    min-width: 0;
+    height: 28px;
+    margin: -4px 0 -4px 17px; /* centrado bajo el nodo de 36 px */
+  }
+  .fill {
+    transform: scaleY(var(--p, 0));
+    transform-origin: center top;
+  }
+  .dot {
+    top: 0;
+    left: 1px;
+    animation-name: travelY;
+  }
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes charge {
+  from {
+    stroke-dashoffset: 81.7;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes travelX {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+}
+@keyframes travelY {
+  from {
+    top: 0;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gear,
+  .dot {
+    animation: none;
+  }
+  .charge {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .fill,
+  .teeth,
+  .ring,
+  .icon,
+  .label,
+  .node {
+    transition: none;
+  }
+}

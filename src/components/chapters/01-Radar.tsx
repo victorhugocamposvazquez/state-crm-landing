@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { BeneficiosAuto } from "@/components/sections/BeneficiosAuto";
+import { ProcessChain } from "@/components/sections/ProcessChain";
 
 /**
  * 01 · El radar. Al llegar la pantalla, entra el bloque.
@@ -63,7 +63,7 @@ export function Radar() {
           <h1 className="t-hero m-0 text-white8">
             Impulsa tu negocio inmobiliario.
           </h1>
-          <BeneficiosAuto />
+          <ProcessChain className="mt-5" />
           <p className="sub t-lead mt-7 max-w-[560px] text-grey6" style={{ opacity: 0 }}>
             Nuevos anuncios de particulares, búsqueda de fincas y todo el proceso comercial: contactar, agendar, gestionar demandas y cerrar.
           </p>
