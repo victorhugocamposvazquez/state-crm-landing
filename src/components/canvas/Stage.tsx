@@ -22,7 +22,7 @@ function seeded(seed: number) {
 }
 
 /**
- * Dos encuadres, gobernados solo por el scroll: el radar en el cielo (prólogo y 01) y el skyline (02).
+ * Dos encuadres, gobernados solo por el scroll: el radar en el cielo (01) y el skyline (02).
  * Entre uno y otro hay secciones opacas (la frase y el proceso), así que no se vuela de uno a otro:
  * la cámara se coloca de golpe en el encuadre que toca cuando su capítulo asoma, y dentro de cada
  * encuadre se mueve suave. Si volara, el skyline entraría de un salto detrás de la pantalla del 02.
@@ -88,7 +88,7 @@ function CameraRig({ radarX, snapRef }: { radarX: number; snapRef: MutableRefObj
 
 /**
  * Un único canvas fijo detrás de la página. Solo trabaja en los tramos que lo necesitan
- * (prólogo, 01, 02) y se oculta en el resto para no gastar GPU.
+ * (01 y 02). La intro no lo enciende: el radar entra con su sección.
  */
 export function Stage() {
   const [on, setOn] = useState(true);
@@ -102,7 +102,7 @@ export function Stage() {
       const s = useScroll.getState();
       const o = s.onScreen;
       // mientras alguna pantalla transparente toque el viewport (la de la bandeja solo al principio: después se funde a negro)
-      const next = !!(o.prologo || o.radar || o.ciudad || (o.bandeja && s.progress.bandeja < 0.3));
+      const next = !!(o.radar || o.ciudad || (o.bandeja && s.progress.bandeja < 0.3));
       if (next && !wasOn.current) snap.current = true;
       wasOn.current = next;
       setOn(next);

@@ -3,124 +3,103 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Brand, Kicker, brandify } from "@/components/ui/atoms";
+import { Brand, Kicker } from "@/components/ui/atoms";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * El camino de captación, del anuncio a la venta. Es UNO de los caminos: el Catastro va por libre
- * (rastrea fincas por zona cuando hace falta) y se integra después en tareas, seguimiento y equipo.
+ * Cómo funciona: el recorrido de una operación de ejemplo, atado al scroll.
+ * Al parar el scroll se para; al subir, retrocede. Sin tiempos ni botones.
+ * No comparte progreso con los beneficios del hero.
  */
 const steps = [
-  { label: "Anuncio detectado", status: "Un particular publica su casa · 07:41", icon: "radar" },
-  { label: "Capturado por el crm", status: "Entra en la bandeja con fotos, precio y teléfono", icon: "inbox" },
-  { label: "Visita concertada", status: "Visita el jueves a las 13:00, en el calendario del equipo", icon: "calendar" },
-  { label: "Venta cerrada", status: "Encargo firmado", icon: "check" },
+  { n: "01", label: "Anuncio capturado", hint: "Una oportunidad en tu CRM." },
+  { n: "02", label: "Contacto y encargo", hint: "Tu equipo inicia la relación." },
+  { n: "03", label: "Visita concertada", hint: "Cada cita, organizada." },
+  { n: "04", label: "Venta cerrada", hint: "Todo el recorrido conectado." },
 ] as const;
 
-const END_STATUS = "Del anuncio a la venta, en cuatro pasos.";
+const notes = [
+  "Nuevo anuncio de particular incorporado al CRM.",
+  "Tu equipo contacta con el propietario y registra el encargo.",
+  "La visita queda organizada en la agenda del equipo.",
+  "Venta cerrada. Conserva los contactos y el historial de la operación.",
+];
 
-function Icon({ name }: { name: (typeof steps)[number]["icon"] }) {
-  const p = { width: 32, height: 32, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
-  switch (name) {
-    case "radar":
-      return (
-        <svg {...p}>
-          <circle cx="12" cy="12" r="9" />
-          <circle cx="12" cy="12" r="4.5" />
-          <path d="M12 12l6.5-6.5" />
-        </svg>
-      );
-    case "inbox":
-      return (
-        <svg {...p}>
-          <path d="M4 5h16l1 8v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z" />
-          <path d="M3 13h5l2 3h4l2-3h5" />
-        </svg>
-      );
-    case "calendar":
-      return (
-        <svg {...p}>
-          <rect x="3" y="5" width="18" height="16" rx="2" />
-          <path d="M3 10h18M8 3v4M16 3v4" />
-        </svg>
-      );
-    case "check":
-      return (
-        <svg {...p}>
-          <circle cx="12" cy="12" r="9" />
-          <path d="M8 12l3 3 5-6" />
-        </svg>
-      );
-  }
-}
-
-/** momento (0–1 del tramo) en que se enciende el paso k */
-const stepAt = (k: number) => 0.1 + k * 0.18;
-
-/**
- * Sección pegada: la pantalla aguanta mientras el scroll recorre los cuatro pasos.
- * Cada uno se enciende al llegar, el anterior queda hecho y la línea de estado dice qué ha pasado.
- */
 export function Proceso() {
   const ref = useRef<HTMLElement>(null);
-  const win = useRef<HTMLDivElement>(null);
+  const flow = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const section = ref.current;
-    const el = win.current;
-    if (!section || !el) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const ctx = gsap.context(() => {
-      const q = gsap.utils.selector(el);
-      const boxes = q<HTMLElement>(".step-box");
-      const labels = q<HTMLElement>(".step-label");
-      const dones = q<HTMLElement>(".step-done");
-      const statuses = q<HTMLElement>(".status-k");
-      const statusEnd = q<HTMLElement>(".status-end")[0];
-      const n = steps.length;
+    const root = flow.current;
+    if (!section || !root) return;
+    const stages = [...root.querySelectorAll<HTMLElement>(".flow-stage")];
+    const nodes = stages.map((s) => s.querySelector<HTMLElement>(".flow-node"));
+    const detail = root.querySelector<HTMLElement>(".flow-detail");
+    const badge = root.querySelector<HTMLElement>(".flow-badge");
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = -1;
 
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.inOut" },
-        scrollTrigger: { trigger: section, start: "top top", end: "bottom bottom", scrub: 0.4 },
+    const apply = (p: number) => {
+      const scaled = Math.max(0, Math.min(3.999, p * 3.999));
+      stages.forEach((el, i) => {
+        el.style.setProperty("--fill", String(Math.max(0, Math.min(1, scaled - i))));
       });
-
-      steps.forEach((_, k) => {
-        const t = stepAt(k);
-        if (k > 0) {
-          tl.to(boxes[k - 1], { borderColor: "#1F1F1F", color: "#A3A3A3", background: "#0F0F0F", duration: 0.03 }, t - 0.06)
-            .to(labels[k - 1], { color: "#A3A3A3", duration: 0.03 }, t - 0.06)
-            .fromTo(dones[k - 1], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.03, ease: "back.out(2)" }, t - 0.06)
-            .to(statuses[k - 1], { opacity: 0, y: -6, duration: 0.03 }, t - 0.05);
-        }
-        // el paso se enciende y cuenta lo suyo
-        tl.to(boxes[k], { borderColor: "#FFFFFF", color: "#FFFFFF", background: "#161616", duration: 0.03 }, t)
-          .to(labels[k], { color: "#FFFFFF", duration: 0.03 }, t)
-          .fromTo(statuses[k], { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.04 }, t);
+      const n = Math.min(3, Math.floor(scaled));
+      if (n === current) return;
+      current = n;
+      stages.forEach((el, i) => {
+        el.classList.toggle("is-active", i === n);
+        el.classList.toggle("is-done", i < n);
+        const node = nodes[i];
+        if (node) node.textContent = i < n || (i === 3 && n === 3) ? "✓" : steps[i].n;
+        if (i === n) el.setAttribute("aria-current", "step");
+        else el.removeAttribute("aria-current");
       });
+      if (detail) detail.textContent = notes[n];
+      if (badge) badge.textContent = n === 3 ? "Venta cerrada" : "En seguimiento";
+    };
 
-      // cierre: el último también queda hecho, en verde, y el estado resume
-      const end = stepAt(n - 1) + 0.1;
-      tl.to(boxes[n - 1], { borderColor: "#22C55E", color: "#22C55E", duration: 0.03 }, end)
-        .to(labels[n - 1], { color: "#22C55E", duration: 0.03 }, end)
-        .fromTo(dones[n - 1], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.03, ease: "back.out(2)" }, end)
-        .to(statuses[n - 1], { opacity: 0, y: -6, duration: 0.03 }, end)
-        .fromTo(statusEnd, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.04 }, end + 0.01)
-        // ya resuelto, aguanta un tramo antes de que la pantalla se despegue
-        .to({}, { duration: 1 - (end + 0.05) }, end + 0.05);
+    const showEnd = () => {
+      current = -1;
+      apply(1);
+    };
+    if (motion.matches) {
+      showEnd();
+      const onMotion = () => {
+        if (motion.matches) showEnd();
+      };
+      motion.addEventListener("change", onMotion);
+      return () => motion.removeEventListener("change", onMotion);
+    }
 
-      if (reduced) {
-        tl.progress(1).pause();
-        tl.scrollTrigger?.kill();
-      }
-    }, el);
-    return () => ctx.revert();
+    const st = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => apply(self.progress),
+    });
+    apply(st.progress);
+    let stopped = false;
+    const onMotion = () => {
+      if (!motion.matches || stopped) return;
+      stopped = true;
+      st.kill();
+      showEnd();
+    };
+    motion.addEventListener("change", onMotion);
+
+    return () => {
+      motion.removeEventListener("change", onMotion);
+      if (!stopped) st.kill();
+    };
   }, []);
 
   return (
     <section ref={ref} id="proceso" className="proceso relative z-[2] border-t border-[#171717] bg-black0" aria-labelledby="proceso-h">
-        <div className="pin flex items-center gutter pt-[80px]">
-        <div className="mx-auto flex w-full max-w-[880px] flex-col items-center py-4 md:py-8">
+      <div className="pin flex items-center gutter pt-[80px]">
+        <div className="mx-auto flex w-full max-w-[960px] flex-col items-center py-4 md:py-6">
           <div className="mb-5 flex max-w-[820px] flex-col items-center text-center md:mb-6">
             <div className="mb-6">
               <Kicker module="Cómo funciona" what="la captación, del anuncio a la venta" />
@@ -134,67 +113,26 @@ export function Proceso() {
             </h2>
           </div>
 
-          {/* la ventana del CRM */}
-          <div ref={win} className="panel w-full overflow-hidden">
-            <div className="flex items-center justify-between border-b border-[#1F1F1F] px-5 py-3">
-              <div className="flex items-center gap-3">
-                <span className="flex gap-[6px]">
-                  <span className="h-[9px] w-[9px] rounded-full bg-grey4" />
-                  <span className="h-[9px] w-[9px] rounded-full bg-grey4" />
-                  <span className="h-[9px] w-[9px] rounded-full bg-grey4" />
-                </span>
-                <span className="mono text-[12px] text-grey6">Captación · Casa en Camino Rianxiño, 115</span>
+          <div ref={flow} className="flow w-full">
+            <div className="flow-bar">
+              <div className="flow-property">
+                Piso en Calle del Pez, 18 · Madrid
+                <small>Ejemplo de operación · Particular</small>
               </div>
-              <span className="st st-g">
-                <span className="h-[6px] w-[6px] rounded-full bg-green" />
-                en marcha
-              </span>
+              <span className="flow-badge">En seguimiento</span>
             </div>
-
-            <div className="px-4 pb-5 pt-6 md:px-8 md:pb-6 md:pt-8">
-              <div className="route">
-                <span className="route-stem-m" aria-hidden="true">
-                  <span className="pulse" />
-                </span>
-                <svg className="route-svg pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M21 14 H94 V64 H21" fill="none" stroke="#3A3A3A" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-                  <path className="route-pulse" d="M21 14 H94 V64 H21" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                </svg>
-                <ol className="m-0 list-none p-0">
-                  {steps.map((s) => (
-                    <li key={s.label} className="route-step relative z-[1]">
-                      <span className="step-box relative flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] border border-[#222222] bg-black1 text-grey5 md:h-[72px] md:w-[72px]">
-                        <Icon name={s.icon} />
-                        <span className="step-done absolute -right-[6px] -top-[6px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-green" style={{ opacity: 0 }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06240F" strokeWidth="3.5" aria-hidden="true">
-                            <path d="M20 6 9 17l-5-5" />
-                          </svg>
-                        </span>
-                      </span>
-                      <span className="step-label text-[15px] font-medium leading-[1.25] text-grey5 md:max-w-[180px] md:text-[17px]">{s.label}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* la línea de estado: todos los textos apilados, se enciende el que toca */}
-              <div className="status mt-8 flex items-center gap-3 border-t border-[#1F1F1F] pt-5 text-[14px] text-white7 md:text-[15px]" aria-live="polite">
-                <span className="chk">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5" aria-hidden="true">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                </span>
-                <span className="relative block h-[44px] flex-1 md:h-[24px]">
-                  {steps.map((s) => (
-                    <span key={s.label} className="status-k absolute inset-x-0 top-0 block" style={{ opacity: 0 }}>
-                      {brandify(s.status)}
-                    </span>
-                  ))}
-                  <span className="status-end absolute inset-x-0 top-0 block" style={{ opacity: 0 }}>
-                    {END_STATUS}
-                  </span>
-                </span>
-              </div>
+            <div className="flow-journey" aria-label="Etapas de la operación">
+              {steps.map((s, i) => (
+                <div key={s.label} className={`flow-stage${i === 0 ? " is-active" : ""}`} aria-current={i === 0 ? "step" : undefined}>
+                  <span className="flow-node">{s.n}</span>
+                  <strong>{s.label}</strong>
+                  <small>{s.hint}</small>
+                </div>
+              ))}
+            </div>
+            <div className="flow-foot">
+              <span className="flow-mark" aria-hidden="true">↳</span>
+              <p className="flow-detail">{notes[0]}</p>
             </div>
           </div>
         </div>

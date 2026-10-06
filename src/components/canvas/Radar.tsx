@@ -76,16 +76,14 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
     const t = state.clock.elapsedTime;
     // los progresos se quedan en 0 antes del capítulo y en 1 después: sirven también fuera del tramo pegado
     const pr = s.progress.radar;
-    const pp = s.progress.prologo;
     const o = s.onScreen;
-    // solo mientras el prólogo o el 01 tocan el viewport; nunca con la ciudad (ahí el fondo es el skyline)
-    const visible = !!(o.prologo || o.radar) && !(o.ciudad || o.bandeja);
+    // solo en el 01, nunca en la intro ni con la ciudad (ahí el fondo es el skyline)
+    const visible = !!o.radar && !(o.ciudad || o.bandeja);
     if (group.current) group.current.visible = visible;
     if (!visible) return;
 
-    // En el 01 el disco está visible al llegar, sin esperar scroll.
-    // En el prólogo entra con su tramo; al final del 01 se apaga.
-    const fadeIn = o.radar ? 1 : Math.min(1, pp / 0.7);
+    // Visible al llegar al 01, sin esperar scroll. Al final del tramo se apaga.
+    const fadeIn = 1;
     const fadeOut = 1 - Math.max(0, pr - 0.85) / 0.15;
     const opacity = Math.max(0, Math.min(1, fadeIn * fadeOut));
 
