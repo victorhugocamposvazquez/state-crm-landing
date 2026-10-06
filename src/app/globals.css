@@ -234,6 +234,15 @@ body {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
+/* En móvil el fondo es negro cerrado: el degradado dejaba ver el contenido y competía con el logo. */
+.site-header {
+  background: #0a0a0a;
+}
+@media (min-width: 768px) {
+  .site-header {
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.92), rgba(10, 10, 10, 0));
+  }
+}
 /* datos de la interfaz del CRM (ids, horas, metadatos): misma familia, cifras tabulares, sin apretar */
 .mono {
   font-family: var(--font-mono);
