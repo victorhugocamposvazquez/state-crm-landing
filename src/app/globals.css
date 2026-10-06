@@ -513,7 +513,75 @@ body {
 .proceso > .pin {
   position: sticky;
   top: 0;
-  min-height: var(--stage-h);
+  height: 100svh;
+  min-height: 0;
+}
+/* cuatro pasos: en móvil un hilo vertical; en escritorio un recorrido en dos filas */
+.route {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.route-stem-m {
+  position: absolute;
+  left: 27px;
+  top: 28px;
+  bottom: 28px;
+  width: 1px;
+  background: #3a3a3a;
+  overflow: hidden;
+}
+.route-stem-m .pulse {
+  position: absolute;
+  left: -1px;
+  width: 3px;
+  height: 22px;
+  border-radius: 99px;
+  background: linear-gradient(180deg, transparent, #fff, transparent);
+  animation: thread-run-y 2.4s linear infinite;
+}
+.route-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.route-svg {
+  display: none;
+}
+.route-pulse {
+  stroke-dasharray: 10 196;
+  animation: route-run 2.8s linear infinite;
+}
+@keyframes route-run {
+  to { stroke-dashoffset: -206; }
+}
+@media (min-width: 768px) {
+  .route {
+    display: block;
+    height: 240px;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+  .route-stem-m { display: none; }
+  .route-svg { display: block; }
+  .route-step {
+    position: absolute;
+    width: 34%;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .route-step:nth-child(1) { left: 4%; top: 0; }
+  .route-step:nth-child(2) { left: 54%; top: 0; }
+  .route-step:nth-child(3) { left: 54%; top: 124px; }
+  .route-step:nth-child(4) { left: 4%; top: 124px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-pulse,
+  .route-stem-m .pulse { animation: none; }
 }
 
 .will-change {

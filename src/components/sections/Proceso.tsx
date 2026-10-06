@@ -119,9 +119,9 @@ export function Proceso() {
 
   return (
     <section ref={ref} id="proceso" className="proceso relative z-[2] border-t border-[#171717] bg-black0" aria-labelledby="proceso-h">
-      <div className="pin flex items-center gutter">
-        <div className="mx-auto flex w-full max-w-[960px] flex-col items-center py-8 md:py-[80px]">
-          <div className="mb-10 flex max-w-[820px] flex-col items-center text-center md:mb-14">
+        <div className="pin flex items-center gutter pt-[80px]">
+        <div className="mx-auto flex w-full max-w-[880px] flex-col items-center py-4 md:py-8">
+          <div className="mb-5 flex max-w-[820px] flex-col items-center text-center md:mb-6">
             <div className="mb-6">
               <Kicker module="Cómo funciona" what="la captación, del anuncio a la venta" />
             </div>
@@ -151,22 +151,31 @@ export function Proceso() {
               </span>
             </div>
 
-            <div className="px-5 pb-8 pt-8 md:px-10 md:pb-10 md:pt-12">
-              <ol className="relative m-0 grid list-none grid-cols-2 gap-x-4 gap-y-10 p-0 md:gap-x-16 md:gap-y-14">
-                {steps.map((s) => (
-                  <li key={s.label} className="flex flex-col items-center gap-4 text-center">
-                    <span className="step-box relative flex h-[76px] w-[76px] items-center justify-center rounded-[16px] border border-[#222222] bg-black1 text-grey5 md:h-[104px] md:w-[104px]">
-                      <Icon name={s.icon} />
-                      <span className="step-done absolute -right-[6px] -top-[6px] flex h-[22px] w-[22px] items-center justify-center rounded-full bg-green" style={{ opacity: 0 }}>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06240F" strokeWidth="3.5" aria-hidden="true">
-                          <path d="M20 6 9 17l-5-5" />
-                        </svg>
+            <div className="px-4 pb-5 pt-6 md:px-8 md:pb-6 md:pt-8">
+              <div className="route">
+                <span className="route-stem-m" aria-hidden="true">
+                  <span className="pulse" />
+                </span>
+                <svg className="route-svg pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M21 14 H94 V64 H21" fill="none" stroke="#3A3A3A" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+                  <path className="route-pulse" d="M21 14 H94 V64 H21" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                </svg>
+                <ol className="m-0 list-none p-0">
+                  {steps.map((s) => (
+                    <li key={s.label} className="route-step relative z-[1]">
+                      <span className="step-box relative flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] border border-[#222222] bg-black1 text-grey5 md:h-[72px] md:w-[72px]">
+                        <Icon name={s.icon} />
+                        <span className="step-done absolute -right-[6px] -top-[6px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-green" style={{ opacity: 0 }}>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06240F" strokeWidth="3.5" aria-hidden="true">
+                            <path d="M20 6 9 17l-5-5" />
+                          </svg>
+                        </span>
                       </span>
-                    </span>
-                    <span className="step-label max-w-[180px] text-[16px] font-medium leading-[1.25] text-grey5 md:max-w-[240px] md:text-[22px]">{s.label}</span>
-                  </li>
-                ))}
-              </ol>
+                      <span className="step-label text-[15px] font-medium leading-[1.25] text-grey5 md:max-w-[180px] md:text-[17px]">{s.label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
 
               {/* la línea de estado: todos los textos apilados, se enciende el que toca */}
               <div className="status mt-8 flex items-center gap-3 border-t border-[#1F1F1F] pt-5 text-[14px] text-white7 md:text-[15px]" aria-live="polite">
