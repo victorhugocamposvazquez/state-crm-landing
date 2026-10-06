@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Brand, Kicker } from "@/components/ui/atoms";
+import { Brand } from "@/components/ui/atoms";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,9 +101,6 @@ export function Proceso() {
       <div className="pin flex items-center gutter pt-[80px]">
         <div className="mx-auto flex w-full max-w-[960px] flex-col items-center py-4 md:py-6">
           <div className="mb-5 flex max-w-[820px] flex-col items-center text-center md:mb-6">
-            <div className="mb-6">
-              <Kicker module="Cómo funciona" what="la captación, del anuncio a la venta" />
-            </div>
             <h2 id="proceso-h" className="t-h1 m-0 text-white8">
               <span className="text-grey5">
                 <Brand wordmark /> detecta, captura y asigna.
