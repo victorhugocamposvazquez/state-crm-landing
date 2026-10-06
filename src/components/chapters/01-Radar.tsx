@@ -5,9 +5,8 @@ import gsap from "gsap";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 
 /**
- * 01 · El radar. Al llegar la pantalla, entra todo el bloque solo:
- * titular, etiquetas que se acoplan, párrafo, botones y la ventana.
- * Nada de eso espera a seguir haciendo scroll.
+ * 01 · El radar. Al llegar la pantalla, entra todo el bloque solo.
+ * Los tres pasos cuelgan de un hilo: el pulso sigue recorriéndolo.
  */
 export function Radar() {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,29 +22,25 @@ export function Radar() {
     if (!root || !el) return;
     const q = gsap.utils.selector(root);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const show = q(".chip, .sub, .cta, .tag, .tag .ln");
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
 
     if (reduced) {
-      gsap.set(show, { opacity: 1, y: 0, scale: 1, scaleY: 1 });
-      if (el.offsetHeight < 64) el.classList.add("is-joined");
+      gsap.set(q(".step, .sub, .cta, .tag, .tag .ln, .rail"), { opacity: 1, y: 0, scaleX: 1, scaleY: 1 });
+      el.classList.add("is-live");
       return;
     }
 
-    gsap.set(q(".chip"), { opacity: 0, y: 12 });
-    gsap.set(q(".tick"), { scale: 0, opacity: 0 });
+    gsap.set(q(".rail"), mobile ? { scaleY: 0, transformOrigin: "top center" } : { scaleX: 0, transformOrigin: "left center" });
+    gsap.set(q(".step"), { opacity: 0, y: 8 });
     gsap.set(q(".sub, .cta"), { opacity: 0, y: 14 });
     gsap.set(q(".tag"), { opacity: 0, y: 8 });
     gsap.set(q(".tag .ln"), { scaleY: 0, transformOrigin: "bottom" });
 
     const tl = gsap.timeline({ paused: true });
-    tl.to(q(".chip-1"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
-      .to(q(".chip-2"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.16")
-      .to(q(".chip-3"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.16")
-      .add(() => {
-        if (el.offsetHeight < 64) el.classList.add("is-joined");
-      })
-      .to(q(".tick"), { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, "+=0.28")
-      .to(q(".sub"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.1")
+    tl.to(q(".rail"), mobile ? { scaleY: 1, duration: 0.7, ease: "power2.inOut" } : { scaleX: 1, duration: 0.7, ease: "power2.inOut" })
+      .to(q(".step"), { opacity: 1, y: 0, duration: 0.4, stagger: 0.16, ease: "power2.out" }, 0.2)
+      .add(() => el.classList.add("is-live"))
+      .to(q(".sub"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.15")
       .to(q(".cta"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
       .to(q(".tag"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.15")
       .to(q(".tag .ln"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, "<");
@@ -76,16 +71,21 @@ export function Radar() {
           <h1 className="t-hero m-0 text-white8">
             Impulsa tu negocio inmobiliario.
           </h1>
-          <div ref={chain} className="chain mt-6" aria-label="Más captación, más oportunidades, más ventas">
-            <span className="chip chip-1">Más captación</span>
-            <span className="chip chip-2">más oportunidades</span>
-            <span className="chip chip-3 chip-end">
-              Más ventas
-              <span className="tick chk" aria-hidden="true">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-              </span>
+          <div ref={chain} className="thread mt-7" aria-label="Más captación, más oportunidades, más ventas">
+            <span className="rail" aria-hidden="true">
+              <span className="pulse" />
+            </span>
+            <span className="step">
+              <span className="dot" aria-hidden="true" />
+              <span className="lbl">Más captación</span>
+            </span>
+            <span className="step">
+              <span className="dot" aria-hidden="true" />
+              <span className="lbl">más oportunidades</span>
+            </span>
+            <span className="step step-end">
+              <span className="dot" aria-hidden="true" />
+              <span className="lbl">Más ventas</span>
             </span>
           </div>
           <p className="sub t-lead mt-7 max-w-[560px] text-grey6" style={{ opacity: 0 }}>

@@ -83,8 +83,9 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
     if (group.current) group.current.visible = visible;
     if (!visible) return;
 
-    // Opacidad: entra durante el prólogo, se apaga en el último tramo del 01
-    const fadeIn = Math.min(1, pp / 0.7);
+    // En el 01 el disco está visible al llegar, sin esperar scroll.
+    // En el prólogo entra con su tramo; al final del 01 se apaga.
+    const fadeIn = o.radar ? 1 : Math.min(1, pp / 0.7);
     const fadeOut = 1 - Math.max(0, pr - 0.85) / 0.15;
     const opacity = Math.max(0, Math.min(1, fadeIn * fadeOut));
 

@@ -79,11 +79,11 @@ export function Entrar() {
 
         <div className="relative flex w-full max-w-[440px] flex-col items-center">
           <Logo
-            className="gap-2"
+            className="gap-1.5"
             markClassName="h-14 w-14 md:h-[72px] md:w-[72px]"
             wordClassName="text-[24px] md:text-[30px]"
           />
-          <h1 className="m-0 mt-6 text-center text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
+          <h1 className="m-0 mt-6 w-full text-left text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
 
           {mode !== "recuperar" && (
             <div className="mt-5 flex gap-5 self-start" role="tablist" aria-label="Acceso">
@@ -103,7 +103,7 @@ export function Entrar() {
                 onClick={() => pick("registro")}
                 className={`cursor-pointer border-0 bg-transparent p-0 text-[12px] font-medium ${mode === "registro" ? "text-white8" : "text-grey5"}`}
               >
-                Registrarse
+                Regístrate
               </button>
             </div>
           )}

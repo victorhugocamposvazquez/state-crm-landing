@@ -62,11 +62,12 @@ function CameraRig({ radarX, snapRef }: { radarX: number; snapRef: MutableRefObj
       v.pos.copy(v.cFrom).lerp(v.cTo, pc);
       v.target.set(0, 0, 0);
     } else {
-      // 01 · Radar: alto y lejos → desciende hacia el disco. En escritorio el disco queda a la derecha del titular.
+      // 01 · Radar: el disco ya se lee al entrar, a la derecha del titular.
+      // El scroll solo lo acerca un poco; no hace falta bajar para verlo.
       const pr = s.progress.radar;
       const camX = mobile ? radarX : radarX - 3.2;
-      v.rFrom.set(camX, RADAR_Y + (mobile ? 15 : 14), mobile ? 11 : 12);
-      v.rTo.set(camX, RADAR_Y + (mobile ? 8.5 : 7.5), mobile ? 7.5 : 8.5);
+      v.rFrom.set(camX, RADAR_Y + (mobile ? 10 : 9), mobile ? 9 : 9.5);
+      v.rTo.set(camX, RADAR_Y + (mobile ? 8 : 7), mobile ? 7.2 : 8);
       v.pos.copy(v.rFrom).lerp(v.rTo, pr);
       v.target.set(camX, RADAR_Y, mobile ? -1.2 : -0.6);
     }

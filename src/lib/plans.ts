@@ -18,8 +18,6 @@ export interface Plan {
   /** precio mensual, tal como se muestra */
   price: string;
   unit: string;
-  /** una frase: para quién es este plan */
-  lead: string;
   /** qué incluye, explicado; el primer punto resume lo heredado del plan anterior */
   items: PlanItem[];
   /** plan recomendado */
@@ -33,7 +31,6 @@ export const plans: Plan[] = [
     name: "Captación",
     price: "250 €",
     unit: "/ mes",
-    lead: "Para empezar a captar particulares cada mañana con el CRM completo de la agencia.",
     items: [
       { title: "Captación diaria de particulares", text: "Rastreo de los portales cada mañana en tus zonas, con ficha completa y teléfono." },
       { title: "Bandeja de novedades", text: "Lo que entra hoy, con prioridad, asignación a un comercial y avisos de subidas y bajadas de precio." },
@@ -47,7 +44,6 @@ export const plans: Plan[] = [
     name: "Catastro",
     price: "650 €",
     unit: "/ mes",
-    lead: "Todo Captación, más el Catastro: todas las fincas de una calle, un código postal o una localidad.",
     highlight: true,
     badge: "Recomendado",
     items: [
@@ -63,7 +59,6 @@ export const plans: Plan[] = [
     name: "Completo",
     price: "1.250 €",
     unit: "/ mes",
-    lead: "Con todas las opciones: también la obra, la facturación y los informes de la agencia.",
     items: [
       { title: "Todo el plan Catastro", text: "Captación, catastro, encubiertas y varias oficinas." },
       { title: "Presupuestos por partidas", text: "Con estados, total y tasa de aceptación, dentro de la ficha del piso." },

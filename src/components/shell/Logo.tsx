@@ -41,8 +41,8 @@ export function Logo({
   }, [progress, c]);
 
   return (
-    <span className={`inline-flex items-center ${className || "gap-3 md:gap-4"}`}>
-      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true" className={markClassName}>
+    <span className={`inline-flex items-center ${className || "gap-1.5"}`}>
+      <svg data-logo-mark width={size} height={size} viewBox="6 6 32 32" fill="none" aria-hidden="true" className={markClassName}>
         <circle cx="22" cy="22" r={r} stroke="#6E6E6E" strokeWidth="6" />
         <circle
           ref={ref}
