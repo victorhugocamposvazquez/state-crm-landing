@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 /**
  * Hero bajo «Impulsa tu negocio inmobiliario».
- * Tres superficies, sin hilo: se encienden solas (1,3 s · 1,3 s · 2,2 s) y vuelven a empezar.
+ * Tres superficies, sin hilo: se encienden una vez (1,3 s · 1,3 s) y se quedan en ventas.
  * No comparte progreso con el recorrido de Cómo funciona.
  */
 const STEPS = [
@@ -24,6 +24,7 @@ export function BeneficiosAuto() {
     let timer = 0;
     let index = 0;
     let visible = false;
+    let done = false;
 
     const paint = () => {
       steps.forEach((s, i) => s.classList.toggle("is-on", i === index));
@@ -33,16 +34,20 @@ export function BeneficiosAuto() {
       stop();
       if (motion.matches) {
         index = 2;
+        done = true;
         paint();
         return;
       }
-      if (!visible || document.hidden) return;
-      const wait = index === 2 ? 2200 : 1300;
+      if (done || !visible || document.hidden) return;
+      if (index >= 2) {
+        done = true;
+        return;
+      }
       timer = window.setTimeout(() => {
-        index = (index + 1) % 3;
+        index += 1;
         paint();
         schedule();
-      }, wait);
+      }, 1300);
     };
 
     paint();
@@ -67,7 +72,7 @@ export function BeneficiosAuto() {
   }, []);
 
   return (
-    <div ref={root} className="benefits mt-7" aria-label="Más captación, más oportunidades, Más ventas">
+    <div ref={root} className="benefits mt-5" aria-label="Más captación, más oportunidades, Más ventas">
       <div className="benefits-row">
         {STEPS.map((s) => (
           <div key={s.label} className={`b-step${s.icon === "up" ? " b-sale" : ""}${s.icon === "radar" ? " is-on" : ""}`}>
@@ -76,7 +81,7 @@ export function BeneficiosAuto() {
             </span>
             {s.icon === "up" && (
               <span className="b-tick" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6">
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
               </span>
@@ -91,8 +96,8 @@ export function BeneficiosAuto() {
 
 function StepIcon({ name }: { name: (typeof STEPS)[number]["icon"] }) {
   const p = {
-    width: 22,
-    height: 22,
+    width: 16,
+    height: 16,
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
