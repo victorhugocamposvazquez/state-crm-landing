@@ -80,7 +80,7 @@ export function Radar() {
           </div>
         </div>
 
-        <div className="tag mono absolute bottom-[22%] right-[8%] flex flex-col items-start text-[11px] text-grey6 md:bottom-[26%] md:right-[18%]" style={{ opacity: 0 }}>
+        <div className="tag mono absolute bottom-[22%] right-[8%] hidden flex-col items-start text-[11px] text-grey6 md:bottom-[26%] md:right-[18%] md:flex" style={{ opacity: 0 }}>
           <span className="ln mb-2 ml-[2px] block h-9 w-px origin-bottom bg-grey4" />
           <span>
             3º izquierda · 92 m² · <span className="text-green">publicado hace 0 min</span>

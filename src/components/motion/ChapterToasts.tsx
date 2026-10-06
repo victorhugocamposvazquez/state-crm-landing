@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useScroll } from "@/lib/store";
 import { chapters, chapterIndex, type ChapterId, type LiveEvent, type ToastCorner } from "@/lib/script";
 
@@ -19,6 +19,11 @@ const corners: Record<ToastCorner, string> = {
 export function ChapterToasts({ id }: { id: ChapterId }) {
   const chapter = chapters[chapterIndex[id]];
   const [items, setItems] = useState<LiveEvent[]>([]);
+  const onScreen = useSyncExternalStore(
+    useScroll.subscribe,
+    () => useScroll.getState().onScreen[id],
+    () => false,
+  );
 
   useEffect(() => {
     if (!chapter.events.length) return;
@@ -31,7 +36,7 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
     return useScroll.subscribe(compute);
   }, [id, chapter]);
 
-  if (!chapter.events.length || items.length === 0) return null;
+  if (!chapter.events.length || items.length === 0 || !onScreen) return null;
   const corner = corners[chapter.toasts ?? "br"];
   // la más reciente, pegada a la esquina: arriba en las esquinas superiores, abajo en las inferiores
   const last = items[items.length - 1];
@@ -54,7 +59,11 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
 
   return (
     <div
-      className={`pointer-events-none absolute z-20 w-[calc(100%-2*var(--gutter))] md:w-[340px] ${corner}`}
+      className={`pointer-events-none z-20 w-[calc(100%-2*var(--gutter))] md:w-[340px] ${
+        chapter.stack
+          ? "fixed bottom-5 left-[var(--gutter)] right-[var(--gutter)] md:absolute md:bottom-7 md:left-auto md:right-[var(--gutter)] md:w-[340px]"
+          : `absolute ${corner}`
+      }`}
       aria-live="polite"
       aria-label="Notificaciones del CRM"
     >
