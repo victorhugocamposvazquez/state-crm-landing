@@ -343,10 +343,10 @@ body {
 .btn-line {
   background: var(--black0);
   color: var(--white8);
-  border-color: var(--grey4);
+  border-color: var(--white7);
 }
 .btn-line:hover {
-  border-color: var(--grey6);
+  border-color: var(--white8);
 }
 :focus-visible {
   outline: 2px solid var(--white8);

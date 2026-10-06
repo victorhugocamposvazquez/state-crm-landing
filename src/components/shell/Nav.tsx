@@ -65,7 +65,7 @@ export function Nav() {
 
       <div className="flex items-center gap-2 md:gap-6">
         <a href="#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
-          Planes
+          Ver planes
         </a>
         <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-10 items-center justify-center text-white7 no-underline hover:text-white8 md:h-11 md:w-11">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
