@@ -402,7 +402,6 @@ body {
 }
 /* hero: tres superficies que se encienden solas, sin líneas */
 .benefits {
-  container-type: inline-size;
   width: fit-content;
   max-width: 100%;
 }
@@ -493,7 +492,7 @@ body {
   70% { transform: scale(1.16) rotate(5deg); }
   100% { transform: scale(1); opacity: 1; }
 }
-@container (max-width: 520px) {
+@media (max-width: 767px) {
   .benefits-row { grid-template-columns: max-content; gap: 6px; }
   .b-step {
     min-height: 36px;
