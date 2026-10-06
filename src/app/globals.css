@@ -403,47 +403,34 @@ body {
   justify-content: center;
   flex-shrink: 0;
 }
-/* hero: tres superficies que se encienden solas, sin líneas */
+/* hero: tres frases que se encienden solas. Sin caja: no son botones. */
 .benefits {
   width: fit-content;
   max-width: 100%;
+  pointer-events: none;
 }
 .benefits-row {
   display: grid;
   grid-template-columns: repeat(3, max-content);
-  gap: 6px;
+  gap: 8px 32px;
 }
 .b-step {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 40px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: #111;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid #2a2a2a;
+  background: none;
   color: #f2f2f2;
-  opacity: 0.5;
-  overflow: hidden;
-  transform: translateY(4px) scale(0.96);
-  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s, background 0.4s, box-shadow 0.4s;
-}
-.b-step::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, #ffffff12, transparent 75%);
-  opacity: 0;
-  transition: opacity 0.4s;
+  opacity: 0.38;
+  transition: opacity 0.4s, border-color 0.4s;
 }
 .b-step.is-on {
   opacity: 1;
-  background: #202020;
-  transform: translateY(-2px) scale(1);
-  box-shadow: 0 8px 16px #0007, inset 0 1px 0 #ffffff15;
+  border-bottom-color: #fff;
 }
-.b-step.is-on::before { opacity: 1; }
 .b-ico {
   position: relative;
   display: grid;
@@ -476,7 +463,6 @@ body {
   background: #193d26;
   color: #64e294;
 }
-.b-sale.is-on { background: #1d211e; }
 .b-sale.is-on .b-ico { display: none; }
 .b-sale.is-on .b-tick {
   display: flex;
@@ -499,22 +485,14 @@ body {
   .benefits { width: 100%; }
   .benefits-row {
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 16px 18px;
   }
   .b-sale { grid-column: 1 / -1; }
-  .b-step {
-    min-height: 44px;
-    justify-content: center;
-    padding: 10px 12px;
-    border-radius: 10px;
-    transform: translateY(3px) scale(0.98);
-  }
-  .b-step.is-on { transform: translateY(-2px) scale(1); }
-  .b-label { font-size: 13px; }
-  .b-sale .b-label { font-size: 15px; }
+  .b-label { font-size: 14px; }
+  .b-sale .b-label { font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .b-step { opacity: 1; transform: none !important; transition: none; }
+  .b-step { opacity: 1; transition: none; }
   .b-step.is-on .b-ico,
   .b-step.is-on .b-label,
   .b-sale.is-on .b-tick { animation: none; }
