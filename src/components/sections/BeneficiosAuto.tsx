@@ -74,8 +74,8 @@ export function BeneficiosAuto() {
   return (
     <div ref={root} className="benefits mt-5" aria-label="Más captación, más oportunidades, Más ventas">
       <div className="benefits-row">
-        {STEPS.map((s) => (
-          <div key={s.label} className={`b-step${s.icon === "up" ? " b-sale" : ""}${s.icon === "radar" ? " is-on" : ""}`}>
+        {STEPS.map((s, i) => (
+          <div key={s.label} className={`b-step${s.icon === "up" ? " b-sale" : ""}${i === 0 ? " is-on" : ""}`}>
             <span className="b-ico" aria-hidden="true">
               <StepIcon name={s.icon} />
             </span>
@@ -89,6 +89,8 @@ export function BeneficiosAuto() {
             <span className="b-label">{s.label}</span>
           </div>
         ))}
+        <span className="b-join" aria-hidden="true" />
+        <span className="b-drop" aria-hidden="true" />
       </div>
     </div>
   );
