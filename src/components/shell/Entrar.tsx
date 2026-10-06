@@ -79,20 +79,20 @@ export function Entrar() {
 
         <div className="relative flex w-full max-w-[440px] flex-col items-center">
           <Logo
-            className="gap-4 md:gap-5"
-            markClassName="h-16 w-16 md:h-[88px] md:w-[88px]"
-            wordClassName="text-[28px] md:text-[36px]"
+            className="gap-2"
+            markClassName="h-14 w-14 md:h-[72px] md:w-[72px]"
+            wordClassName="text-[24px] md:text-[30px]"
           />
-          <h1 className="t-h2 m-0 mt-8 text-center text-white8">{title}</h1>
+          <h1 className="m-0 mt-6 text-center text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
 
           {mode !== "recuperar" && (
-            <div className="mt-8 flex gap-6 self-start" role="tablist" aria-label="Acceso">
+            <div className="mt-5 flex gap-5 self-start" role="tablist" aria-label="Acceso">
               <button
                 type="button"
                 role="tab"
                 aria-selected={mode === "entrar"}
                 onClick={() => pick("entrar")}
-                className={`cursor-pointer border-0 bg-transparent p-0 text-[14px] font-medium ${mode === "entrar" ? "text-white8" : "text-grey5"}`}
+                className={`cursor-pointer border-0 bg-transparent p-0 text-[12px] font-medium ${mode === "entrar" ? "text-white8" : "text-grey5"}`}
               >
                 Acceso
               </button>
@@ -101,7 +101,7 @@ export function Entrar() {
                 role="tab"
                 aria-selected={mode === "registro"}
                 onClick={() => pick("registro")}
-                className={`cursor-pointer border-0 bg-transparent p-0 text-[14px] font-medium ${mode === "registro" ? "text-white8" : "text-grey5"}`}
+                className={`cursor-pointer border-0 bg-transparent p-0 text-[12px] font-medium ${mode === "registro" ? "text-white8" : "text-grey5"}`}
               >
                 Registrarse
               </button>

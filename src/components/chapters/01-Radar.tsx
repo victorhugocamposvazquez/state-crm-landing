@@ -5,43 +5,50 @@ import gsap from "gsap";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
 
 /**
- * 01 · El radar. El titular entra con la pantalla.
- * La cadena «captación → oportunidades → ventas» se escribe sola, sin scroll.
+ * 01 · El radar. Al llegar la pantalla, entra todo el bloque solo:
+ * titular, etiquetas que se acoplan, párrafo, botones y la ventana.
+ * Nada de eso espera a seguir haciendo scroll.
  */
 export function Radar() {
   const ref = useRef<HTMLDivElement>(null);
-  const chain = useRef<HTMLSpanElement>(null);
+  const chain = useRef<HTMLDivElement>(null);
 
-  useScrollTimeline(ref, (tl, q, enter) => {
+  useScrollTimeline(ref, (_tl, q, enter) => {
     enter.fromTo(q(".copy"), { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
-
-    tl.fromTo(q(".sub"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.2)
-      .fromTo(q(".cta"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2 }, 0.28)
-      .fromTo(q(".tag"), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15 }, 0.55)
-      .fromTo(q(".tag .ln"), { scaleY: 0 }, { scaleY: 1, duration: 0.1, transformOrigin: "bottom" }, 0.5);
   });
 
   useEffect(() => {
+    const root = ref.current;
     const el = chain.current;
-    if (!el) return;
-    const q = gsap.utils.selector(el);
+    if (!root || !el) return;
+    const q = gsap.utils.selector(root);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const show = q(".chip, .sub, .cta, .tag, .tag .ln");
+
     if (reduced) {
-      gsap.set(q(".beat, .arrow, .tick"), { opacity: 1, y: 0, scale: 1, scaleX: 1 });
+      gsap.set(show, { opacity: 1, y: 0, scale: 1, scaleY: 1 });
+      if (el.offsetHeight < 64) el.classList.add("is-joined");
       return;
     }
 
-    gsap.set(q(".beat"), { opacity: 0, y: 10 });
-    gsap.set(q(".arrow"), { opacity: 0, scaleX: 0, transformOrigin: "left center" });
-    gsap.set(q(".tick"), { opacity: 0, scale: 0.5 });
+    gsap.set(q(".chip"), { opacity: 0, y: 12 });
+    gsap.set(q(".tick"), { scale: 0, opacity: 0 });
+    gsap.set(q(".sub, .cta"), { opacity: 0, y: 14 });
+    gsap.set(q(".tag"), { opacity: 0, y: 8 });
+    gsap.set(q(".tag .ln"), { scaleY: 0, transformOrigin: "bottom" });
 
     const tl = gsap.timeline({ paused: true });
-    tl.to(q(".beat-1"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
-      .to(q(".arrow-1"), { opacity: 1, scaleX: 1, duration: 0.28, ease: "power2.out" }, "+=0.15")
-      .to(q(".beat-2"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.08")
-      .to(q(".arrow-2"), { opacity: 1, scaleX: 1, duration: 0.28, ease: "power2.out" }, "+=0.15")
-      .to(q(".beat-3"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.08")
-      .to(q(".tick"), { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, "+=0.1");
+    tl.to(q(".chip-1"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
+      .to(q(".chip-2"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.16")
+      .to(q(".chip-3"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "+=0.16")
+      .add(() => {
+        if (el.offsetHeight < 64) el.classList.add("is-joined");
+      })
+      .to(q(".tick"), { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, "+=0.28")
+      .to(q(".sub"), { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.1")
+      .to(q(".cta"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
+      .to(q(".tag"), { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, "-=0.15")
+      .to(q(".tag .ln"), { scaleY: 1, duration: 0.3, ease: "power2.out" }, "<");
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -49,9 +56,9 @@ export function Radar() {
         tl.play();
         io.disconnect();
       },
-      { threshold: 0.5 },
+      { threshold: 0.35 },
     );
-    io.observe(el);
+    io.observe(root);
 
     return () => {
       io.disconnect();
@@ -67,28 +74,24 @@ export function Radar() {
 
         <div className="copy absolute left-0 top-[40%] w-full max-w-[860px] -translate-y-1/2 md:top-[46%]" style={{ opacity: 0 }}>
           <h1 className="t-hero m-0 text-white8">
-            <span className="block">Impulsa tu negocio inmobiliario.</span>
-            <span
-              ref={chain}
-              className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[clamp(22px,1.1rem+1vw,34px)] font-medium leading-[1.25] tracking-[-0.03em] text-grey5"
-              aria-label="Más captación, más oportunidades, más ventas"
-            >
-              <span className="beat beat-1 whitespace-nowrap">Más captación</span>
-              <Arrow className="arrow arrow-1" />
-              <span className="beat beat-2 whitespace-nowrap">más oportunidades</span>
-              <Arrow className="arrow arrow-2" />
-              <span className="beat beat-3 whitespace-nowrap text-white8">Más ventas</span>
-              <span className="tick chk !h-7 !w-7" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
+            Impulsa tu negocio inmobiliario.
+          </h1>
+          <div ref={chain} className="chain mt-6" aria-label="Más captación, más oportunidades, más ventas">
+            <span className="chip chip-1">Más captación</span>
+            <span className="chip chip-2">más oportunidades</span>
+            <span className="chip chip-3 chip-end">
+              Más ventas
+              <span className="tick chk" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="3.5">
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
               </span>
             </span>
-          </h1>
-          <p className="sub t-lead mt-7 max-w-[560px] text-grey6">
+          </div>
+          <p className="sub t-lead mt-7 max-w-[560px] text-grey6" style={{ opacity: 0 }}>
             Nuevos anuncios de particulares, búsqueda de fincas y todo el proceso comercial: contactar, agendar, gestionar demandas y cerrar.
           </p>
-          <div className="cta mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="cta mt-8 flex flex-col gap-3 sm:flex-row" style={{ opacity: 0 }}>
             <a href="#proceso" className="btn btn-w">
               Ver cómo funciona
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
@@ -101,9 +104,8 @@ export function Radar() {
           </div>
         </div>
 
-        {/* etiqueta de la ventana que se enciende */}
         <div className="tag mono absolute bottom-[22%] right-[8%] flex flex-col items-start text-[11px] text-grey6 md:bottom-[26%] md:right-[18%]" style={{ opacity: 0 }}>
-          <span className="ln mb-2 ml-[2px] block h-9 w-px bg-grey4" />
+          <span className="ln mb-2 ml-[2px] block h-9 w-px origin-bottom bg-grey4" />
           <span>
             3º izquierda · 92 m² · <span className="text-green">publicado hace 0 min</span>
           </span>
@@ -112,13 +114,5 @@ export function Radar() {
         </div>
       </div>
     </Chapter>
-  );
-}
-
-function Arrow({ className }: { className: string }) {
-  return (
-    <svg className={`${className} h-[14px] w-7 shrink-0`} viewBox="0 0 32 14" fill="none" aria-hidden="true">
-      <path d="M0 7h26M20 1.5 26.5 7 20 12.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   );
 }

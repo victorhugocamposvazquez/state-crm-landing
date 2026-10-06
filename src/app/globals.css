@@ -370,6 +370,50 @@ body {
   justify-content: center;
   flex-shrink: 0;
 }
+/* ecuación del radar: tres etiquetas que se acoplan en una sola */
+.chain {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100%;
+  gap: 8px;
+  transition: gap 0.45s ease;
+}
+.chain .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--grey4);
+  border-radius: 999px;
+  background: var(--black2);
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--white7);
+  white-space: nowrap;
+  transition: border-radius 0.45s ease;
+}
+.chain .chip-end {
+  color: var(--white8);
+}
+.chain.is-joined {
+  flex-wrap: nowrap;
+  gap: 0;
+}
+.chain.is-joined .chip {
+  border-radius: 0;
+}
+.chain.is-joined .chip:first-child {
+  border-radius: 999px 0 0 999px;
+}
+.chain.is-joined .chip:last-child {
+  border-radius: 0 999px 999px 0;
+}
+.chain.is-joined .chip:not(:first-child) {
+  margin-left: -1px;
+}
 
 /* Capítulos: una sección alta con una pantalla pegada. Van una detrás de otra, sin solape:
    al acabar su tramo la pantalla se despega y sube con el scroll, como cualquier sección. */
