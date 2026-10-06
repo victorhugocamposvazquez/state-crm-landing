@@ -78,11 +78,7 @@ export function Entrar() {
         <div className="halo" style={{ left: "50%", top: 40, width: 720, height: 520, transform: "translate(-50%, 0)" }} />
 
         <div className="relative flex w-full max-w-[440px] flex-col items-center">
-          <Logo
-            className="gap-1.5"
-            markClassName="h-14 w-14 md:h-[72px] md:w-[72px]"
-            wordClassName="text-[24px] md:text-[30px]"
-          />
+          <Logo className="text-[32px] md:text-[40px]" />
           <h1 className="m-0 mt-6 w-full text-left text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
 
           {mode !== "recuperar" && (

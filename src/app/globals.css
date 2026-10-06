@@ -241,6 +241,20 @@ body {
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
 }
+/* lockup: el anillo sale del tamaño del wordmark, no de una medida aparte.
+   En el original el círculo es 1,21× la altura de «state» y el aire hasta el texto, 0,55 em. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  line-height: 1;
+}
+.logo-mark {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+  display: block;
+}
 /* el wordmark: la única pieza en Space Grotesk, como en el lockup de marca */
 .wordmark {
   font-family: var(--font-brand);
