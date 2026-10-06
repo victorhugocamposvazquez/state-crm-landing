@@ -10,7 +10,7 @@ const C = 2 * Math.PI * R;
 
 /**
  * Prólogo: el anillo nace grande y vacío, se carga hasta el logo
- * y vuela a la cabecera mientras la página pasa al radar.
+ * y vuela a la cabecera. La página pasa al radar cuando el anillo ya está allí.
  * El logo de la cabecera sigue con su propio círculo.
  */
 export function Prologo() {
@@ -69,9 +69,11 @@ export function Prologo() {
         duration: 0.95,
         ease: "power3.inOut",
         onComplete: () => {
+          if (window.scrollY <= 24) scrollTo(next, 1.15);
           gsap.to(ghost, {
             opacity: 0,
-            duration: 0.18,
+            duration: 0.25,
+            delay: 0.2,
             onComplete: () => {
               ghost?.remove();
               ghost = null;
@@ -79,7 +81,6 @@ export function Prologo() {
           });
         },
       });
-      scrollTo(next, 1.15);
     };
 
     const tl = gsap.timeline();

@@ -21,8 +21,8 @@
   /* distancia del borde del viewport al borde del contenido: lo usan las capas fijas (cabecera, pizarra)
      para alinearse con el contenedor centrado en vez de con el borde de la pantalla */
   --edge: max(var(--gutter), calc((100vw - var(--content-max)) / 2 + var(--gutter)));
-  /* dónde empieza el contenido de una pantalla de capítulo: con aire bajo la cabecera (64px) */
-  --copy-top: 112px;
+  /* dónde empieza el contenido de una pantalla de capítulo: con aire bajo la cabecera (72px) */
+  --copy-top: 120px;
   /* Misma unidad en altura de capítulo y stage: si vh≠dvh aparecen cortinillas */
   --vh-unit: 1vh;
   --stage-h: calc(100 * var(--vh-unit));
@@ -169,7 +169,7 @@
 @media (max-width: 767px) {
   :root {
     --gutter: 20px;
-    --copy-top: 96px;
+    --copy-top: 104px;
     /* la pantalla pegada llena el teléfono: con menos, debajo asomaba un hueco vacío y lo de
        abajo se cortaba contra el borde de una pantalla más baja que el viewport */
     --vh-unit: 1vh;
@@ -339,6 +339,14 @@ body {
 .btn-g:hover {
   border-color: var(--grey5);
   color: var(--white8);
+}
+.btn-line {
+  background: var(--black0);
+  color: var(--white8);
+  border-color: var(--grey4);
+}
+.btn-line:hover {
+  border-color: var(--grey6);
 }
 :focus-visible {
   outline: 2px solid var(--white8);

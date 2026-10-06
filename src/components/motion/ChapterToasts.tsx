@@ -36,6 +36,21 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
   // la más reciente, pegada a la esquina: arriba en las esquinas superiores, abajo en las inferiores
   const last = items[items.length - 1];
   const ordered = corner.startsWith("top") ? [...items].reverse() : items;
+  const dotOf = (kind: LiveEvent["kind"]) => (kind === "alert" ? "#D4A017" : kind === "ok" || kind === "new" ? "#22C55E" : "#FFFFFF");
+
+  const card = (ev: LiveEvent, latest: boolean) => {
+    const dot = dotOf(ev.kind);
+    return (
+      <>
+        <span
+          className="h-2 w-2 flex-shrink-0 rounded-full"
+          style={{ background: dot, boxShadow: latest ? `0 0 10px ${dot}` : "none" }}
+        />
+        <span className="truncate">{ev.text}</span>
+        <span className="mono ml-auto flex-shrink-0 text-[13px] text-grey6">{ev.meta}</span>
+      </>
+    );
+  };
 
   return (
     <div
@@ -43,30 +58,50 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
       aria-live="polite"
       aria-label="Notificaciones del CRM"
     >
-      <ul className="m-0 flex list-none flex-col gap-2 p-0">
-        {ordered.map((ev) => {
-          const latest = ev === last;
-          const dot = ev.kind === "ok" ? "#22C55E" : ev.kind === "alert" ? "#D4A017" : "#FFFFFF";
-          return (
-            <li
-              key={ev.text + ev.meta}
-              className="card flex items-center gap-[10px] px-[14px] py-[11px] text-[12px] text-white7"
-              style={{
-                opacity: latest ? 1 : 0.6,
-                borderColor: latest ? "#3A3A3A" : "#262626",
-                transition: "opacity .3s, border-color .3s",
-              }}
-            >
-              <span
-                className="h-[6px] w-[6px] flex-shrink-0 rounded-full"
-                style={{ background: dot, boxShadow: latest ? `0 0 10px ${dot}` : "none" }}
-              />
-              <span className="truncate">{ev.text}</span>
-              <span className="mono ml-auto flex-shrink-0 text-[13px] text-grey6">{ev.meta}</span>
-            </li>
-          );
-        })}
-      </ul>
+      {chapter.stack ? (
+        <div className="relative">
+          {items.slice(0, -1).map((ev, i, behind) => {
+            const depth = behind.length - i;
+            return (
+              <div
+                key={ev.text + ev.meta}
+                aria-hidden="true"
+                className="card absolute inset-x-0 top-0 flex items-center gap-[10px] px-[14px] py-[11px] text-[12px] text-white7"
+                style={{
+                  transform: `translateY(${-12 * depth}px) scale(${1 - 0.035 * depth})`,
+                  transformOrigin: "center bottom",
+                  opacity: Math.max(0.28, 0.62 - depth * 0.16),
+                  zIndex: i,
+                }}
+              >
+                {card(ev, false)}
+              </div>
+            );
+          })}
+          <div className="card relative z-10 flex items-center gap-[10px] px-[14px] py-[11px] text-[12px] text-white7">
+            {card(last, true)}
+          </div>
+        </div>
+      ) : (
+        <ul className="m-0 flex list-none flex-col gap-2 p-0">
+          {ordered.map((ev) => {
+            const latest = ev === last;
+            return (
+              <li
+                key={ev.text + ev.meta}
+                className="card flex items-center gap-[10px] px-[14px] py-[11px] text-[12px] text-white7"
+                style={{
+                  opacity: latest ? 1 : 0.6,
+                  borderColor: latest ? "#3A3A3A" : "#262626",
+                  transition: "opacity .3s, border-color .3s",
+                }}
+              >
+                {card(ev, latest)}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

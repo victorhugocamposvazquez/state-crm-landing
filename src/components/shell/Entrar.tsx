@@ -24,8 +24,8 @@ export function Entrar() {
 
   return (
     <div className="relative flex min-h-svh flex-col">
-      <header className="flex h-[64px] items-center justify-end px-[var(--edge)]">
-        <Link href="/#planes" className="text-[14px] font-medium text-white8 no-underline">
+      <header className="flex h-[72px] items-center justify-end px-[var(--edge)]">
+        <Link href="/#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
           Planes
         </Link>
       </header>
@@ -35,7 +35,7 @@ export function Entrar() {
 
         <div className="relative flex w-full max-w-[440px] flex-col">
           <Link href="/" aria-label="statecrm, volver al inicio" className="mb-8 inline-flex no-underline">
-            <Logo size={36} />
+            <Logo />
           </Link>
           <h1 className="t-h2 m-0 text-white8">{mode === "entrar" ? "Entra en tu agencia." : "Crea tu cuenta."}</h1>
           <p className="t-lead m-0 mt-3 text-grey5">{mode === "entrar" ? "El acceso de tu equipo." : "La agencia entra junta."}</p>

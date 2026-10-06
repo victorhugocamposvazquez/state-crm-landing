@@ -5,18 +5,15 @@ import { useScroll } from "@/lib/store";
 import { Brand } from "@/components/ui/atoms";
 
 /**
- * El anillo de progreso de statecrm.
- * Retícula 44 px, grosor 6, anillo #6E6E6E + cuadrante blanco.
- * Con `progress`, el aro se rellena en blanco a medida que avanza la web.
- * El wordmark va en Space Grotesk 700, «state» blanco y «crm» gris, como en el lockup.
+ * El anillo de statecrm, fijo: retícula 44, grosor 6, anillo #6E6E6E y un cuadrante blanco.
+ * No se rellena con el scroll: el diseño del lockup no cambia a lo largo de la web.
+ * El wordmark va en Space Grotesk 700, «state» blanco y «crm» gris.
  */
-export function Logo({ size = 28, progress = false, wordmark = true }: { size?: number; progress?: boolean; wordmark?: boolean }) {
+export function Logo({ size = 40, progress = false, wordmark = true }: { size?: number; progress?: boolean; wordmark?: boolean }) {
   const ref = useRef<SVGCircleElement>(null);
   // Brand: r=12 en viewBox 44 → circunferencia 2πr
   const r = 12;
   const c = 2 * Math.PI * r;
-  // separación símbolo–texto = 1/3 del diámetro
-  const gap = Math.round(size / 3);
 
   useEffect(() => {
     if (!progress) return;
@@ -30,8 +27,8 @@ export function Logo({ size = 28, progress = false, wordmark = true }: { size?: 
   }, [progress, c]);
 
   return (
-    <span className="inline-flex items-center" style={{ gap }}>
-      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <span className="inline-flex items-center gap-3 md:gap-4">
+      <svg data-logo-mark width={size} height={size} viewBox="0 0 44 44" fill="none" aria-hidden="true" className="h-10 w-10 md:h-12 md:w-12">
         <circle cx="22" cy="22" r={r} stroke="#6E6E6E" strokeWidth="6" />
         <circle
           ref={ref}
@@ -47,7 +44,7 @@ export function Logo({ size = 28, progress = false, wordmark = true }: { size?: 
         />
       </svg>
       {wordmark && (
-        <span className="wordmark text-[18px] md:text-[20px]">
+        <span className="wordmark text-[20px] md:text-[26px]">
           <Brand />
         </span>
       )}

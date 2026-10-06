@@ -48,6 +48,8 @@ export interface Chapter {
   events: LiveEvent[];
   /** esquina libre de ese capítulo para las notificaciones (por defecto, abajo a la derecha) */
   toasts?: ToastCorner;
+  /** las notificaciones se apilan unas detrás de otras, en vez de en columna */
+  stack?: boolean;
 }
 
 const h = (hh: number, mm: number) => hh * 60 + mm;
@@ -69,7 +71,12 @@ export const chapters: Chapter[] = [
     hourEnd: h(7, 40),
     label: "EL RADAR",
     vh: 220,
-    events: [{ at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" }],
+    stack: true,
+    events: [
+      { at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Plaza de Castilla · 07:36" },
+      { at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Rianxo · 07:38" },
+      { at: 0.55, kind: "new", text: "Nuevo anuncio de particular", meta: "Oleiros · 07:40" },
+    ],
   },
   {
     id: "ciudad",

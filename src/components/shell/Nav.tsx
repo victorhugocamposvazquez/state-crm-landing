@@ -32,11 +32,11 @@ export function Nav() {
   return (
     <header
       ref={headerRef}
-      className="fixed inset-x-0 top-0 z-50 flex h-[64px] items-center justify-between px-[var(--edge)]"
+      className="fixed inset-x-0 top-0 z-50 flex h-[72px] items-center justify-between px-[var(--edge)]"
       style={{ background: "linear-gradient(to bottom, rgba(10,10,10,.92), rgba(10,10,10,0))" }}
     >
       <a href="#prologo" aria-label="statecrm, volver al inicio" className="no-underline">
-        <Logo progress />
+        <Logo />
       </a>
 
       <nav className="hidden items-center gap-8 md:flex" aria-label="Capítulos">
@@ -63,26 +63,23 @@ export function Nav() {
         })}
       </nav>
 
-      <div className="flex items-center gap-4 md:gap-6">
-        <a href="#planes" className="text-[14px] font-medium text-white8 no-underline">
+      <div className="flex items-center gap-2 md:gap-6">
+        <a href="#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
           Planes
         </a>
-        <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-11 w-11 items-center justify-center text-white7 no-underline hover:text-white8">
+        <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-10 items-center justify-center text-white7 no-underline hover:text-white8 md:h-11 md:w-11">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
             <circle cx="12" cy="12" r="9.25" />
             <circle cx="12" cy="9.2" r="2.4" />
             <path d="M7.2 17.6c.7-2.15 2.5-3.3 4.8-3.3s4.1 1.15 4.8 3.3" strokeLinecap="round" />
           </svg>
         </Link>
-        <a href="#manana" className="btn btn-w hidden !min-h-[38px] md:inline-flex">
-          Pedir una demo
-        </a>
         <button
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center md:hidden"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5E5E5" strokeWidth="1.8" aria-hidden="true">
             {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -91,7 +88,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="absolute inset-x-0 top-[64px] flex flex-col gap-1 border-t border-grey3 bg-black0 p-5 md:hidden">
+        <div className="absolute inset-x-0 top-[72px] flex flex-col gap-1 border-t border-grey3 bg-black0 p-5 md:hidden">
           {links.map((l) => {
             const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
             return (
@@ -100,9 +97,6 @@ export function Nav() {
               </a>
             );
           })}
-          <a href="#manana" onClick={() => setOpen(false)} className="btn btn-w mt-2">
-            Pedir una demo
-          </a>
         </div>
       )}
     </header>

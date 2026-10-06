@@ -13,7 +13,7 @@ export function Radar() {
 
   useScrollTimeline(ref, (tl, q, enter) => {
     // entrada: el titular y las cifras ya vienen puestos mientras la pantalla sube
-    enter.fromTo(q(".copy, .stats"), { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
+    enter.fromTo(q(".copy"), { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
 
     tl.fromTo(q(".l2"), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25 }, 0.02)
       .to(q(".l1"), { y: -10, duration: 0.3 }, 0.05)
@@ -62,18 +62,6 @@ export function Radar() {
           </span>
         </div>
 
-        <div className="stats mono absolute bottom-10 left-0 flex gap-6 text-[13px] text-grey6 md:text-[12px]" style={{ opacity: 0 }}>
-          <span>
-            <span className="text-white7">991</span> en novedad
-          </span>
-          <span>
-            <span className="text-white7">134</span> particulares
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-[6px] w-[6px] rounded-full bg-green" />
-            rastreo en curso
-          </span>
-        </div>
         </div>
       </div>
     </Chapter>
