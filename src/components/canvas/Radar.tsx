@@ -82,8 +82,8 @@ export function Radar({ dots }: { dots: RadarDot[] }) {
     if (group.current) group.current.visible = visible;
     if (!visible) return;
 
-    // Visible al llegar al 01, sin esperar scroll. Al final del tramo se apaga.
-    const fadeIn = 1;
+    // En móvil más suave, de fondo. Al final del tramo se apaga.
+    const fadeIn = s.isMobile ? 0.45 : 1;
     const fadeOut = 1 - Math.max(0, pr - 0.85) / 0.15;
     const opacity = Math.max(0, Math.min(1, fadeIn * fadeOut));
 

@@ -62,13 +62,13 @@ export function Nav() {
         })}
       </nav>
 
-      <div className="flex items-center gap-1 md:gap-6">
+      <div className="flex items-center gap-3 md:gap-2">
         <a href="#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
           Ver planes
         </a>
         <div className="flex items-center md:contents">
-          <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-8 items-center justify-center text-white7 no-underline hover:text-white8 md:h-11 md:w-11">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
+          <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-8 items-center justify-center text-white7 no-underline hover:text-white8 md:h-12 md:w-12">
+            <svg className="h-[22px] w-[22px] md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
               <circle cx="12" cy="12" r="9.25" />
               <circle cx="12" cy="9.2" r="2.4" />
               <path d="M7.2 17.6c.7-2.15 2.5-3.3 4.8-3.3s4.1 1.15 4.8 3.3" strokeLinecap="round" />
@@ -81,9 +81,15 @@ export function Nav() {
             onClick={() => setOpen((v) => !v)}
             className="flex h-10 w-7 items-center justify-end md:hidden"
           >
-            <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="#E5E5E5" strokeWidth="1.5" aria-hidden="true">
-              {open ? <path d="M1 1l16 8M17 1 1 9" /> : <path d="M0 1h18M0 9h18" />}
-            </svg>
+            {open ? (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#E5E5E5" strokeWidth="1.5" aria-hidden="true">
+                <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" />
+              </svg>
+            ) : (
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="#E5E5E5" strokeWidth="1.5" aria-hidden="true">
+                <path d="M0 1h18M0 9h18" />
+              </svg>
+            )}
           </button>
         </div>
       </div>

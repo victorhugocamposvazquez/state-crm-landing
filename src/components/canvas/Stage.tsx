@@ -66,10 +66,17 @@ function CameraRig({ radarX, snapRef }: { radarX: number; snapRef: MutableRefObj
       // El scroll solo lo acerca un poco; no hace falta bajar para verlo.
       const pr = s.progress.radar;
       const camX = mobile ? radarX : radarX - 3.2;
-      v.rFrom.set(camX, RADAR_Y + (mobile ? 10 : 9), mobile ? 9 : 9.5);
-      v.rTo.set(camX, RADAR_Y + (mobile ? 8 : 7), mobile ? 7.2 : 8);
+      if (mobile) {
+        // Más lejos y mirando por encima del disco, para que quede en los 3/4 de abajo.
+        v.rFrom.set(camX, RADAR_Y + 15, 15);
+        v.rTo.set(camX, RADAR_Y + 13, 13.5);
+        v.target.set(camX, RADAR_Y + 5.5, 0);
+      } else {
+        v.rFrom.set(camX, RADAR_Y + 9, 9.5);
+        v.rTo.set(camX, RADAR_Y + 7, 8);
+        v.target.set(camX, RADAR_Y, -0.6);
+      }
       v.pos.copy(v.rFrom).lerp(v.rTo, pr);
-      v.target.set(camX, RADAR_Y, mobile ? -1.2 : -0.6);
     }
 
     const which = city ? "city" : "radar";
@@ -93,6 +100,7 @@ function CameraRig({ radarX, snapRef }: { radarX: number; snapRef: MutableRefObj
 export function Stage() {
   const [on, setOn] = useState(true);
   const [mobile, setMobile] = useState(false);
+  const [radarOnly, setRadarOnly] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const snap = useRef(false);
   const wasOn = useRef(true);
@@ -107,6 +115,7 @@ export function Stage() {
       wasOn.current = next;
       setOn(next);
       setMobile(s.isMobile);
+      setRadarOnly(!!o.radar && !(o.ciudad || o.bandeja));
     };
     apply();
     return useScroll.subscribe(apply);
@@ -127,7 +136,7 @@ export function Stage() {
   const radarX = mobile ? 0 : 4;
 
   return (
-    <div ref={wrap} className="pointer-events-none fixed inset-0 z-0" style={{ visibility: on ? "visible" : "hidden" }} aria-hidden="true">
+    <div ref={wrap} className={`pointer-events-none fixed inset-0 z-0${mobile && radarOnly ? " radar-lower" : ""}`} style={{ visibility: on ? "visible" : "hidden" }} aria-hidden="true">
       <Canvas
         dpr={[1, mobile ? 1.5 : 2]}
         camera={{ fov: 34, near: 0.1, far: 120, position: [0.8, RADAR_Y + 14, 12] }}
@@ -140,7 +149,7 @@ export function Stage() {
           <Radar dots={dots} />
         </group>
         <EffectComposer multisampling={0} enableNormalPass={false}>
-          <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.4} intensity={mobile ? 0.6 : 0.9} mipmapBlur radius={0.7} />
+          <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.4} intensity={mobile ? 0.28 : 0.9} mipmapBlur radius={0.7} />
           <Vignette eskil={false} offset={0.2} darkness={0.75} />
         </EffectComposer>
       </Canvas>

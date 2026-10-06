@@ -59,7 +59,7 @@ export function Radar() {
         <div className="stageframe">
         <div className="halo" style={{ right: "-10%", bottom: "-20%", width: 900, height: 700 }} />
 
-        <div className="copy absolute left-0 top-[40%] w-full max-w-[860px] -translate-y-1/2 md:top-[46%]" style={{ opacity: 0 }}>
+        <div className="copy absolute left-0 top-[132px] w-full max-w-[860px] md:top-[46%] md:-translate-y-1/2" style={{ opacity: 0 }}>
           <h1 className="t-hero m-0 text-white8">
             Impulsa tu negocio inmobiliario.
           </h1>

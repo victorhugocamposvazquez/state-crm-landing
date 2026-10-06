@@ -238,6 +238,13 @@ body {
 .site-header {
   background: #0a0a0a;
 }
+/* En móvil el radar solo ocupa los 3/4 de abajo: arriba queda libre para el titular. */
+@media (max-width: 767px) {
+  .radar-lower {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 22%, #000 48%);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 22%, #000 48%);
+  }
+}
 @media (min-width: 768px) {
   .site-header {
     background: linear-gradient(to bottom, rgba(10, 10, 10, 0.92), rgba(10, 10, 10, 0));
