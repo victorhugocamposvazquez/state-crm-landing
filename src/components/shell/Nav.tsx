@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { useScroll } from "@/lib/store";
@@ -26,6 +26,25 @@ export function Nav() {
   );
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  // En iOS el scroll automático de la intro esconde la barra del navegador y la
+  // cabecera fija se queda fuera del área visible. La recolocamos ahí.
+  useEffect(() => {
+    const header = headerRef.current;
+    const vv = window.visualViewport;
+    if (!header || !vv) return;
+    const pin = () => {
+      const y = vv.offsetTop;
+      header.style.transform = y > 0 ? `translate3d(0, ${y}px, 0)` : "";
+    };
+    pin();
+    vv.addEventListener("scroll", pin);
+    vv.addEventListener("resize", pin);
+    return () => {
+      vv.removeEventListener("scroll", pin);
+      vv.removeEventListener("resize", pin);
+    };
+  }, []);
 
   const activeIdx = chapterIndex[active];
 

@@ -190,6 +190,9 @@
 html {
   background: var(--black0);
   color-scheme: dark;
+  /* clip no convierte el documento en contenedor de scroll: en iOS, overflow hidden
+     se lleva la cabecera fija cuando el salto de la intro mueve la página. */
+  overflow-x: clip;
 }
 
 html.lenis,
@@ -217,7 +220,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 * {
