@@ -86,8 +86,7 @@ export function Radar() {
             </span>
           </h1>
           <p className="sub t-lead mt-7 max-w-[560px] text-grey6">
-            Multiplica lo que capta tu agencia con un CRM que sabe, cada mañana, qué han publicado los particulares,
-            qué fincas hay en cada calle y qué cliente las está buscando.
+            Nuevos anuncios de particulares, búsqueda de fincas y todo el proceso comercial: contactar, agendar, gestionar demandas y cerrar.
           </p>
           <div className="cta mt-8 flex flex-col gap-3 sm:flex-row">
             <a href="#proceso" className="btn btn-w">
