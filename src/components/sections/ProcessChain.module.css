@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 480px;
+  max-width: min(100%, 720px);
   height: 36px;
 }
 
@@ -29,7 +29,7 @@
   padding: 0;
   background: transparent;
   border: 0;
-  cursor: pointer;
+  cursor: default;
   color: inherit;
   font: inherit;
   text-align: left;
@@ -174,18 +174,25 @@
     max-width: none;
   }
   .station {
-    height: 44px;
-    gap: 12px;
+    height: auto;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .node {
+    width: 28px;
+    height: 28px;
   }
   .label {
     font-size: 19px;
+    line-height: 1.2;
+    white-space: normal;
   }
   .seg {
     flex: none;
     width: 2px;
     min-width: 0;
-    height: 28px;
-    margin: -4px 0 -4px 17px; /* centrado bajo el nodo de 36 px */
+    height: 14px;
+    margin: 0 0 0 13px; /* centrado bajo el nodo de 28 px */
   }
   .fill {
     transform: scaleY(var(--p, 0));

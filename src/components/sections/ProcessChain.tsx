@@ -3,7 +3,7 @@
 /**
  * Cadena animada: captación → oportunidades → ventas.
  * Una sola pasada al entrar en pantalla. Horizontal en escritorio, vertical en móvil.
- * Un clic en un paso corta la secuencia y deja ese paso activo.
+ * No se puede pulsar: un toque no corta la animación.
  */
 
 import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react";
@@ -82,13 +82,6 @@ export function ProcessChain({ className }: { className?: string }) {
     return () => window.clearTimeout(timer.current);
   }, [started, done]);
 
-  const select = (i: number) => {
-    window.clearTimeout(timer.current);
-    setDone(true);
-    setTraveling(false);
-    setActive(i);
-  };
-
   const rootStyle = {
     "--step-ms": `${stepMs}ms`,
     "--travel-ms": `${travelMs}ms`,
@@ -109,13 +102,11 @@ export function ProcessChain({ className }: { className?: string }) {
 
         return (
           <Fragment key={step.id}>
-            <button
-              type="button"
+            <div
               className={styles.station}
               data-active={isActive}
               data-accent={step.accent}
-              aria-pressed={isActive}
-              onClick={() => select(i)}
+              aria-current={isActive ? "step" : undefined}
             >
               <span className={styles.node}>
                 <svg
@@ -166,7 +157,7 @@ export function ProcessChain({ className }: { className?: string }) {
                 )}
               </span>
               <span className={styles.label}>{step.label}</span>
-            </button>
+            </div>
 
             {!isLast && (
               <div className={styles.seg} aria-hidden="true">

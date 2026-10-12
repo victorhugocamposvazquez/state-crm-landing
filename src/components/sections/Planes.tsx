@@ -85,7 +85,22 @@ export function Planes() {
           <h3 data-reveal className="t-h2 m-0 mb-5 text-white8">
             Qué entra en cada plan
           </h3>
-          <div data-reveal className="overflow-x-auto rounded-[12px] border border-[#222222]">
+          <div className="grid gap-4 md:hidden">
+            {plans.map((p) => (
+              <div key={p.id} data-reveal className="rounded-[12px] border border-[#222222] bg-black1 p-5">
+                <h4 className={`m-0 text-[15px] font-medium ${p.highlight ? "text-green" : "text-white8"}`}>{p.name}</h4>
+                <ul className="m-0 mt-4 flex list-none flex-col gap-3 p-0">
+                  {planRows.filter((r) => r.in[p.id]).map((r) => (
+                    <li key={r.module} className="flex items-start gap-3 text-[14px] text-white7">
+                      <Tick on />
+                      <span>{r.module}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div data-reveal className="hidden overflow-x-auto rounded-[12px] border border-[#222222] md:block">
             <table className="w-full min-w-[640px] border-collapse text-[14px]">
               <thead>
                 <tr className="bg-black1 text-left">

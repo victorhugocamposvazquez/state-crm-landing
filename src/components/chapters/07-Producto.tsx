@@ -117,7 +117,7 @@ export function Producto() {
         </div>
 
         {/* el espacio de módulos: a la derecha de la barra lateral y dentro del lienzo */}
-        <div className="absolute inset-x-0 bottom-3 top-[calc(var(--copy-top)+210px)] md:bottom-0 md:left-[240px] md:top-[calc(var(--copy-top)+140px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
+        <div className="mod-tunnel absolute inset-x-0 bottom-3 top-[calc(var(--copy-top)+210px)] md:bottom-0 md:left-[240px] md:top-[calc(var(--copy-top)+140px)]" style={{ perspective: 1400, perspectiveOrigin: "50% 45%" }}>
           <div className="space relative h-full" style={{ transformStyle: "preserve-3d" }}>
             {modules.map((m, k) => {
               const lane = k % 3; // izquierda, centro, derecha (siempre dentro del espacio)

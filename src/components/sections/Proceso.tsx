@@ -38,6 +38,7 @@ export function Proceso() {
     const detail = root.querySelector<HTMLElement>(".flow-detail");
     const badge = root.querySelector<HTMLElement>(".flow-badge");
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobile = window.matchMedia("(max-width: 767px)");
     let current = -1;
 
     const apply = (p: number) => {
@@ -64,13 +65,17 @@ export function Proceso() {
       current = -1;
       apply(1);
     };
-    if (motion.matches) {
+    if (motion.matches || mobile.matches) {
       showEnd();
       const onMotion = () => {
-        if (motion.matches) showEnd();
+        if (motion.matches || mobile.matches) showEnd();
       };
       motion.addEventListener("change", onMotion);
-      return () => motion.removeEventListener("change", onMotion);
+      mobile.addEventListener("change", onMotion);
+      return () => {
+        motion.removeEventListener("change", onMotion);
+        mobile.removeEventListener("change", onMotion);
+      };
     }
 
     const st = ScrollTrigger.create({

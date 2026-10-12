@@ -60,7 +60,7 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
 
   return (
     <div
-      className={`pointer-events-none z-20 w-[calc(100%-2*var(--gutter))] md:w-[340px] ${
+      className={`crm-toast pointer-events-none z-20 w-[calc(100%-2*var(--gutter))] md:w-[340px] ${
         chapter.stack
           ? "fixed bottom-5 left-[var(--gutter)] right-[var(--gutter)] md:absolute md:bottom-7 md:left-auto md:right-[var(--gutter)] md:w-[340px]"
           : `absolute ${corner}`
@@ -69,7 +69,7 @@ export function ChapterToasts({ id }: { id: ChapterId }) {
       aria-label="Notificaciones del CRM"
     >
       {chapter.stack ? (
-        <div className="relative">
+        <div className="toast-stack relative">
           {items.slice(0, -1).map((ev, i, behind) => {
             const depth = behind.length - i;
             return (

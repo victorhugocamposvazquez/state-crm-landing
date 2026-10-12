@@ -82,11 +82,11 @@ export function Nav() {
       </nav>
 
       <div className="flex items-center gap-3 md:gap-2">
-        <a href="#planes" className="btn btn-line !min-h-[38px] px-3 md:px-[18px]">
+        <a href="#planes" className="btn btn-line !hidden !min-h-[38px] px-3 md:!inline-flex md:px-[18px]">
           Ver planes
         </a>
         <div className="flex items-center md:contents">
-          <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-10 w-8 items-center justify-center text-white7 no-underline hover:text-white8 md:h-12 md:w-12">
+          <Link href="/entrar" aria-label="Iniciar sesión o registrarte" className="flex h-11 w-11 items-center justify-center text-white7 no-underline hover:text-white8 md:h-12 md:w-12">
             <svg className="h-[22px] w-[22px] md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true">
               <circle cx="12" cy="12" r="9.25" />
               <circle cx="12" cy="9.2" r="2.4" />
@@ -98,7 +98,7 @@ export function Nav() {
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-7 items-center justify-end md:hidden"
+            className="flex h-11 w-11 items-center justify-end md:hidden"
           >
             {open ? (
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#E5E5E5" strokeWidth="1.5" aria-hidden="true">
@@ -115,10 +115,16 @@ export function Nav() {
 
       {open && (
         <div className="absolute inset-x-0 top-[72px] flex flex-col gap-1 border-t border-grey3 bg-black0 p-5 md:hidden">
-          {links.map((l) => {
-            const on = !!l.chapter && (active === l.chapter || (l.chapter === "ciudad" && active === "bandeja"));
+          {[
+            ...links,
+            { label: "Cómo funciona", href: "#proceso" },
+            { label: "Ver planes", href: "#planes" },
+            { label: "Pedir una demo", href: "#manana" },
+          ].map((l) => {
+            const chapter = "chapter" in l ? l.chapter : undefined;
+            const on = !!chapter && (active === chapter || (chapter === "ciudad" && active === "bandeja"));
             return (
-              <a key={l.href} href={l.href} aria-current={on ? "true" : undefined} onClick={() => setOpen(false)} className={`py-3 text-[16px] no-underline ${on ? "text-white8" : "text-white7"}`}>
+              <a key={l.href} href={l.href} aria-current={on ? "true" : undefined} onClick={() => setOpen(false)} className={`flex min-h-11 items-center py-2 text-[16px] no-underline ${on ? "text-white8" : "text-white7"}`}>
                 {l.label}
               </a>
             );

@@ -32,6 +32,8 @@ export function Chapter({
   const index = chapterIndex[id];
   // Del Catastro en adelante el canvas 3D ya no cuenta nada: fondo sólido por si sigue encendido
   const solid = index >= chapterIndex.catastro;
+  /* En móvil estos capítulos no se pinchan: el alto lo marca el contenido. Ciudad y prólogo siguen pegados. */
+  const flows = id !== "ciudad" && id !== "prologo";
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -79,13 +81,13 @@ export function Chapter({
       ref={ref}
       id={id}
       data-chapter={id}
-      className={`chapter ${className}`}
+      className={`chapter${flows ? " flow-mobile" : ""} ${className}`}
       style={{ height: `calc(${chapter.vh} * var(--vh-unit, 1vh))` }}
     >
       <div className="stage" style={{ background: solid ? "var(--black0)" : "transparent" }}>
         {children}
         {/* las notificaciones, en las esquinas del contenedor centrado, no de la pantalla */}
-        <div className="pointer-events-none absolute inset-0 z-20">
+        <div className="toast-layer pointer-events-none absolute inset-0 z-20">
           <div className="stagewrap">
             <ChapterToasts id={id} />
           </div>
@@ -117,6 +119,7 @@ export function useScrollTimeline(
     if (!el) return;
     const section = el.closest(".chapter") ?? el;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileFlow = window.matchMedia("(max-width: 767px)").matches && section.classList.contains("flow-mobile");
     const ctx = gsap.context(() => {
       const enter = gsap.timeline({
         defaults: { ease: "power3.out" },
@@ -137,7 +140,7 @@ export function useScrollTimeline(
         },
       });
       build(tl, gsap.utils.selector(el), enter);
-      if (reduced) {
+      if (reduced || mobileFlow) {
         for (const t of [enter, tl]) {
           t.progress(1).pause();
           t.scrollTrigger?.kill();
