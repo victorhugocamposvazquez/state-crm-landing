@@ -56,7 +56,7 @@ export function Equipo() {
         <div className="halo" style={{ left: "25%", top: "5%", width: 1000, height: 760 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="05" module="Tareas · Calendario" what="el trabajo de todo el equipo, a la vista" title={<>Tareas y visitas<br />de todo el equipo.</>} grey="En un solo calendario." />
+          <ChapterCopy n="05" module="Equipo" what="Las tareas y las visitas de todo el equipo, en un solo calendario." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_200px] md:items-start md:gap-4">

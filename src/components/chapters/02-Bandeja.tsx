@@ -44,15 +44,7 @@ export function Bandeja() {
           <ChapterCopy
             n="02"
             module="Captación"
-            what="la bandeja con lo que ha entrado hoy"
-            title={
-              <>
-                Lo nuevo de hoy,
-                <br />
-                ya filtrado.
-              </>
-            }
-            grey="Y quién hay detrás de cada anuncio."
+            what="Lo que ha entrado hoy, ya filtrado, y quién hay detrás de cada anuncio."
           />
           <div className="mono mt-6 hidden gap-4 text-[12px] text-grey5 md:flex">
             <span>idealista</span>

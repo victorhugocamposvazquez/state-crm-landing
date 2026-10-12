@@ -47,51 +47,25 @@ export function Dot({ color = "#22C55E", glow = true }: { color?: string; glow?:
 }
 
 /**
- * Etiqueta de sección: dónde estás, dicho una sola vez. El número de capítulo (si lo hay), el
- * módulo en versalitas y el contexto en gris; en móvil, solo número y módulo.
- */
-export function Kicker({ n, module, what }: { n?: string; module: string; what: string }) {
-  return (
-    <div className="flex flex-wrap items-baseline gap-x-[10px] gap-y-1">
-      {n && <span className="mono text-[12px] text-grey5 md:text-[13px]">{n}</span>}
-      <span className="t-label text-white7">{brandify(module)}</span>
-      <span className="t-small hidden text-grey5 sm:inline">{brandify(what)}</span>
-    </div>
-  );
-}
-
-/**
- * Copy de capítulo: etiqueta de sección y titular con remate en gris.
- * El párrafo y los puntos viven en ModuleText, para no contar el módulo dos veces.
- * Titular y remate: dos líneas como máximo cada uno (≈ 19 caracteres por línea; ver .t-h1).
+ * Copy de capítulo: el nombre del módulo es el titular, grande, y debajo una frase
+ * que dice qué es. El párrafo largo vive en ModuleText.
  */
 export function ChapterCopy({
   n,
   module,
   what,
-  title,
-  grey,
   className = "",
 }: {
   n?: string;
-  module?: string;
-  what?: string;
-  title: ReactNode;
-  grey?: ReactNode;
+  module: string;
+  what: string;
   className?: string;
 }) {
   return (
-    <div className={`flex flex-col gap-4 md:gap-5 ${className}`}>
-      {module && what && <Kicker n={n} module={module} what={what} />}
-      <h2 className="t-h1 m-0 text-white8">
-        {title}
-        {grey && (
-          <>
-            <br />
-            <span className="text-grey5">{grey}</span>
-          </>
-        )}
-      </h2>
+    <div className={`flex flex-col gap-3 md:gap-4 ${className}`}>
+      {n && <span className="mono text-[13px] text-grey5">{n}</span>}
+      <h2 className="t-chapter m-0 text-white8">{brandify(module)}</h2>
+      <p className="t-chapter-lead m-0 text-grey6">{brandify(what)}</p>
     </div>
   );
 }

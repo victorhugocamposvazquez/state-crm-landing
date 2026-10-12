@@ -71,15 +71,7 @@ export function Catastro() {
           <ChapterCopy
             n="03"
             module="Catastro"
-            what="fincas por calle, código postal o localidad"
-            title={
-              <>
-                De la búsqueda
-                <br />
-                a la finca real.
-              </>
-            }
-            grey="Con y sin división horizontal."
+            what="Fincas por calle, código postal o localidad, con y sin división horizontal."
           />
         </div>
 

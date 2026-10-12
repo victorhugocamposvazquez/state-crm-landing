@@ -55,16 +55,8 @@ export function Seguimiento() {
         <div className="copy copy-block">
           <ChapterCopy
             n="04"
-            module="Inmuebles · Demandas · Seguimiento"
-            what="tu cartera, cruzada con lo que buscan tus clientes"
-            title={
-              <>
-                Cada piso nuevo,
-                <br />
-                con quien lo busca.
-              </>
-            }
-            grey="Y cada operación, por etapas."
+            module="Seguimiento"
+            what="Tu cartera, cruzada con lo que buscan tus clientes, y cada operación por etapas."
           />
         </div>
 

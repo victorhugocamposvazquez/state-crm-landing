@@ -56,6 +56,21 @@
     letter-spacing: -0.045em;
     text-wrap: balance;
   }
+  /* Nombre de la sección. Una palabra o dos, para que se lea antes que el panel. */
+  .t-chapter {
+    font-weight: 500;
+    font-size: clamp(44px, 1.6rem + 2.4vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+  .t-chapter-lead {
+    font-size: clamp(18px, 1rem + 0.35vw, 22px);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    max-width: 22em;
+  }
   .t-h2 {
     font-weight: 500;
     font-size: clamp(30px, 1.2rem + 1.2vw, 40px);
@@ -495,6 +510,25 @@ body {
     justify-self: start;
     text-align: left;
   }
+}
+/* La demo no se pincha: el formulario y el pie tienen que caber enteros, también en escritorio. */
+.chapter[data-chapter="manana"] {
+  height: auto !important;
+}
+.chapter[data-chapter="manana"] > .stage {
+  position: relative;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+.chapter[data-chapter="manana"] .stagewrap {
+  height: auto;
+}
+.chapter[data-chapter="manana"] .stageframe {
+  position: relative;
+  inset: auto;
+  height: auto;
+  margin-inline: var(--gutter);
 }
 
 /* Transición de texto: una frase grande que enfoca palabra a palabra con el scroll.

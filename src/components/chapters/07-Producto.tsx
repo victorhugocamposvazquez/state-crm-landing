@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { Brand, Check, Kicker } from "@/components/ui/atoms";
+import { Check, ChapterCopy } from "@/components/ui/atoms";
 
 const modules = [
   { name: "Captación", n: "02", line: "Anuncios de particulares, cada mañana, con teléfono y fotos.", metric: "38 captados hoy", kind: "g" },
@@ -84,16 +84,11 @@ export function Producto() {
         <div className="halo" style={{ left: "30%", top: "10%", width: 1000, height: 700 }} />
 
         <div className="copy copy-block md:w-[760px]">
-          <div className="mb-5">
-            <Kicker n="07" module="Todos los módulos" what="los doce módulos, a la medida de cada agencia" />
-          </div>
-          <h2 className="t-h1 m-0 text-white8">
-            Cada agencia trabaja distinto.
-            <br />
-            <span className="text-grey5">
-              <Brand wordmark /> no es un CRM: es el tuyo.
-            </span>
-          </h2>
+          <ChapterCopy
+            n="07"
+            module="Los módulos"
+            what="Captación, catastro, seguimiento, equipo y facturación. Doce piezas, en una sola herramienta."
+          />
         </div>
 
         {/* barra lateral conceptual */}

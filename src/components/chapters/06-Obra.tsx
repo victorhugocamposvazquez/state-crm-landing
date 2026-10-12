@@ -58,7 +58,7 @@ export function Obra() {
         <div className="halo" style={{ left: "28%", top: "4%", width: 1000, height: 800 }} />
 
         <div className="copy copy-block">
-          <ChapterCopy n="06" module="Presupuestos · Facturas · Informes" what="la obra y la facturación, en la ficha del piso" title={<>De la obra<br />a la factura.</>} grey="En la ficha del piso." />
+          <ChapterCopy n="06" module="Obra" what="Del presupuesto a la factura, en la ficha del piso." />
         </div>
 
         <div className="visual-col md:grid md:grid-cols-[minmax(0,1fr)_260px] md:items-start md:gap-4">

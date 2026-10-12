@@ -1,7 +1,6 @@
 "use client";
 
 import { Chapter } from "@/components/motion/Chapter";
-import { Kicker } from "@/components/ui/atoms";
 import { CityPhoto } from "@/components/canvas/CityPhoto";
 import { MobileListingCards } from "@/components/crm/MobileListingCards";
 import { cityPhoto, citySequence } from "@/lib/script";
@@ -15,8 +14,9 @@ export function Ciudad() {
     <Chapter id="ciudad" className="city-chapter">
       <div className="city-layout">
         <div className="city-copy">
-          <Kicker n="01" module="Captación" what="Del portal a tu equipo" />
-          <h2 className="t-h1 mt-6 mb-5 text-white8">La ciudad se mueve.<br /><span className="text-grey6">Tu próxima oportunidad, también.</span></h2>
+          <span className="mono text-[13px] text-grey5">01</span>
+          <h2 className="t-chapter mt-3 mb-4 text-white8">Captación</h2>
+          <p className="t-chapter-lead mb-5 text-grey6">La ciudad se mueve. Tu próxima oportunidad, también.</p>
           <p className="t-lead city-intro text-grey6">STATECRM revisa los portales en tus zonas. Detecta los anuncios nuevos y los reúne para que tu equipo pueda actuar.</p>
           <ol className="city-steps" aria-label="Cómo llega un anuncio">
             <li data-active={!ready}><span>01</span><div><strong>Los edificios se iluminan</strong><p>Cada luz representa un anuncio nuevo.</p></div></li>
