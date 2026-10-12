@@ -74,10 +74,10 @@ export function Entrar() {
         </button>
       </header>
 
-      <main className="relative flex flex-1 flex-col items-center px-[var(--gutter)] pb-16 pt-4 md:pt-10">
+      <main className="relative flex flex-1 flex-col items-start px-[var(--gutter)] pb-16 pt-4 md:pt-10">
         <div className="halo" style={{ left: "50%", top: 40, width: 720, height: 520, transform: "translate(-50%, 0)" }} />
 
-        <div className="relative flex w-full max-w-[440px] flex-col items-center">
+        <div className="relative flex w-full max-w-[440px] flex-col items-start">
           <Logo className="text-[32px] md:text-[40px]" />
           <h1 className="m-0 mt-6 w-full text-left text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
 
