@@ -159,7 +159,7 @@ export const chapters: Chapter[] = [
     hourStart: h(20, 30),
     hourEnd: h(23, 59),
     label: "TODO EL PRODUCTO",
-    vh: 240,
+    vh: 340,
     events: [],
   },
   {

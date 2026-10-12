@@ -71,6 +71,13 @@
     text-wrap: balance;
     max-width: 22em;
   }
+  .app-shell .t-chapter {
+    font-size: clamp(28px, 1.2rem + 1vw, 36px);
+  }
+  .app-shell .t-chapter-lead {
+    font-size: 13px;
+    line-height: 1.35;
+  }
   .t-h2 {
     font-weight: 500;
     font-size: clamp(30px, 1.2rem + 1.2vw, 40px);
