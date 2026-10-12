@@ -11,6 +11,7 @@ import { Obra } from "@/components/chapters/06-Obra";
 import { Producto } from "@/components/chapters/07-Producto";
 import { Manana } from "@/components/chapters/08-Manana";
 import { ModuleText } from "@/components/sections/ModuleText";
+import { MarcaBlanca } from "@/components/sections/MarcaBlanca";
 import { Planes } from "@/components/sections/Planes";
 import { Proceso } from "@/components/sections/Proceso";
 import { TextReveal } from "@/components/sections/TextReveal";
@@ -48,6 +49,7 @@ export default function Page() {
         <TextReveal id="cerrar" />
         <Producto />
         <ModuleText id="plataforma" />
+        <MarcaBlanca />
         <Planes />
         <Manana />
       </main>

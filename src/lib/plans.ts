@@ -65,6 +65,7 @@ export const plans: Plan[] = [
       { title: "Facturas con estado de cobro", text: "El presupuesto aceptado pasa a factura en un clic, con su PDF, enlazada al inmueble y al cliente." },
       { title: "Informes por oficina y operación", text: "Captación, seguimiento y obra en una misma vista." },
       { title: "Herramientas de la agencia a medida", text: "Las utilidades propias de tu agencia, construidas dentro del CRM." },
+      { title: "Marca blanca", text: "El acceso, la cabecera y los documentos con tu logotipo, tus colores y tu dominio." },
     ],
   },
 ];
@@ -101,6 +102,7 @@ export const planRows: PlanRow[] = [
   row("Facturas y estado de cobro", "completo"),
   row("Informes por oficina y operación", "completo"),
   row("Herramientas de la agencia a medida", "completo"),
+  row("Marca blanca: logotipo, colores y dominio", "completo"),
 ];
 
 /** Lo que va aparte de la cuota. */
