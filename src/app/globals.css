@@ -541,15 +541,6 @@ body {
   top: 0;
   height: var(--stage-h);
 }
-@media (max-width: 767px) {
-  .textreveal { height: auto; }
-  .textreveal > .pin {
-    position: relative;
-    height: auto;
-    padding-top: 88px;
-    padding-bottom: 88px;
-  }
-}
 .textreveal .w {
   display: inline-block;
   will-change: filter, opacity;

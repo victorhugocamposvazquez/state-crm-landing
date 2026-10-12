@@ -26,10 +26,9 @@ export function TextReveal({ id }: { id: TransitionId }) {
     const el = ref.current;
     if (!el) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
     const ctx = gsap.context(() => {
       const ws = Array.from(el.querySelectorAll<HTMLElement>(".w"));
-      if (reduced || mobile) {
+      if (reduced) {
         gsap.set(ws, TO);
         return;
       }
