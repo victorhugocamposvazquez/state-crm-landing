@@ -189,12 +189,6 @@
        abajo se cortaba contra el borde de una pantalla más baja que el viewport */
     --vh-unit: 1vh;
   }
-  /* las tarjetas de producto, en una sola columna: en tres carriles se salían del teléfono */
-  .space .mod {
-    left: 0 !important;
-    width: min(300px, 100%) !important;
-    transform: none !important;
-  }
 }
 @media (min-width: 768px) {
   :root {
@@ -467,9 +461,25 @@ body {
     margin-top: 20px;
   }
   .flow-mobile .map3d,
-  .flow-mobile .labels,
-  .flow-mobile .mod-tunnel {
+  .flow-mobile .labels {
     display: none !important;
+  }
+  .flow-mobile .app-shell {
+    position: relative !important;
+    inset: auto !important;
+    height: auto;
+    margin-top: 28px;
+  }
+  .flow-mobile .app-stage {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+  .flow-mobile .mod-screen {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    margin-top: 10px;
   }
   .flow-mobile .res,
   .flow-mobile .checks {
