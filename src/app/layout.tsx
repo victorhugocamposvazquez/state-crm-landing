@@ -23,15 +23,29 @@ const space = Space_Grotesk({
   display: "swap",
 });
 
+const title = "REHABINCO Gestión Inmobiliaria y Reformas";
+const description = "REHABINCO Gestión Inmobiliaria y Reformas";
+
 export const metadata: Metadata = {
-  title: "statecrm — CRM inmobiliario a medida",
-  description:
-    "Captá particulares antes que nadie. Catastro integrado, seguimiento de operaciones, tareas de equipo y obra. Construido a la medida de tu agencia.",
+  metadataBase: new URL("https://rehabinco.com"),
+  title,
+  description,
+  applicationName: "REHABINCO",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  verification: { google: "SXYCLdM0X1mYCXiEi9NIBKgpdPmJB8IEfdLTUklF69Q" },
   openGraph: {
-    title: "statecrm — CRM inmobiliario a medida",
-    description: "Captación, Catastro, equipo y obra. Un día en la vida de un piso, contado por el propio CRM.",
+    title,
+    description,
+    url: "/",
+    siteName: "REHABINCO",
     locale: "es_ES",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 
