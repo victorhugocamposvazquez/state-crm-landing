@@ -551,7 +551,7 @@ body {
 /* Transición de texto: una frase grande que enfoca palabra a palabra con el scroll.
    Misma mecánica que un capítulo (sección alta + pantalla pegada), sin guion. */
 .textreveal {
-  height: calc(220 * var(--vh-unit));
+  height: calc(520 * var(--vh-unit));
 }
 .textreveal > .pin {
   position: sticky;

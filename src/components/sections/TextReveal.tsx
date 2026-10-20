@@ -14,8 +14,8 @@ const TO = { opacity: 1, filter: "blur(0px)" };
 /**
  * Sección de transición: una frase grande que se revela palabra a palabra con el scroll.
  * Las palabras nacen desenfocadas y apagadas; al avanzar, cada una enfoca y pasa a blanco.
- * La frase empieza a enfocarse mientras el bloque sube y termina con la pantalla pegada,
- * que aguanta un tramo ya nítida antes de soltarse.
+ * No empieza hasta que la frase está quieta en el centro, y aguanta un tramo ya nítida
+ * antes de soltarse.
  */
 export function TextReveal({ id }: { id: TransitionId }) {
   const ref = useRef<HTMLElement>(null);
@@ -36,15 +36,17 @@ export function TextReveal({ id }: { id: TransitionId }) {
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: el,
-          start: "top 60%",
+          start: "top top",
           end: "bottom bottom",
-          scrub: 0.4,
+          scrub: 1.6,
         },
       });
-      // cada palabra tarda 1.8 y la siguiente arranca 1 después: siempre hay una a medio enfocar
-      tl.fromTo(ws, FROM, { ...TO, duration: 1.8, stagger: 1 }, 0)
-        // ya nítida, aguanta un tramo antes de que la pantalla se despegue
-        .to({}, { duration: Math.max(3, words.length * 0.35) });
+      // Una palabra cada vez, con la frase ya quieta en el centro. El tramo final
+      // la deja entera y nítida antes de soltarla.
+      tl.fromTo(ws, FROM, { ...TO, duration: 0.9, stagger: 1 }, 0).to(
+        {},
+        { duration: Math.max(2, words.length * 0.15) },
+      );
     }, el);
     return () => ctx.revert();
   }, [text, words.length]);
