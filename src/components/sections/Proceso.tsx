@@ -1,15 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Cómo funciona: el recorrido de una operación de ejemplo, atado al scroll.
- * Al parar el scroll se para; al subir, retrocede. Sin tiempos ni botones.
- * No comparte progreso con los beneficios del hero.
+ * Cómo funciona: el recorrido de una operación de ejemplo, ya completo.
+ * Se lee de un vistazo, sin pedirle al scroll que avance los cuatro pasos.
  */
 const steps = [
   { n: "01", label: "Anuncio capturado", hint: "Una oportunidad en tu CRM." },
@@ -30,15 +25,12 @@ export function Proceso() {
   const flow = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const section = ref.current;
     const root = flow.current;
-    if (!section || !root) return;
+    if (!root) return;
     const stages = [...root.querySelectorAll<HTMLElement>(".flow-stage")];
     const nodes = stages.map((s) => s.querySelector<HTMLElement>(".flow-node"));
     const detail = root.querySelector<HTMLElement>(".flow-detail");
     const badge = root.querySelector<HTMLElement>(".flow-badge");
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobile = window.matchMedia("(max-width: 767px)");
     let current = -1;
 
     const apply = (p: number) => {
@@ -61,43 +53,8 @@ export function Proceso() {
       if (badge) badge.textContent = n === 3 ? "Venta cerrada" : "En seguimiento";
     };
 
-    const showEnd = () => {
-      current = -1;
-      apply(1);
-    };
-    if (motion.matches || mobile.matches) {
-      showEnd();
-      const onMotion = () => {
-        if (motion.matches || mobile.matches) showEnd();
-      };
-      motion.addEventListener("change", onMotion);
-      mobile.addEventListener("change", onMotion);
-      return () => {
-        motion.removeEventListener("change", onMotion);
-        mobile.removeEventListener("change", onMotion);
-      };
-    }
-
-    const st = ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      end: "bottom bottom",
-      onUpdate: (self) => apply(self.progress),
-    });
-    apply(st.progress);
-    let stopped = false;
-    const onMotion = () => {
-      if (!motion.matches || stopped) return;
-      stopped = true;
-      st.kill();
-      showEnd();
-    };
-    motion.addEventListener("change", onMotion);
-
-    return () => {
-      motion.removeEventListener("change", onMotion);
-      if (!stopped) st.kill();
-    };
+    current = -1;
+    apply(1);
   }, []);
 
   return (

@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 import { Chapter, useScrollTimeline } from "@/components/motion/Chapter";
-import { Brand } from "@/components/ui/atoms";
 import { Logo } from "@/components/shell/Logo";
 
 /**
@@ -28,9 +27,6 @@ export function Manana() {
           <Logo className="text-[36px] md:text-[44px]" />
           <span className="mono mt-6 text-[13px] text-grey5">08</span>
           <h2 className="t-chapter m-0 text-white8">Pide una demo</h2>
-          <p className="t-chapter-lead m-0 text-grey6">
-            Treinta minutos con tu zona: los anuncios de particulares de esta mañana y las fincas de una de tus calles. Te enseñamos <Brand /> y, si encaja, seguimos.
-          </p>
         </div>
 
         <div className="mt-10 w-full max-w-[560px]">

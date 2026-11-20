@@ -3,7 +3,7 @@ import { Entrar } from "@/components/shell/Entrar";
 
 export const metadata: Metadata = {
   title: "Entrar — statecrm",
-  description: "Entra en tu agencia o crea la cuenta. Captación, Catastro, equipo y obra.",
+  description: "Entra en tu agencia o crea la cuenta. Captación, Catastro y equipo.",
 };
 
 export default function Page() {

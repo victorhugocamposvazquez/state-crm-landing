@@ -38,7 +38,7 @@ export function TextReveal({ id }: { id: TransitionId }) {
           trigger: el,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.6,
+          scrub: 0.85,
         },
       });
       // Una palabra cada vez, con la frase ya quieta en el centro. El tramo final

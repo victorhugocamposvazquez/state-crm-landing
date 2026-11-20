@@ -32,7 +32,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     useScroll.getState().setEnv({ reducedMotion: reduced, isMobile: mobile });
 
     const lenis = new Lenis({
-      lerp: 0.08,
+      lerp: 0.1,
       smoothWheel: !reduced,
       syncTouch: false,
       anchors: true,

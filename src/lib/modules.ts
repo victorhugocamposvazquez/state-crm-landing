@@ -5,7 +5,7 @@
  * Cambiar un texto es tocar una línea aquí; el componente es ModuleText.
  */
 
-export type ModuleTextId = "captacion" | "catastro" | "seguimiento" | "equipo" | "obra" | "plataforma";
+export type ModuleTextId = "captacion" | "catastro" | "seguimiento" | "equipo" | "plataforma";
 
 export interface ModuleFeature {
   title: string;
@@ -81,19 +81,6 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
       { title: "Calendario compartido", text: "Visitas, firmas y llamadas en su franja horaria." },
       { title: "Varias oficinas", text: "Cada una con su agenda, todas en el mismo calendario." },
       { title: "Móvil sin instalar nada", text: "La misma aplicación en el navegador del teléfono." },
-    ],
-  },
-  obra: {
-    id: "obra",
-    module: "Presupuestos · Facturas · Informes",
-    what: "la obra y la facturación, en la ficha del piso",
-    title: "Del presupuesto a la factura, en un clic.",
-    body:
-      "El presupuesto de la reforma se hace por partidas en la ficha del piso. Cuando el cliente acepta, un clic lo convierte en factura con su PDF. Los informes recogen captación, seguimiento y obra por oficina.",
-    features: [
-      { title: "Presupuestos por partidas", text: "Con estados y tasa de aceptación." },
-      { title: "Factura en un clic", text: "Enlazada al inmueble y al cliente, con estado de cobro." },
-      { title: "Informes", text: "Por oficina y por operación." },
     ],
   },
   plataforma: {

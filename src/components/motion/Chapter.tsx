@@ -34,6 +34,8 @@ export function Chapter({
   const solid = index >= chapterIndex.catastro;
   /* En móvil estos capítulos no se pinchan: el alto lo marca el contenido. Ciudad y prólogo siguen pegados. */
   const flows = id !== "ciudad" && id !== "prologo";
+  /* En escritorio solo Catastro, la ciudad y las frases siguen el scroll. Estos se ven ya compuestos. */
+  const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo";
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -43,7 +45,7 @@ export function Chapter({
       trigger: el,
       start: "top top",
       end: "bottom bottom",
-      onUpdate: (self) => setProgress(id, self.progress),
+      onUpdate: (self) => setProgress(id, quiet ? 1 : self.progress),
       onToggle: (self) => {
         if (self.isActive) setActive(id);
         setPinned(id, self.isActive);
@@ -68,13 +70,14 @@ export function Chapter({
         setOnScreen(id, y >= self.start && y <= self.end);
       },
     });
+    if (quiet) setProgress(id, 1);
     return () => {
       st.kill();
       vis.kill();
       setPinned(id, false);
       setOnScreen(id, false);
     };
-  }, [id]);
+  }, [id, quiet]);
 
   return (
     <section
@@ -120,14 +123,18 @@ export function useScrollTimeline(
     const section = el.closest(".chapter") ?? el;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mobileFlow = window.matchMedia("(max-width: 767px)").matches && section.classList.contains("flow-mobile");
+    const id = section.getAttribute("data-chapter");
+    const story = id === "catastro";
+    const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo";
     const ctx = gsap.context(() => {
+      const scrub = story ? 0.7 : 0.25;
       const enter = gsap.timeline({
         defaults: { ease: "power3.out" },
         scrollTrigger: {
           trigger: section,
           start: "top bottom",
           end: "top 50%",
-          scrub: 0.5,
+          scrub,
         },
       });
       const tl = gsap.timeline({
@@ -136,11 +143,11 @@ export function useScrollTimeline(
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.5,
+          scrub,
         },
       });
       build(tl, gsap.utils.selector(el), enter);
-      if (reduced || mobileFlow) {
+      if (reduced || mobileFlow || quiet) {
         for (const t of [enter, tl]) {
           t.progress(1).pause();
           t.scrollTrigger?.kill();

@@ -15,8 +15,6 @@ export type ChapterId =
   | "catastro"
   | "seguimiento"
   | "equipo"
-  | "obra"
-  | "producto"
   | "manana";
 
 /** esquina de la pantalla del capítulo donde aparecen sus notificaciones */
@@ -70,7 +68,7 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 0),
     hourEnd: h(7, 40),
     label: "EL RADAR",
-    vh: 220,
+    vh: 180,
     stack: true,
     events: [
       { at: 0.18, kind: "new", text: "Nuevo anuncio de particular", meta: "Plaza de Castilla · 07:36" },
@@ -96,7 +94,7 @@ export const chapters: Chapter[] = [
     hourStart: h(7, 52),
     hourEnd: h(9, 15),
     label: "CAPTACIÓN",
-    vh: 220,
+    vh: 100,
     events: [{ at: 0.6, kind: "ok", text: "Teléfono capturado · Camino Rianxiño, 115", meta: "asignado a Ana" }],
     toasts: "bl",
   },
@@ -106,7 +104,7 @@ export const chapters: Chapter[] = [
     hourStart: h(9, 15),
     hourEnd: h(11, 30),
     label: "CATASTRO",
-    vh: 300,
+    vh: 420,
     events: [
       { at: 0.26, kind: "ok", text: "Rastreo completo · Rolda de Nelle", meta: "38 fincas" },
       { at: 0.62, kind: "new", text: "Rastreo en curso · Oleiros", meta: "Marta · 10:40" },
@@ -120,7 +118,7 @@ export const chapters: Chapter[] = [
     hourStart: h(11, 30),
     hourEnd: h(13, 0),
     label: "INMUEBLES · DEMANDAS · SEGUIMIENTO",
-    vh: 320,
+    vh: 100,
     events: [
       { at: 0.45, kind: "ok", text: "Demanda coincidente · Familia López", meta: "Piso en calle de Posse" },
       { at: 0.8, kind: "new", text: "Solicitud de visita · Piso en calle de Posse", meta: "12:48" },
@@ -133,7 +131,7 @@ export const chapters: Chapter[] = [
     hourStart: h(13, 0),
     hourEnd: h(17, 0),
     label: "TAREAS · CALENDARIO · EQUIPO",
-    vh: 280,
+    vh: 100,
     events: [
       { at: 0.35, kind: "alert", text: "Bajada de precio · Dúplex en Cacheiras", meta: "Teo · −15.000 €" },
       { at: 0.75, kind: "ok", text: "Visita realizada · Luis", meta: "13:00 · calle de Posse" },
@@ -141,30 +139,8 @@ export const chapters: Chapter[] = [
     toasts: "bl",
   },
   {
-    id: "obra",
-    slate: "06",
-    hourStart: h(17, 0),
-    hourEnd: h(20, 30),
-    label: "PRESUPUESTOS · FACTURAS · INFORMES",
-    vh: 300,
-    events: [
-      { at: 0.35, kind: "ok", text: "Presupuesto aceptado · PRS-2026-0001", meta: "74.536,00 €" },
-      { at: 0.8, kind: "ok", text: "Factura cobrada · FAC-2026-0001", meta: "16:52" },
-    ],
-    toasts: "bl",
-  },
-  {
-    id: "producto",
-    slate: "07",
-    hourStart: h(20, 30),
-    hourEnd: h(23, 59),
-    label: "TODO EL PRODUCTO",
-    vh: 340,
-    events: [],
-  },
-  {
     id: "manana",
-    slate: "08",
+    slate: "06",
     hourStart: h(6, 59),
     hourEnd: h(7, 0),
     label: "MAÑANA",

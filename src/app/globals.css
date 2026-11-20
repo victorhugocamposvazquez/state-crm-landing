@@ -551,7 +551,7 @@ body {
 /* Transición de texto: una frase grande que enfoca palabra a palabra con el scroll.
    Misma mecánica que un capítulo (sección alta + pantalla pegada), sin guion. */
 .textreveal {
-  height: calc(520 * var(--vh-unit));
+  height: calc(300 * var(--vh-unit));
 }
 .textreveal > .pin {
   position: sticky;
@@ -563,15 +563,16 @@ body {
   will-change: filter, opacity;
 }
 
-/* Cómo funciona: sección alta, pantalla pegada, el recorrido lo marca el scroll. */
+/* Cómo funciona: el recorrido completo, en flujo, sin pantalla pegada. */
 .proceso {
-  height: calc(280 * var(--vh-unit));
+  height: auto;
 }
 .proceso > .pin {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  min-height: 0;
+  position: relative;
+  height: auto;
+  align-items: flex-start;
+  padding-top: 96px;
+  padding-bottom: 64px;
 }
 @media (max-width: 767px) {
   .proceso { height: auto; }
@@ -769,7 +770,7 @@ body {
 }
 
 /* Captación: una fotografía, cuatro fachadas que se iluminan y después una ficha. */
-.city-chapter { height: 260svh !important; }
+.city-chapter { height: 280svh !important; }
 .city-chapter > .stage { height: 100svh; background: #0a0a0a; }
 .city-layout { max-width: var(--content-max); height: 100%; margin-inline: auto; padding: 104px var(--gutter) 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 80px); }
 .city-copy { max-width: 480px; }
