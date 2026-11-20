@@ -65,8 +65,8 @@ export function Entrar() {
   const title = mode === "registro" ? "Crea tu cuenta" : mode === "recuperar" ? "Recuperar contraseña" : "Accede a tu panel";
 
   return (
-    <div className="relative flex min-h-svh flex-col">
-      <header className="flex h-[72px] items-center justify-end px-[var(--edge)]">
+    <div className="relative flex min-h-svh flex-col bg-black0">
+      <header className="absolute inset-x-0 top-0 z-10 flex h-[72px] items-center justify-end px-[var(--edge)]">
         <button type="button" onClick={close} aria-label="Cerrar y volver" className="flex h-11 w-11 cursor-pointer items-center justify-center border-0 bg-transparent p-0 text-white7 hover:text-white8">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
             <path d="M6 6l12 12M18 6 6 18" />
@@ -74,15 +74,13 @@ export function Entrar() {
         </button>
       </header>
 
-      <main className="relative flex flex-1 flex-col items-start px-[var(--gutter)] pb-16 pt-4 md:pt-10">
-        <div className="halo" style={{ left: "50%", top: 40, width: 720, height: 520, transform: "translate(-50%, 0)" }} />
-
-        <div className="relative flex w-full max-w-[440px] flex-col items-start">
+      <main className="flex flex-1 flex-col items-center justify-center px-[var(--gutter)] py-24">
+        <div className="flex w-full max-w-[440px] flex-col items-center">
           <Logo className="text-[32px] md:text-[40px]" />
-          <h1 className="m-0 mt-6 w-full text-left text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
+          <h1 className="m-0 mt-6 w-full text-center text-[20px] font-medium leading-[1.25] tracking-[-0.03em] text-white8 md:text-[22px]">{title}</h1>
 
           {mode !== "recuperar" && (
-            <div className="mt-5 flex gap-5 self-start" role="tablist" aria-label="Acceso">
+            <div className="mt-5 flex gap-5" role="tablist" aria-label="Acceso">
               <button
                 type="button"
                 role="tab"
