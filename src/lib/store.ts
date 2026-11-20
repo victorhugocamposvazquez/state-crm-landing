@@ -35,9 +35,9 @@ const zero = Object.fromEntries(chapters.map((c) => [c.id, 0])) as Record<Chapte
 export const useScroll = create<ScrollState>((set) => ({
   global: 0,
   progress: zero,
-  active: "prologo",
-  pinned: { prologo: true },
-  onScreen: { prologo: true },
+  active: "radar",
+  pinned: { radar: true },
+  onScreen: { radar: true },
   reducedMotion: false,
   isMobile: false,
   setGlobal: (v) => set({ global: v }),

@@ -1,6 +1,5 @@
 import { Nav } from "@/components/shell/Nav";
 import { StageClient } from "@/components/canvas/StageClient";
-import { Prologo } from "@/components/chapters/00-Prologo";
 import { Radar } from "@/components/chapters/01-Radar";
 import { Ciudad } from "@/components/chapters/02-Ciudad";
 import { Bandeja } from "@/components/chapters/02-Bandeja";
@@ -29,7 +28,6 @@ export default function Page() {
       <StageClient />
       <Nav />
       <main className="relative z-[1]">
-        <Prologo />
         <Radar />
         <TextReveal id="saber" />
         <Proceso />

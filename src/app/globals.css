@@ -432,7 +432,7 @@ body {
   overflow: hidden;
 }
 /* En móvil el capítulo ocupa su alto real: el texto y un panel, sin recorte ni pantalla pegada.
-   La ciudad y el prólogo no llevan .flow-mobile. */
+   La ciudad no lleva .flow-mobile. */
 @media (max-width: 767px) {
   .flow-mobile {
     height: auto !important;
@@ -563,16 +563,15 @@ body {
   will-change: filter, opacity;
 }
 
-/* Cómo funciona: el recorrido completo, en flujo, sin pantalla pegada. */
+/* Cómo funciona: sección alta, pantalla pegada, los cuatro pasos los marca el scroll. */
 .proceso {
-  height: auto;
+  height: calc(280 * var(--vh-unit));
 }
 .proceso > .pin {
-  position: relative;
-  height: auto;
-  align-items: flex-start;
-  padding-top: 96px;
-  padding-bottom: 64px;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 0;
 }
 @media (max-width: 767px) {
   .proceso { height: auto; }

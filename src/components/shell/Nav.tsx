@@ -21,7 +21,7 @@ export function Nav() {
   const active = useSyncExternalStore(
     useScroll.subscribe,
     () => useScroll.getState().active,
-    () => "prologo" as ChapterId,
+    () => "radar" as ChapterId,
   );
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
@@ -52,7 +52,7 @@ export function Nav() {
       ref={headerRef}
       className="site-header fixed inset-x-0 top-0 z-50 flex h-[72px] items-center justify-between px-[var(--edge)]"
     >
-      <a href="#prologo" aria-label="statecrm, volver al inicio" className="no-underline">
+      <a href="#radar" aria-label="statecrm, volver al inicio" className="no-underline">
         <Logo />
       </a>
 

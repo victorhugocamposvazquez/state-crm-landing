@@ -6,7 +6,7 @@ import { Logo } from "@/components/shell/Logo";
 
 /**
  * 08 · Demo. El cierre: el logotipo, la petición y el formulario, en el alto real de la sección.
- * La web es un bucle: `volver a las 07:00 ↑` rebobina al principio.
+ * La web es un bucle: `volver al inicio ↑` rebobina al principio.
  */
 export function Manana() {
   const ref = useRef<HTMLDivElement>(null);
@@ -67,8 +67,8 @@ export function Manana() {
             <a href="#" className="text-grey4 no-underline hover:text-grey6">
               aviso legal
             </a>
-            <a href="#prologo" className="text-grey5 no-underline hover:text-white7">
-              volver a las 07:00 ↑
+            <a href="#radar" className="text-grey5 no-underline hover:text-white7">
+              volver al inicio ↑
             </a>
           </span>
         </footer>

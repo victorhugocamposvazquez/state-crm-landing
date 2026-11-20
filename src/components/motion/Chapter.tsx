@@ -32,8 +32,8 @@ export function Chapter({
   const index = chapterIndex[id];
   // Del Catastro en adelante el canvas 3D ya no cuenta nada: fondo sólido por si sigue encendido
   const solid = index >= chapterIndex.catastro;
-  /* En móvil estos capítulos no se pinchan: el alto lo marca el contenido. Ciudad y prólogo siguen pegados. */
-  const flows = id !== "ciudad" && id !== "prologo";
+  /* En móvil estos capítulos no se pinchan: el alto lo marca el contenido. La ciudad sigue pegada. */
+  const flows = id !== "ciudad";
   /* En escritorio solo Catastro, la ciudad y las frases siguen el scroll. Estos se ven ya compuestos. */
   const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo";
 

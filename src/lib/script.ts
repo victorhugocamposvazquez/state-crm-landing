@@ -8,7 +8,6 @@ import type { EventKind } from "./tokens";
  */
 
 export type ChapterId =
-  | "prologo"
   | "radar"
   | "ciudad"
   | "bandeja"
@@ -53,15 +52,6 @@ export interface Chapter {
 const h = (hh: number, mm: number) => hh * 60 + mm;
 
 export const chapters: Chapter[] = [
-  {
-    id: "prologo",
-    slate: "00",
-    hourStart: h(6, 59),
-    hourEnd: h(7, 0),
-    label: "PRÓLOGO",
-    vh: 100,
-    events: [],
-  },
   {
     id: "radar",
     slate: "01",
