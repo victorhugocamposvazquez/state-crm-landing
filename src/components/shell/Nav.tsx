@@ -11,6 +11,7 @@ const links: { label: string; href: string; chapter?: ChapterId }[] = [
   { label: "Catastro", href: "#catastro", chapter: "catastro" },
   { label: "Seguimiento", href: "#seguimiento", chapter: "seguimiento" },
   { label: "Equipo", href: "#equipo", chapter: "equipo" },
+  { label: "Estudio", href: "#estudio", chapter: "estudio" },
 ];
 
 /**

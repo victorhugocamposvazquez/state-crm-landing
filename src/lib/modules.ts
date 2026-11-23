@@ -5,7 +5,7 @@
  * Cambiar un texto es tocar una línea aquí; el componente es ModuleText.
  */
 
-export type ModuleTextId = "captacion" | "catastro" | "seguimiento" | "equipo" | "plataforma";
+export type ModuleTextId = "captacion" | "catastro" | "seguimiento" | "equipo" | "estudio" | "plataforma";
 
 export interface ModuleFeature {
   title: string;
@@ -81,6 +81,20 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
       { title: "Calendario compartido", text: "Visitas, firmas y llamadas en su franja horaria." },
       { title: "Varias oficinas", text: "Cada una con su agenda, todas en el mismo calendario." },
       { title: "Móvil sin instalar nada", text: "La misma aplicación en el navegador del teléfono." },
+    ],
+  },
+  estudio: {
+    id: "estudio",
+    module: "Estudio",
+    what: "creatividades de redes, desde la ficha",
+    title: "El anuncio sale de la ficha.",
+    body:
+      "Eliges el inmueble y statecrm monta el post con sus fotos, metros y precio. Eliges el formato de la red, el tipo de anuncio y lo publicas o lo descargas.",
+    features: [
+      { title: "Desde el inmueble", text: "Fotos y datos de la ficha, sin volver a escribirlos." },
+      { title: "Formato de la red", text: "Post, cuadrado o reel." },
+      { title: "Tipo de anuncio", text: "Nuevo, exclusiva o vendido." },
+      { title: "Publicar o descargar", text: "La pieza queda lista, con la marca de la agencia." },
     ],
   },
   plataforma: {

@@ -14,6 +14,7 @@ export type ChapterId =
   | "catastro"
   | "seguimiento"
   | "equipo"
+  | "estudio"
   | "manana";
 
 /** esquina de la pantalla del capítulo donde aparecen sus notificaciones */
@@ -129,8 +130,18 @@ export const chapters: Chapter[] = [
     toasts: "bl",
   },
   {
-    id: "manana",
+    id: "estudio",
     slate: "06",
+    hourStart: h(17, 0),
+    hourEnd: h(19, 0),
+    label: "ESTUDIO",
+    vh: 100,
+    events: [{ at: 0.6, kind: "ok", text: "Creatividad lista · Calle del Pez", meta: "Post · Ana" }],
+    toasts: "bl",
+  },
+  {
+    id: "manana",
+    slate: "07",
     hourStart: h(6, 59),
     hourEnd: h(7, 0),
     label: "MAÑANA",

@@ -6,6 +6,7 @@ import { Bandeja } from "@/components/chapters/02-Bandeja";
 import { Catastro } from "@/components/chapters/03-Catastro";
 import { Seguimiento } from "@/components/chapters/04-Seguimiento";
 import { Equipo } from "@/components/chapters/05-Equipo";
+import { Estudio } from "@/components/chapters/06-Estudio";
 import { Manana } from "@/components/chapters/08-Manana";
 import { ModuleText } from "@/components/sections/ModuleText";
 import { MarcaBlanca } from "@/components/sections/MarcaBlanca";
@@ -40,6 +41,8 @@ export default function Page() {
         <ModuleText id="seguimiento" />
         <Equipo />
         <ModuleText id="equipo" />
+        <Estudio />
+        <ModuleText id="estudio" />
         <TextReveal id="cerrar" />
         <ModuleText id="plataforma" />
         <MarcaBlanca />

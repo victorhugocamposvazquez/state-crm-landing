@@ -26,14 +26,14 @@ export function Manana() {
         <div className="h flex w-full max-w-[640px] flex-col items-center gap-4 text-center" style={{ opacity: 0 }}>
           <Logo className="text-[36px] md:text-[44px]" />
           <span className="mono mt-6 text-[13px] text-grey5">08</span>
-          <h2 className="t-chapter m-0 text-white8">Pide una demo</h2>
+          <h2 className="t-chapter m-0 text-white8">Agenda una reunión</h2>
         </div>
 
         <div className="mt-10 w-full max-w-[560px]">
           <form className="form grid grid-cols-1 gap-[10px] sm:grid-cols-2" action="#" method="post" style={{ opacity: 0 }} onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
             {sent ? (
               <p className="t-body col-span-full m-0 text-white8" role="status">
-                Recibido. Te escribimos hoy para concretar la demo.
+                Recibido. Te escribimos hoy para concretar la reunión.
               </p>
             ) : (
               <>
@@ -47,7 +47,7 @@ export function Manana() {
                 </label>
                 <input id="email" name="email" type="email" required placeholder="tu@agencia.es" className="min-h-[46px] rounded-[8px] border border-grey3 bg-black1 px-[14px] text-[14px] text-white7 placeholder:text-grey5 sm:col-span-2" />
                 <button type="submit" className="btn btn-w sm:col-span-2">
-                  Reservar demo
+                  Agendar reunión
                 </button>
                 <span className="mono text-[13px] text-grey6 sm:col-span-2">sin compromiso · respondemos en el día</span>
               </>
