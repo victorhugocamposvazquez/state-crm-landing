@@ -432,7 +432,7 @@ body {
   overflow: hidden;
 }
 /* En móvil el capítulo ocupa su alto real: el texto y un panel, sin recorte ni pantalla pegada.
-   La ciudad no lleva .flow-mobile. */
+   La ciudad y el Catastro no llevan .flow-mobile: siguen pegados y se animan con el scroll. */
 @media (max-width: 767px) {
   .flow-mobile {
     height: auto !important;

@@ -23,22 +23,20 @@ const space = Space_Grotesk({
   display: "swap",
 });
 
-const title = "REHABINCO Gestión Inmobiliaria y Reformas";
-const description = "REHABINCO Gestión Inmobiliaria y Reformas";
+const title = "Statecrm. CRM inmobiliario a medida. Adaptado a ti.";
+const description = "CRM inmobiliario a medida. Adaptado a ti.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rehabinco.com"),
   title,
   description,
-  applicationName: "REHABINCO",
+  applicationName: "Statecrm",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
-  verification: { google: "SXYCLdM0X1mYCXiEi9NIBKgpdPmJB8IEfdLTUklF69Q" },
   openGraph: {
     title,
     description,
     url: "/",
-    siteName: "REHABINCO",
+    siteName: "Statecrm",
     locale: "es_ES",
     type: "website",
   },
