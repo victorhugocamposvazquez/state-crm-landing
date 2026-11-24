@@ -135,8 +135,8 @@ export const chapters: Chapter[] = [
     hourStart: h(17, 0),
     hourEnd: h(19, 0),
     label: "ESTUDIO",
-    vh: 100,
-    events: [{ at: 0.6, kind: "ok", text: "Creatividad lista · Calle del Pez", meta: "Post · Ana" }],
+    vh: 360,
+    events: [{ at: 0.75, kind: "ok", text: "Creatividad lista · Calle del Pez", meta: "Post · Ana" }],
     toasts: "bl",
   },
   {

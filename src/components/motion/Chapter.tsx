@@ -34,8 +34,8 @@ export function Chapter({
   const solid = index >= chapterIndex.catastro;
   /* En móvil estos capítulos no se pinchan: el alto lo marca el contenido. La ciudad sigue pegada. */
   const flows = id !== "ciudad";
-  /* En escritorio solo Catastro, la ciudad y las frases siguen el scroll. Estos se ven ya compuestos. */
-  const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo" || id === "estudio";
+  /* En escritorio solo Catastro, Estudio, la ciudad y las frases siguen el scroll. Estos se ven ya compuestos. */
+  const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo";
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -125,7 +125,7 @@ export function useScrollTimeline(
     const mobileFlow = window.matchMedia("(max-width: 767px)").matches && section.classList.contains("flow-mobile");
     const id = section.getAttribute("data-chapter");
     const story = id === "catastro";
-    const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo" || id === "estudio";
+    const quiet = id === "bandeja" || id === "seguimiento" || id === "equipo";
     const ctx = gsap.context(() => {
       const scrub = story ? 0.7 : 0.25;
       const enter = gsap.timeline({
