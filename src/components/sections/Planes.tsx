@@ -17,7 +17,7 @@ function Tick({ on }: { on: boolean }) {
 }
 
 /**
- * Planes: tres cuotas mensuales (Captación · Catastro · Completo) y, debajo, la tabla
+ * Planes: Captación y Catastro con cuota mensual, Completo por presupuestar, y la tabla
  * de qué módulo entra en qué plan. Los datos viven en src/lib/plans.ts.
  */
 export function Planes() {
@@ -45,8 +45,8 @@ export function Planes() {
                   {p.badge && <span className="st st-g">{p.badge}</span>}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[40px] font-medium leading-none tracking-[-0.02em] text-white8">{p.price}</span>
-                  <span className="mono text-[13px] text-grey5">{p.unit}</span>
+                  <span className={`${p.unit ? "text-[40px]" : "text-[28px]"} font-medium leading-none tracking-[-0.02em] text-white8`}>{p.price}</span>
+                  {p.unit ? <span className="mono text-[13px] text-grey5">{p.unit}</span> : null}
                 </div>
               </header>
 

@@ -2,7 +2,7 @@
  * PLANES.
  * Todo lo que enseña la sección de planes sale de aquí: tres planes mensuales, qué incluye cada
  * uno y qué módulo entra en qué plan. Precios orientativos (oct 2026): de 250 € al mes el más
- * básico a 1.250 € el completo con todas las opciones. Cambiar un precio o una línea es tocarla aquí.
+ * básico a 650 € el de Catastro. Completo se presupuesta. Cambiar un precio o una línea es tocarla aquí.
  */
 
 export type PlanId = "captacion" | "catastro" | "completo";
@@ -57,8 +57,8 @@ export const plans: Plan[] = [
   {
     id: "completo",
     name: "Completo",
-    price: "1.250 €",
-    unit: "/ mes",
+    price: "Por presupuestar",
+    unit: "",
     items: [
       { title: "Todo el plan Catastro", text: "Captación, catastro, encubiertas y varias oficinas." },
       { title: "Informes por oficina y operación", text: "Captación y seguimiento en una misma vista." },
