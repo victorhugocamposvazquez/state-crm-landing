@@ -61,7 +61,7 @@ export function Bandeja() {
               <div className="flex items-center justify-between">
                 <span className="text-[18px] font-medium tracking-[-0.02em] text-white8 md:text-[20px]">Captación</span>
                 <span className="mono text-[13px] text-grey6">
-                  15 sin teléfono · <span className="text-green">+ nueva alerta</span>
+                  15 sin asignar · <span className="text-green">+ nueva alerta</span>
                 </span>
               </div>
               <div className="flex gap-5 border-b border-grey3 text-[13px] text-grey5">
@@ -100,7 +100,7 @@ export function Bandeja() {
                   Agencias <span className="text-grey5">857</span>
                 </span>
                 <span className="hidden rounded-full border border-grey3 px-[10px] py-[5px] text-grey6 sm:inline">
-                  Sin teléfono <span className="text-grey5">15</span>
+                  Sin asignar <span className="text-grey5">15</span>
                 </span>
                 <span className="hidden rounded-full border border-grey3 px-[10px] py-[5px] text-grey6 md:inline">
                   Solo mensaje <span className="text-grey5">122</span>
@@ -151,7 +151,7 @@ export function Bandeja() {
                       <>
                         <span className="phone-dash st st-n absolute left-0 top-0">—</span>
                         <span className="phone-ok st st-g" style={{ opacity: 0 }}>
-                          ● tel. capturado
+                          ● capturado
                         </span>
                       </>
                     ) : l.kind === "encubierta" ? (

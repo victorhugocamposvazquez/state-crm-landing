@@ -49,7 +49,6 @@ export function Manana() {
                 <button type="submit" className="btn btn-w sm:col-span-2">
                   Agendar reunión
                 </button>
-                <span className="mono text-[13px] text-grey6 sm:col-span-2">sin compromiso · respondemos en el día</span>
               </>
             )}
           </form>

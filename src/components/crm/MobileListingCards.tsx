@@ -20,7 +20,7 @@ export function MobileListingCards({ visible }: { visible: boolean }) {
           <span>{listing.m2} m² · {listing.rooms} hab.</span>
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-grey3 pt-3 text-[12px] text-grey6">
-          <span className="text-green">✓ Teléfono disponible</span><span>Asignado a Ana</span>
+          <span className="text-green">✓ En bandeja</span><span>Asignado a Ana</span>
         </div>
       </article>
     </div>

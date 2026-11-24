@@ -86,7 +86,7 @@ export const chapters: Chapter[] = [
     hourEnd: h(9, 15),
     label: "CAPTACIÓN",
     vh: 100,
-    events: [{ at: 0.6, kind: "ok", text: "Teléfono capturado · Camino Rianxiño, 115", meta: "asignado a Ana" }],
+    events: [{ at: 0.6, kind: "ok", text: "Nuevo particular · Camino Rianxiño, 115", meta: "asignado a Ana" }],
     toasts: "bl",
   },
   {

@@ -32,7 +32,7 @@ export const plans: Plan[] = [
     price: "250 €",
     unit: "/ mes",
     items: [
-      { title: "Captación diaria de particulares", text: "Rastreo de los portales cada mañana en tus zonas, con ficha completa y teléfono." },
+      { title: "Captación diaria de particulares", text: "Rastreo de los portales cada mañana en tus zonas, con ficha completa." },
       { title: "Bandeja de novedades", text: "Lo que entra hoy, con prioridad, asignación a un comercial y avisos de subidas y bajadas de precio." },
       { title: "Inmuebles, demandas y seguimiento", text: "La cartera, lo que buscan los clientes cruzado solo, y cada operación por etapas." },
       { title: "Tareas y calendario", text: "El trabajo del equipo repartido y a la vista, también en el móvil sin instalar nada." },
@@ -85,7 +85,7 @@ const row = (module: string, from: PlanId): PlanRow => ({
 
 export const planRows: PlanRow[] = [
   row("Captación diaria de particulares", "captacion"),
-  row("Bandeja de novedades, teléfono y prioridad", "captacion"),
+  row("Bandeja de novedades y prioridad", "captacion"),
   row("Subidas y bajadas de precio", "captacion"),
   row("Inmuebles y demandas cruzadas", "captacion"),
   row("Seguimiento por etapas y clientes", "captacion"),

@@ -199,7 +199,6 @@ export function Entrar() {
                 <button type="submit" className="btn btn-w mt-3">
                   Crear cuenta
                 </button>
-                <span className="mono text-[13px] text-grey6">sin compromiso · respondemos en el día</span>
               </>
             )}
           </form>

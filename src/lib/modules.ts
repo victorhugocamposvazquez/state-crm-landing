@@ -31,12 +31,12 @@ export const moduleTexts: Record<ModuleTextId, ModuleText> = {
     id: "captacion",
     module: "Captación",
     what: "anuncios de particulares, cada mañana",
-    title: "Particulares cada mañana, con teléfono.",
+    title: "Particulares cada mañana.",
     body:
-      "Cada mañana statecrm rastrea los portales en tus zonas y guarda cada anuncio nuevo de particular con precio, metros, fotos y teléfono. Distingue particular, agencia y agencia encubierta, y lo que entra se asigna a un comercial.",
+      "Cada mañana statecrm rastrea los portales en tus zonas y guarda cada anuncio nuevo de particular con precio, metros y fotos. Distingue particular, agencia y agencia encubierta, y lo que entra se asigna a un comercial.",
     features: [
       { title: "Rastreo diario por zona", text: "Ciudades, barrios o códigos postales, los que tú marques." },
-      { title: "Ficha completa y teléfono", text: "Precio, metros, habitaciones, fotos y el teléfono cuando el portal lo muestra." },
+      { title: "Ficha completa", text: "Precio, metros, habitaciones y fotos." },
       { title: "Agencias encubiertas", text: "Señala a las agencias que se anuncian como particulares." },
       { title: "Prioridad y asignación", text: "Cada novedad con responsable, y aviso si cambia de precio." },
     ],
